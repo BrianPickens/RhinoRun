@@ -107,4 +107,13 @@ public class LevelGenerator : MonoBehaviour {
         }
     }
 
+    public void EndGame()
+    {
+        for (int i = 0; i < levelBlocks.Count; i++)
+        {
+            levelBlocks[i].SetSpeed(0);
+        }
+    }
+
+
 }

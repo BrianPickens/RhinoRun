@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.UI;
 
 
 /// <summary>
-/// add puch button for charge
+/// 
 /// </summary>
 
 public enum CharacterState { Idle, Running, Charging, Dead }
 public class Character : MonoBehaviour {
 
-
     private Transform myTransform;
     private Renderer myRenderer;
+
+    [SerializeField]
+    private Image chargeMeter;
 
     [SerializeField]
     private Material normalMat;
@@ -34,6 +38,11 @@ public class Character : MonoBehaviour {
 
     private bool canSwipe;
 
+    private float chargePower;
+
+    [SerializeField]
+    private float drainSpeed;
+
     private Camera mainCamera;
 
     private Vector3 touchOrigin = Vector3.zero;
@@ -43,9 +52,11 @@ public class Character : MonoBehaviour {
 
     private Vector3 laneDestination;
 
-    private IEnumerator chargeRoutine;
+    //private IEnumerator chargeRoutine;
 
     private int laneNumber;
+
+    public Action OnGameOver;
 
     private void Awake()
     {
@@ -56,20 +67,29 @@ public class Character : MonoBehaviour {
 
     private void Start ()
     {
+        chargePower = 100f;
         canSwipe = true;
         laneNumber = 1;
         laneDestination = myTransform.position;
         myCharacterState = CharacterState.Running;
 	}
-	
-	private void Update ()
+
+    private void Update()
     {
-        if (myCharacterState == CharacterState.Running || myCharacterState == CharacterState.Charging)
+        if (myCharacterState != CharacterState.Dead)
         {
-            CheckForInput();
-            MoveCharacter();
+            if (myCharacterState == CharacterState.Running || myCharacterState == CharacterState.Charging)
+            {
+                CheckForInput();
+                MoveCharacter();
+            }
+
+            if (myCharacterState == CharacterState.Charging)
+            {
+                DrainChargePower();
+            }
+
         }
-        
     }
 
     private void CheckForInput()
@@ -92,7 +112,7 @@ public class Character : MonoBehaviour {
                 touchCurrent = Camera.main.ScreenToWorldPoint(new Vector3(rawTouchCurrent.x, rawTouchCurrent.y, -mainCamera.transform.position.z));
 
                 float swipeDistance = Vector3.Distance(touchOrigin, touchCurrent);
-                Debug.Log(swipeDistance);
+                //Debug.Log(swipeDistance);
                 if (swipeDistance > swipeSensitivity && canSwipe)
                 {
                     canSwipe = false;
@@ -123,21 +143,32 @@ public class Character : MonoBehaviour {
             ChangeLanes(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            myCharacterState = CharacterState.Charging;
-            if (chargeRoutine != null)
-            {
-                StopCoroutine(chargeRoutine);
-            }
-            chargeRoutine = ChargeDuration();
-            StartCoroutine(chargeRoutine);
-        }
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    myCharacterState = CharacterState.Charging;
+        //    if (chargeRoutine != null)
+        //    {
+        //        StopCoroutine(chargeRoutine);
+        //    }
+        //    chargeRoutine = ChargeDuration();
+        //    StartCoroutine(chargeRoutine);
+        //}
     }
 
     private void MoveCharacter()
     {
         myTransform.position = Vector3.MoveTowards(myTransform.position, laneDestination, Time.deltaTime * moveSpeed);
+    }
+
+    private void DrainChargePower()
+    {
+        chargePower = Mathf.MoveTowards(chargePower, 0, Time.deltaTime * drainSpeed);
+        chargeMeter.fillAmount = chargePower / 100;
+
+        if (chargePower <= 0.1f)
+        {
+            GameOver();
+        }
     }
 
     private void ChangeLanes(int _direction)
@@ -173,28 +204,51 @@ public class Character : MonoBehaviour {
         }
     }
 
+    private void GameOver()
+    {
+        Debug.Log("this happened");
+        myCharacterState = CharacterState.Dead;
+        if (OnGameOver != null)
+        {
+            OnGameOver();
+        }
+
+    }
+
+    public void ChargeStart()
+    {
+        myCharacterState = CharacterState.Charging;
+        myRenderer.material = ChargeMat;
+    }
+
+    public void ChargeEnd()
+    {
+        myCharacterState = CharacterState.Running;
+        myRenderer.material = normalMat;
+    }
+
     public void HandleCollision(ObstacleBlock _obstacle)
     {
         if (_obstacle.MyObstacleType == ObstacleType.Barrier)
         {
-            Debug.Log("crashed");
+           // Debug.Log("crashed");
         }
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
-            Debug.Log("WEEE");
+           // Debug.Log("WEEE");
             _obstacle.Destroyed();
         }
         else
         {
-            Debug.Log("crashed fail");
+            //Debug.Log("crashed fail");
         }
     }
 
-    private IEnumerator ChargeDuration()
-    {
-        myRenderer.material = ChargeMat;
-        yield return new WaitForSeconds(chargeDuration);
-        myRenderer.material = normalMat;
-        myCharacterState = CharacterState.Running;
-    }
+    //private IEnumerator ChargeDuration()
+    //{
+    //    myRenderer.material = ChargeMat;
+    //    yield return new WaitForSeconds(chargeDuration);
+    //    myRenderer.material = normalMat;
+    //    myCharacterState = CharacterState.Running;
+    //}
 }
