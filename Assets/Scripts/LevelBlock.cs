@@ -19,6 +19,9 @@ public class LevelBlock : MonoBehaviour
     private List<ObstacleBlock> myObstacles;
 
     [SerializeField]
+    private List<Collectable> myCollectables;
+
+    [SerializeField]
     private float blockSpeed;
 
     public Action<BlockDifficulty,LevelBlock> BlockRecycled;
@@ -30,11 +33,17 @@ public class LevelBlock : MonoBehaviour
         myLevelBlockScript = GetComponent<LevelBlock>();
     }
 
-    public void InitializeBlock()
+    public void InitializeBlock(Action<CollectableType> _collectableCallback)
     {
         for (int i = 0; i < myObstacles.Count; i++)
         {
-            myObstacles[i].gameObject.SetActive(true);
+            //myObstacles[i].gameObject.SetActive(true);
+            myObstacles[i].Initialize();
+        }
+
+        for (int i = 0; i < myCollectables.Count; i++)
+        {
+            myCollectables[i].Initialize(_collectableCallback);
         }
     }
 

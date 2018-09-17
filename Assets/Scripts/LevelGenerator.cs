@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LevelGenerator : MonoBehaviour {
 
@@ -32,13 +33,62 @@ public class LevelGenerator : MonoBehaviour {
     private int blocksPassed;
     private float currentBlockSpeed;
 
-    private void Start()
+    private Action<CollectableType> CollectableCallback;
+
+    //private void Start()
+    //{
+
+
+    //    for (int i = 0; i < 10; i++)
+    //    {
+    //        LevelBlock _newBlock = null;
+    //        if (i < 5)
+    //        {
+    //            _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.None);
+    //        }
+    //        else
+    //        {
+    //            _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.Easy);
+    //        }
+    //        levelBlocks.Add(_newBlock);
+    //        if (i == 0)
+    //        {
+    //            _newBlock.gameObject.SetActive(true);
+    //            _newBlock.InitializeBlock();
+    //            _newBlock.SetPosition(Vector3.zero);
+    //            _newBlock.SetSpeed(currentBlockSpeed);
+    //        }
+    //        else
+    //        {
+    //            _newBlock.gameObject.SetActive(true);
+    //            _newBlock.InitializeBlock();
+    //            _newBlock.SetPosition(levelBlocks[i - 1].GetPosition() + (Vector3.forward * levelBlockSize));
+    //            _newBlock.SetSpeed(currentBlockSpeed);
+    //        }
+    //    }
+    //}
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            EndGame();
+        }
+    }
+
+    public void Initialize(Action<CollectableType> _collectableCallback)
     {
         levelBlockRecycler.RecycleBlock -= GetNewBlock;
         levelBlockRecycler.RecycleBlock += GetNewBlock;
 
-        currentBlockSpeed = startingBlockSpeed;
+        CollectableCallback = _collectableCallback;
 
+        currentBlockSpeed = startingBlockSpeed;
+        GenerateLevel();
+    }
+
+    public void GenerateLevel()
+    {
         for (int i = 0; i < 10; i++)
         {
             LevelBlock _newBlock = null;
@@ -54,14 +104,14 @@ public class LevelGenerator : MonoBehaviour {
             if (i == 0)
             {
                 _newBlock.gameObject.SetActive(true);
-                _newBlock.InitializeBlock();
+                _newBlock.InitializeBlock(CollectableCallback);
                 _newBlock.SetPosition(Vector3.zero);
                 _newBlock.SetSpeed(currentBlockSpeed);
             }
             else
             {
                 _newBlock.gameObject.SetActive(true);
-                _newBlock.InitializeBlock();
+                _newBlock.InitializeBlock(CollectableCallback);
                 _newBlock.SetPosition(levelBlocks[i - 1].GetPosition() + (Vector3.forward * levelBlockSize));
                 _newBlock.SetSpeed(currentBlockSpeed);
             }
@@ -85,7 +135,7 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         _newBlock.gameObject.SetActive(true);
-        _newBlock.InitializeBlock();
+        _newBlock.InitializeBlock(CollectableCallback);
         _newBlock.SetPosition(levelBlocks[levelBlocks.Count - 1].GetPosition() + (Vector3.forward * levelBlockSize));
         _newBlock.SetSpeed(currentBlockSpeed);
         levelBlocks.Add(_newBlock);
@@ -99,7 +149,7 @@ public class LevelGenerator : MonoBehaviour {
         if (currentBlockSpeed < speedCap)
         {
             currentBlockSpeed += speedIncrease;
-           // Debug.Log(currentBlockSpeed);
+            //Debug.Log(currentBlockSpeed);
             for (int i = 0; i < levelBlocks.Count; i++)
             {
                 levelBlocks[i].SetSpeed(currentBlockSpeed);
@@ -109,11 +159,20 @@ public class LevelGenerator : MonoBehaviour {
 
     public void EndGame()
     {
+
+        StartCoroutine(EndGameRoutine());
+
+    }
+
+    IEnumerator EndGameRoutine()
+    {
+        //necessary because movement and detection of collision are happening in the same fixed update frame, so we need to wait for the end
+        //the fixed update frame to stop all the levelblocks
+        yield return new WaitForEndOfFrame();
         for (int i = 0; i < levelBlocks.Count; i++)
         {
             levelBlocks[i].SetSpeed(0);
         }
     }
-
 
 }

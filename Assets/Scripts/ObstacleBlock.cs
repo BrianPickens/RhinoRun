@@ -45,6 +45,11 @@ public class ObstacleBlock : MonoBehaviour {
 
     }
 
+    public void Initialize()
+    {
+        gameObject.SetActive(true);
+    }
+
     public void Activate()
     {
         previousPos = myTransform.position;
