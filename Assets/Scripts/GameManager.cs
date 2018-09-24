@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private LevelGenerator levelGenerator;
 
+    [SerializeField]
+    private GameUI gameUI;
+
+    [SerializeField]
+    private ParticleManager particleManager;
+
     private void Start()
     {
         character.OnGameOver += GameOver;
@@ -29,8 +35,8 @@ public class GameManager : MonoBehaviour
 
     private void GoldCollected(CollectableType _collectableType)
     {
-        Debug.Log(_collectableType);
-        Debug.Log("this happened");
+        gameUI.AddPoints(10);
+        particleManager.CreateGoldParticles(character.MyTransform.position);
     }
 
     public void ResetGame()

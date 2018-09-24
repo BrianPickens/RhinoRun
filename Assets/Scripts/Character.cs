@@ -8,6 +8,10 @@ public enum CharacterState { Idle, Running, Charging, Dead }
 public class Character : MonoBehaviour {
 
     private Transform myTransform;
+    public Transform MyTransform
+    {
+        get { return myTransform; }
+    }
     private Renderer myRenderer;
 
     [SerializeField]

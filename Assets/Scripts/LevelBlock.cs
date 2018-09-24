@@ -37,7 +37,6 @@ public class LevelBlock : MonoBehaviour
     {
         for (int i = 0; i < myObstacles.Count; i++)
         {
-            //myObstacles[i].gameObject.SetActive(true);
             myObstacles[i].Initialize();
         }
 
