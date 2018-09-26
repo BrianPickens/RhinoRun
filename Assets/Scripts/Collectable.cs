@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum CollectableType { Gold }
+public enum CollectableType { Gold, Stamina, PowerUp }
 public class Collectable : MonoBehaviour
 {
     [SerializeField]

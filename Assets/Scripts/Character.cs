@@ -48,11 +48,15 @@ public class Character : MonoBehaviour {
     private float tapDelay;
 
     private bool drainChargePower;
+    private bool restoreChargePower;
 
     private float chargePower;
 
     [SerializeField]
     private float drainSpeed;
+
+    [SerializeField]
+    private float restoreSpeed;
 
     private Camera mainCamera;
 
@@ -215,13 +219,42 @@ public class Character : MonoBehaviour {
 
     private void DrainChargePower()
     {
-        chargePower = Mathf.MoveTowards(chargePower, 0, Time.deltaTime * drainSpeed);
-        chargeMeter.fillAmount = chargePower / 100;
-        if (chargePower <= Mathf.Epsilon)
+        if (!restoreChargePower)
         {
-            ChargeEnd();
+            chargePower = Mathf.MoveTowards(chargePower, 0, Time.deltaTime * drainSpeed);
+            chargeMeter.fillAmount = chargePower / 100;
+            if (chargePower <= Mathf.Epsilon)
+            {
+                ChargeEnd();
+            }
         }
     }
+
+    public void RestoreChargePower(float _amount)
+    {
+        restoreChargePower = true;
+        float restoreLevel = chargePower + _amount;
+        if (restoreLevel > 100f)
+        {
+            restoreLevel = 100f;
+        }
+      //  Debug.Log("restore started");
+        StartCoroutine(RestoreChargePowerRoutine(restoreLevel));
+    }
+
+    private IEnumerator RestoreChargePowerRoutine(float _restoreLevel)
+    {
+        while (chargePower < _restoreLevel - Mathf.Epsilon)
+        {
+            chargePower = Mathf.MoveTowards(chargePower, _restoreLevel, Time.deltaTime * restoreSpeed);
+            chargeMeter.fillAmount = chargePower / 100;
+            yield return null;
+        }
+      //  Debug.Log("restore ended");
+        restoreChargePower = false;
+    }
+
+
 
     private void ChangeLanes(int _direction)
     {

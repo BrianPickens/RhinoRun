@@ -100,7 +100,8 @@ public class LevelGenerator : MonoBehaviour {
     private void GetNewBlock()
     {
         LevelBlock _newBlock = null;
-        _newBlock = DetermineBlock(currentDifficulty);
+        //_newBlock = DetermineBlock(currentDifficulty);
+        _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.Stamina);
 
         _newBlock.gameObject.SetActive(true);
         _newBlock.InitializeBlock(CollectableCallback);

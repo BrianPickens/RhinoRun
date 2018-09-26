@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BlockDifficulty { None, Easy, Medium, Hard }
+public enum BlockDifficulty { None, Easy, Medium, Hard, PowerUp, Stamina }
 public class LevelBlockPooler : MonoBehaviour {
 
     [SerializeField]
@@ -16,6 +16,12 @@ public class LevelBlockPooler : MonoBehaviour {
 
     [SerializeField]
     private List<LevelBlock> HardBlocks;
+
+    [SerializeField]
+    private List<LevelBlock> PowerUpBlocks;
+
+    [SerializeField]
+    private List<LevelBlock> StaminaBlocks;
 
     public void Start()
     {
@@ -41,6 +47,18 @@ public class LevelBlockPooler : MonoBehaviour {
         {
             HardBlocks[i].BlockRecycled -= AddBlockToList;
             HardBlocks[i].BlockRecycled += AddBlockToList;
+        }
+
+        for (int i = 0; i < PowerUpBlocks.Count; i++)
+        {
+            PowerUpBlocks[i].BlockRecycled -= AddBlockToList;
+            PowerUpBlocks[i].BlockRecycled += AddBlockToList;
+        }
+
+        for (int i = 0; i < StaminaBlocks.Count; i++)
+        {
+            StaminaBlocks[i].BlockRecycled -= AddBlockToList;
+            StaminaBlocks[i].BlockRecycled += AddBlockToList;
         }
     }
 
@@ -74,6 +92,18 @@ public class LevelBlockPooler : MonoBehaviour {
                 HardBlocks.Remove(_newBlock);
                 break;
 
+            case BlockDifficulty.PowerUp:
+                _randomIndex = Random.Range(0, PowerUpBlocks.Count);
+                _newBlock = PowerUpBlocks[_randomIndex];
+                PowerUpBlocks.Remove(_newBlock);
+                break;
+
+            case BlockDifficulty.Stamina:
+                _randomIndex = Random.Range(0, StaminaBlocks.Count);
+                _newBlock = StaminaBlocks[_randomIndex];
+                StaminaBlocks.Remove(_newBlock);
+                break;
+
             default:
                 _randomIndex = Random.Range(0, EmptyBlocks.Count);
                 _newBlock = EmptyBlocks[_randomIndex];
@@ -105,6 +135,14 @@ public class LevelBlockPooler : MonoBehaviour {
 
             case BlockDifficulty.Hard:
                 HardBlocks.Add(_levelBlock);
+                break;
+
+            case BlockDifficulty.PowerUp:
+                PowerUpBlocks.Add(_levelBlock);
+                break;
+
+            case BlockDifficulty.Stamina:
+                StaminaBlocks.Add(_levelBlock);
                 break;
 
             default:

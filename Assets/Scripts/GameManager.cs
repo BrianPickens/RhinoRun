@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     {
         character.OnGameOver += GameOver;
 
-        levelGenerator.Initialize(GoldCollected);
+        levelGenerator.Initialize(CollectableGained);
         character.Initialize();
 
     }
@@ -33,10 +33,29 @@ public class GameManager : MonoBehaviour
         levelGenerator.EndGame();
     }
 
-    private void GoldCollected(CollectableType _collectableType)
+    private void CollectableGained(CollectableType _collectableType)
     {
-        gameUI.AddPoints(10);
-        particleManager.CreateGoldParticles(character.MyTransform.position);
+        switch (_collectableType)
+        {
+            case CollectableType.Gold:
+                gameUI.AddPoints(10);
+                particleManager.CreateGoldParticles(character.MyTransform.position);
+                break;
+
+            case CollectableType.PowerUp:
+
+                break;
+
+            case CollectableType.Stamina:
+                //need particles
+                character.RestoreChargePower(25f);
+                break;
+
+            default:
+                Debug.LogError("Unknown Collectable");
+                break;
+        }
+
     }
 
     public void ResetGame()
