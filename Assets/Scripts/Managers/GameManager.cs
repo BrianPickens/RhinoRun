@@ -19,18 +19,43 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ParticleManager particleManager;
 
+    private int points;
+
+    private int distance;
+
     private void Start()
+    {
+        Init();
+
+    }
+
+    private void Init()
     {
         character.OnGameOver += GameOver;
 
+        gameUI.OnMenuPress = null;
+        gameUI.OnMenuPress += OpenMainMenu;
+
+        gameUI.OnUpgradesPress = null;
+        gameUI.OnUpgradesPress += OpenUpgrades;
+
+        gameUI.OnReplayPress = null;
+        gameUI.OnReplayPress += Replay;
+
+        gameUI.DisplayPoints(0);
+        gameUI.DisplayDistance(0);
+
+        levelGenerator.OnBlockPassed = null;
+        levelGenerator.OnBlockPassed += BlockCompleted;
+
         levelGenerator.Initialize(CollectableGained);
         character.Initialize();
-
     }
 
     private void GameOver()
     {
         levelGenerator.EndGame();
+        gameUI.DisplayEnding(points, distance);
     }
 
     private void CollectableGained(CollectableType _collectableType)
@@ -38,7 +63,8 @@ public class GameManager : MonoBehaviour
         switch (_collectableType)
         {
             case CollectableType.Gold:
-                gameUI.AddPoints(10);
+                points += 10;
+                gameUI.DisplayPoints(points);
                 particleManager.CreateGoldParticles(character.MyTransform.position);
                 break;
 
@@ -48,7 +74,7 @@ public class GameManager : MonoBehaviour
 
             case CollectableType.Stamina:
                 //need particles
-                character.RestoreChargePower(25f);
+                character.RestoreChargePower(10f);
                 break;
 
             default:
@@ -58,11 +84,24 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void ResetGame()
+    private void BlockCompleted()
     {
-        SceneManager.LoadScene("PlayScene");
+        distance++;
+        gameUI.DisplayDistance(distance);
     }
 
+    private void OpenMainMenu()
+    {
+        SceneLoadingManager.instance.LoadScene("MainMenu");
+    }
 
+    private void OpenUpgrades()
+    {
+        SceneLoadingManager.instance.LoadScene("Upgrades");
+    }
 
+    private void Replay()
+    {
+        SceneLoadingManager.instance.LoadScene("PlayScene");
+    }
 }

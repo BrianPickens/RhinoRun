@@ -30,6 +30,14 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField]
     private int difficultyThreshold = 15;
 
+    [SerializeField]
+    private int minStaminaSpawn = 15;
+
+    [SerializeField]
+    private int maxStaminaSpawn = 30;
+
+    private int currentStaminaSpawn;
+
     private GameDifficulty currentDifficulty;
     public GameDifficulty CurrentDifficulty
     {
@@ -40,10 +48,17 @@ public class LevelGenerator : MonoBehaviour {
 
     private int lastBlockIndex;
 
+    private int staminaSpawnCounter;
+
     private int blocksPassed;
+
+    private int totalBlocksPassed;
+
     private float currentBlockSpeed;
 
     private Action<CollectableType> CollectableCallback;
+
+    public Action OnBlockPassed;
 
     private void Update()
     {
@@ -61,6 +76,8 @@ public class LevelGenerator : MonoBehaviour {
         CollectableCallback = _collectableCallback;
 
         currentDifficulty = GameDifficulty.Simple;
+
+        currentStaminaSpawn = GenerateStaminaSpawnNumber();
 
         currentBlockSpeed = startingBlockSpeed;
         GenerateLevel();
@@ -100,8 +117,16 @@ public class LevelGenerator : MonoBehaviour {
     private void GetNewBlock()
     {
         LevelBlock _newBlock = null;
-        //_newBlock = DetermineBlock(currentDifficulty);
-        _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.Stamina);
+        if (staminaSpawnCounter == currentStaminaSpawn)
+        {
+            _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.Stamina);
+            staminaSpawnCounter = 0;
+            currentStaminaSpawn = GenerateStaminaSpawnNumber();
+        }
+        else
+        {
+            _newBlock = DetermineBlock(currentDifficulty);
+        }
 
         _newBlock.gameObject.SetActive(true);
         _newBlock.InitializeBlock(CollectableCallback);
@@ -110,11 +135,20 @@ public class LevelGenerator : MonoBehaviour {
         levelBlocks.Add(_newBlock);
         levelBlocks.RemoveAt(0);
         blocksPassed++;
+        totalBlocksPassed++;
+        staminaSpawnCounter++;
+
         if (blocksPassed >= difficultyThreshold)
         {
             blocksPassed = 0;
             IncreaseDifficulty();
         }
+
+        if (OnBlockPassed != null)
+        {
+            OnBlockPassed();
+        }
+
         IncreaseSpeed();
     }
 
@@ -198,6 +232,11 @@ public class LevelGenerator : MonoBehaviour {
             currentDifficulty += 1;
         }
 
+    }
+
+    private int GenerateStaminaSpawnNumber()
+    {
+        return UnityEngine.Random.Range(minStaminaSpawn, maxStaminaSpawn);
     }
 
     public void EndGame()
