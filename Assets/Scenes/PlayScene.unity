@@ -2671,6 +2671,7 @@ MonoBehaviour:
   pooledObject: {fileID: 1915955574679572, guid: c5f27d5149b870d4ab8210f7f410eaa3,
     type: 2}
   pooledObjects: []
+  startAmount: 5
 --- !u!4 &828681611
 Transform:
   m_ObjectHideFlags: 0
@@ -3603,6 +3604,53 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1242719615}
   m_Script: {fileID: 11500000, guid: db79993f6340ecc48b3ddea7e52ae5f9, type: 3}
+--- !u!1001 &1265238570
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114289957608785368, guid: a59b92a38e7cff54d9e41979c95805d8,
+        type: 2}
+      propertyPath: backgroundMusicClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d71718f34b20944e85f73fe999ad6a3, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a59b92a38e7cff54d9e41979c95805d8, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1300392800
 Prefab:
   m_ObjectHideFlags: 0

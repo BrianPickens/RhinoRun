@@ -5,6 +5,8 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour
 {
 
+    //may need to make this a static instance so everythign can easily call it and get particles?
+
     [SerializeField]
     private ObjectPooler goldParticles;
 

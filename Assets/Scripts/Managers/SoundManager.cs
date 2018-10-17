@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance = null;
+    private static SoundManager instance = null;
+    public static SoundManager Instance
+    {
+        get { return instance; }
+    }
 
     [SerializeField]
     private ObjectPooler soundObjectPooler;
@@ -17,6 +21,12 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private float maxPitch;
+
+    private bool musicOn;
+    private bool soundEffectsOn;
+
+    private const string musicString = "music";
+    private const string soundEffectsString = "soundEffects";
 
     private IEnumerator backgroundMusicFadeOutRoutine;
     private IEnumerator backgroundMusicFadeInRoutine;
@@ -38,41 +48,95 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+
+        if (PlayerPrefs.HasKey(musicString))
+        {
+            musicOn = PlayerPrefs.GetInt(musicString) == 1 ? true : false;
+        }
+        else
+        {
+            musicOn = true;
+        }
+
+        if (PlayerPrefs.HasKey(soundEffectsString))
+        {
+            soundEffectsOn = PlayerPrefs.GetInt(soundEffectsString) == 1 ? true : false;
+        }
+        else
+        {
+            soundEffectsOn = true;
+        }
+
         initialized = true;
+    }
+
+    public void UpdateMusicPreference(bool _preference)
+    {
+        PlayerPrefs.SetInt(musicString, _preference ? 1 : 0);
+        if (!_preference)
+        {
+            backgroundMusicSource.Stop();
+        }
+        else
+        {
+            backgroundMusicSource.Play();
+        }
+    }
+
+    public void UpdateSoundEffectPreference(bool _preference)
+    {
+        PlayerPrefs.SetInt(soundEffectsString, _preference ? 1 : 0);
     }
 
     public void PlaySoundEffect(AudioClip _clip)
     {
-        GameObject soundObj = soundObjectPooler.GetPooledObject();
-        AudioSource soundSource = soundObj.GetComponent<AudioSource>();
-        soundSource.clip = _clip;
-        soundSource.pitch = Random.Range(minPitch, maxPitch);
-        soundObj.SetActive(true);
-        soundSource.Play();
-        StartCoroutine(ResetSoundObject(soundObj, _clip.length));
+        if (soundEffectsOn)
+        {
+            GameObject soundObj = soundObjectPooler.GetPooledObject();
+            AudioSource soundSource = soundObj.GetComponent<AudioSource>();
+            soundSource.clip = _clip;
+            soundSource.pitch = Random.Range(minPitch, maxPitch);
+            soundObj.SetActive(true);
+            soundSource.Play();
+            StartCoroutine(ResetSoundObject(soundObj, _clip.length));
+        }
     }
 
     public void FadeOutBackgroundMusic(float _fadeSpeed)
     {
-        if (backgroundMusicFadeOutRoutine != null)
+        if (musicOn)
         {
-            StopCoroutine(backgroundMusicFadeOutRoutine);
+            StopCoroutines();
+            backgroundMusicFadeOutRoutine = FadeRoutine(0, _fadeSpeed);
+            StartCoroutine(backgroundMusicFadeOutRoutine);
         }
-        backgroundMusicFadeOutRoutine = FadeRoutine(0, _fadeSpeed);
-        StartCoroutine(backgroundMusicFadeOutRoutine);
     }
 
     public void FadeInBackgroundMusic(float _fadeSpeed)
     {
-        if (backgroundMusicFadeInRoutine != null)
+        if (musicOn)
         {
-            StopCoroutine(backgroundMusicFadeInRoutine);
+            StopCoroutines();
+            backgroundMusicFadeInRoutine = FadeRoutine(1, _fadeSpeed);
+            StartCoroutine(backgroundMusicFadeInRoutine);
         }
-        backgroundMusicFadeInRoutine = FadeRoutine(1, _fadeSpeed);
-        StartCoroutine(backgroundMusicFadeInRoutine);
     }
 
     public void ChangeBackgroundMusic(AudioClip _clip)
+    {
+        if (musicOn)
+        {
+            if (backgroundMusicSource.clip != _clip)
+            {
+                StopCoroutines();
+                backgroundMusicTransitionRoutine = ChangeBackgroundFadeRoutine(_clip);
+                StartCoroutine(backgroundMusicTransitionRoutine);
+            }
+        }
+    }
+
+    private void StopCoroutines()
     {
         if (backgroundMusicTransitionRoutine != null)
         {
@@ -88,9 +152,6 @@ public class SoundManager : MonoBehaviour
         {
             StopCoroutine(backgroundMusicFadeOutRoutine);
         }
-
-        backgroundMusicTransitionRoutine = ChangeBackgroundFadeRoutine(_clip);
-        StartCoroutine(backgroundMusicTransitionRoutine);
     }
 
     private IEnumerator ResetSoundObject(GameObject _soundObject, float _delay)
@@ -111,8 +172,8 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator ChangeBackgroundFadeRoutine(AudioClip _clip)
     {
-        backgroundMusicFadeInRoutine = FadeRoutine(0, 1f);
-        backgroundMusicFadeOutRoutine = FadeRoutine(1f, 1f);
+        backgroundMusicFadeInRoutine = FadeRoutine(1f, 1f);
+        backgroundMusicFadeOutRoutine = FadeRoutine(0, 1f);
         yield return StartCoroutine(backgroundMusicFadeOutRoutine);
         backgroundMusicSource.Stop();
         backgroundMusicSource.clip = _clip;

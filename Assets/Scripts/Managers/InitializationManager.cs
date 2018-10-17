@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class InitializationManager : MonoBehaviour
 {
-    public static InitializationManager instance = null;
+    private static InitializationManager instance = null;
+    public static InitializationManager Instance
+    {
+        get { return instance; }
+    }
 
     [SerializeField]
     private SoundManager soundManager;
 
     [SerializeField]
     private SceneLoadingManager sceneLoadingManager;
+
+    [SerializeField]
+    private SaveManager saveManager;
 
     private void Start()
     {
@@ -31,12 +38,13 @@ public class InitializationManager : MonoBehaviour
     {
         soundManager.Initialize();
         sceneLoadingManager.Initialize();
+        saveManager.Initialize();
         StartCoroutine(WaitForInitialization());
     }
 
     private IEnumerator WaitForInitialization()
     {
-        while (!soundManager.Initialized && !sceneLoadingManager.Initialized)
+        while (!soundManager.Initialized && !sceneLoadingManager.Initialized && !saveManager.Initialized)
         {
             yield return null;
         }

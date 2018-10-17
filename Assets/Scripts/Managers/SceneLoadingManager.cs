@@ -5,7 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadingManager : MonoBehaviour {
 
-    public static SceneLoadingManager instance = null;
+    private static SceneLoadingManager instance = null;
+    public static SceneLoadingManager Instance
+    {
+        get { return instance; }
+    }
 
     private bool initialized;
     public bool Initialized

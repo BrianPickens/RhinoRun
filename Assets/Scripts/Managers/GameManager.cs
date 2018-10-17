@@ -31,6 +31,12 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
+
+        if (InitializationManager.Instance == null)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Initialization");
+        }
+
         character.OnGameOver += GameOver;
 
         gameUI.OnMenuPress = null;
@@ -56,6 +62,11 @@ public class GameManager : MonoBehaviour
     {
         levelGenerator.EndGame();
         gameUI.DisplayEnding(points, distance);
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.UpdateScore(distance);
+            SaveManager.Instance.UpdateCoins(points);
+        }
     }
 
     private void CollectableGained(CollectableType _collectableType)
@@ -92,16 +103,26 @@ public class GameManager : MonoBehaviour
 
     private void OpenMainMenu()
     {
-        SceneLoadingManager.instance.LoadScene("MainMenu");
+        if (SceneLoadingManager.Instance != null)
+        {
+            SceneLoadingManager.Instance.LoadScene("MainMenu");
+        }
+        
     }
 
     private void OpenUpgrades()
     {
-        SceneLoadingManager.instance.LoadScene("Upgrades");
+        if (SceneLoadingManager.Instance != null)
+        {
+            SceneLoadingManager.Instance.LoadScene("Upgrades");
+        }
     }
 
     private void Replay()
     {
-        SceneLoadingManager.instance.LoadScene("PlayScene");
+        if (SceneLoadingManager.Instance != null)
+        {
+            SceneLoadingManager.Instance.LoadScene("PlayScene");
+        }
     }
 }
