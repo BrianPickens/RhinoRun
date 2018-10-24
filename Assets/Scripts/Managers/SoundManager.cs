@@ -23,7 +23,15 @@ public class SoundManager : MonoBehaviour
     private float maxPitch;
 
     private bool musicOn;
+    public bool MusicOn
+    {
+        get { return musicOn; }
+    }
     private bool soundEffectsOn;
+    public bool SoundEffectsOn
+    {
+        get { return soundEffectsOn; }
+    }
 
     private const string musicString = "music";
     private const string soundEffectsString = "soundEffects";
@@ -73,6 +81,7 @@ public class SoundManager : MonoBehaviour
 
     public void UpdateMusicPreference(bool _preference)
     {
+        musicOn = _preference;
         PlayerPrefs.SetInt(musicString, _preference ? 1 : 0);
         if (!_preference)
         {
@@ -86,6 +95,7 @@ public class SoundManager : MonoBehaviour
 
     public void UpdateSoundEffectPreference(bool _preference)
     {
+        soundEffectsOn = _preference;
         PlayerPrefs.SetInt(soundEffectsString, _preference ? 1 : 0);
     }
 
@@ -133,6 +143,10 @@ public class SoundManager : MonoBehaviour
                 backgroundMusicTransitionRoutine = ChangeBackgroundFadeRoutine(_clip);
                 StartCoroutine(backgroundMusicTransitionRoutine);
             }
+        }
+        else
+        {
+            backgroundMusicSource.clip = _clip;
         }
     }
 

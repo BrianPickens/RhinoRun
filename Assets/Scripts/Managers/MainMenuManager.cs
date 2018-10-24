@@ -26,6 +26,12 @@ public class MainMenuManager : MonoBehaviour
         mainUI.OnUpgradesPress = null;
         mainUI.OnUpgradesPress += OpenUpgrades;
 
+        mainUI.OnMusicChange = null;
+        mainUI.OnMusicChange += UpdateMusicPreference;
+
+        mainUI.OnSoundEffectsChange = null;
+        mainUI.OnSoundEffectsChange += UpdateSoundEffectsPreference;
+
         InitializeUI();
 
     }
@@ -37,6 +43,16 @@ public class MainMenuManager : MonoBehaviour
             mainUI.UpdateCoinsDisplay(SaveManager.Instance.GetCurrentCoins());
             mainUI.UpdateScoreDisplay(SaveManager.Instance.GetCurrentHighscore());
         }
+
+        bool musicOn = true;
+        bool soundEffectsOn = true;
+        if (SoundManager.Instance != null)
+        {
+            musicOn = SoundManager.Instance.MusicOn;
+            soundEffectsOn = SoundManager.Instance.SoundEffectsOn;
+        }
+        mainUI.InitializeSoundPreferences(musicOn, soundEffectsOn);
+
     }
 
     private void PlayGame()
@@ -52,6 +68,22 @@ public class MainMenuManager : MonoBehaviour
         if (SceneLoadingManager.Instance != null)
         {
             SceneLoadingManager.Instance.LoadScene("Upgrades");
+        }
+    }
+
+    private void UpdateMusicPreference(bool _musicOn)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.UpdateMusicPreference(_musicOn);
+        }
+    }
+
+    private void UpdateSoundEffectsPreference(bool _soundEffectsOn)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.UpdateSoundEffectPreference(_soundEffectsOn);
         }
     }
 
