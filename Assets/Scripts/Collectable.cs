@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum CollectableType { Gold, Stamina, PowerUp }
+public enum CollectableType { None, Gold, Stamina, PowerUp }
 public class Collectable : MonoBehaviour
 {
     [SerializeField]
@@ -20,6 +20,13 @@ public class Collectable : MonoBehaviour
         gameObject.SetActive(true);
         OnCollect = null;
         OnCollect += _collectableCallback;
+
+    }
+
+    public void SetLocation(Transform _parent)
+    {
+        gameObject.transform.SetParent(_parent);
+        gameObject.transform.localPosition = Vector3.zero;
     }
 
     public void OnTriggerEnter(Collider _other)
