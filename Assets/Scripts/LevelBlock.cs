@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-//not finished here! need to make the coins return to the object pool, and need to finish resettng all of the
-//platform prefabs so that they can generate collectables
+//not finished here! need to make the coins return to the object pool for re-use
+//need to finihs the collectable pooler to return the correct objects
+//investigate also generating the barriers as well for easy updating
 
 public class LevelBlock : MonoBehaviour
 {
@@ -21,8 +22,7 @@ public class LevelBlock : MonoBehaviour
     [SerializeField]
     private List<ObstacleBlock> myObstacles;
 
-    [SerializeField]
-    private List<Collectable> myCollectables;
+    private List<Collectable> myCollectables = new List<Collectable>();
 
     [SerializeField]
     private List<Transform> collectableLocations;
