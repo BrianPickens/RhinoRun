@@ -1,15 +1,30 @@
 fileFormatVersion: 2
-guid: 1ac13faa07dcf0044be54120f4595e7d
+guid: 399e3117fa4e9c8429126c9abd858854
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: phong1
+    2100000: Rhino_Coin_Material
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube1
-  externalObjects: {}
+    4300000: Rhino_Coin
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rhino_Coin_Material
+    second: {fileID: 2100000, guid: 6d4da3c74a009a349bc972f76bc75619, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rhino_Coin_Color
+    second: {fileID: 2800000, guid: df6869a993d6bc341975041d5e59e0ad, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Rhino_Coin_Normal
+    second: {fileID: 2800000, guid: 5982362c3cb86d849a349702b4fc5f61, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

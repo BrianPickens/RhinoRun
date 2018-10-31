@@ -13,6 +13,8 @@ public class Collectable : MonoBehaviour
         get { return myCollectableType; }
     }
 
+    private Transform poolTransform;
+
     public Action<CollectableType> OnCollect;
 
     public void Initialize(Action<CollectableType> _collectableCallback)
@@ -25,8 +27,15 @@ public class Collectable : MonoBehaviour
 
     public void SetLocation(Transform _parent)
     {
+        poolTransform = transform.parent;
         gameObject.transform.SetParent(_parent);
         gameObject.transform.localPosition = Vector3.zero;
+    }
+
+    public void Recycle()
+    {
+        gameObject.transform.SetParent(poolTransform);
+        gameObject.SetActive(false);
     }
 
     public void OnTriggerEnter(Collider _other)

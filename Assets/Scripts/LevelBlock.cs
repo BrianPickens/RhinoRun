@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//the problem is that objects are being grabbed after they are set inactive and then turned off whent the block
+//hits the recycler and still has a reference to it.
+
 //not finished here! need to make the coins return to the object pool for re-use
 //need to finihs the collectable pooler to return the correct objects
 //investigate also generating the barriers as well for easy updating
@@ -22,6 +25,7 @@ public class LevelBlock : MonoBehaviour
     [SerializeField]
     private List<ObstacleBlock> myObstacles;
 
+    [SerializeField]
     private List<Collectable> myCollectables = new List<Collectable>();
 
     [SerializeField]
@@ -90,15 +94,22 @@ public class LevelBlock : MonoBehaviour
     {
         if (_other.CompareTag("BlockRecycler"))
         {
+
+            for (int i = 0; i < myObstacles.Count; i++)
+            {
+                myObstacles[i].Deactivate();
+            }
+
+            for (int i = 0; i < myCollectables.Count; i++)
+            {
+                myCollectables[i].Recycle();
+            }
+
             if (BlockRecycled != null)
             {
-                for (int i = 0; i < myObstacles.Count; i++)
-                {
-                    myObstacles[i].Deactivate();
-                }
-                BlockRecycled(myBlockDifficulty,myLevelBlockScript);
-                gameObject.SetActive(false);
+                BlockRecycled(myBlockDifficulty,myLevelBlockScript); 
             }
+            gameObject.SetActive(false);
         }
         
     }

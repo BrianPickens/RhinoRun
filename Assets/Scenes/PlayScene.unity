@@ -5213,7 +5213,7 @@ MonoBehaviour:
   pooledObject: {fileID: 1257304596839482, guid: 78e4ccb93f449e247bf6291fdb1ad691,
     type: 2}
   pooledObjects: []
-  startAmount: 20
+  startAmount: 50
 --- !u!1001 &1821982368
 Prefab:
   m_ObjectHideFlags: 0
