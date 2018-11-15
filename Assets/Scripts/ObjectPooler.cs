@@ -8,7 +8,6 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField]
     private GameObject pooledObject;
 
-    [SerializeField]
     List<GameObject> pooledObjects = new List<GameObject>();
 
     [SerializeField]

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-//the problem is that objects are being grabbed after they are set inactive and then turned off whent the block
-//hits the recycler and still has a reference to it.
 
-//not finished here! need to make the coins return to the object pool for re-use
-//need to finihs the collectable pooler to return the correct objects
 //investigate also generating the barriers as well for easy updating
+//need to get rhino snax hooked up for generation
+//still need to make other power ups and connect them
+//upgrades system
+//add in micahs art
 
 public class LevelBlock : MonoBehaviour
 {
@@ -60,7 +60,7 @@ public class LevelBlock : MonoBehaviour
             {
                 Collectable newCollectable = CollectablePooler.Instance.GetCollectable(collectables[i]).GetComponent<Collectable>();
                 newCollectable.SetLocation(collectableLocations[i]);
-                newCollectable.Initialize(_collectableCallback);
+                newCollectable.Initialize(_collectableCallback, RemoveCollectable);
                 myCollectables.Add(newCollectable);
             }
         }
@@ -88,6 +88,14 @@ public class LevelBlock : MonoBehaviour
     public void SetSpeed(float _speed)
     {
         blockSpeed = _speed;
+    }
+
+    private void RemoveCollectable(Collectable _collectable)
+    {
+        if (myCollectables.Contains(_collectable))
+        {
+            myCollectables.Remove(_collectable);
+        }
     }
 
     private void OnTriggerEnter(Collider _other)

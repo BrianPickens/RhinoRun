@@ -15,13 +15,16 @@ public class Collectable : MonoBehaviour
 
     private Transform poolTransform;
 
-    public Action<CollectableType> OnCollect;
+    public Action<CollectableType> OnCollectForManager;
+    public Action<Collectable> OnCollectForLevelBlock;
 
-    public void Initialize(Action<CollectableType> _collectableCallback)
+    public void Initialize(Action<CollectableType> _collectableCallbackToManager, Action<Collectable> _collectableCallbackToLevelBlock)
     {
         gameObject.SetActive(true);
-        OnCollect = null;
-        OnCollect += _collectableCallback;
+        OnCollectForManager = null;
+        OnCollectForManager += _collectableCallbackToManager;
+        OnCollectForLevelBlock = null;
+        OnCollectForLevelBlock += _collectableCallbackToLevelBlock;
 
     }
 
@@ -48,10 +51,16 @@ public class Collectable : MonoBehaviour
 
     private void Collect()
     {
-        if (OnCollect != null)
+        if (OnCollectForManager != null)
         {
-            OnCollect(myCollectableType);
+            OnCollectForManager(myCollectableType);
         }
-        gameObject.SetActive(false);
+
+        if (OnCollectForLevelBlock != null)
+        {
+            OnCollectForLevelBlock(this);
+        }
+
+        Recycle();
     }
 }
