@@ -207,7 +207,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1086406269804506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35540572, y: 5.0097356, z: -48.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children:
   - {fileID: 4928346239541502}
@@ -743,6 +743,7 @@ MonoBehaviour:
   - {fileID: 114777142032533948}
   - {fileID: 114684117002416230}
   - {fileID: 114761367238032868}
+  myCollectables: []
   collectableLocations:
   - {fileID: 4415172526738104}
   - {fileID: 4587739795805892}

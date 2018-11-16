@@ -14,6 +14,9 @@ public class CollectablePooler : MonoBehaviour
     [SerializeField]
     private ObjectPooler goldCoins;
 
+    [SerializeField]
+    private ObjectPooler staminaBars;
+
     private void Awake()
     {
         if (instance == null)
@@ -29,16 +32,29 @@ public class CollectablePooler : MonoBehaviour
 
     public GameObject GetCollectable(CollectableType _type)
     {
-        GameObject obj = goldCoins.GetPooledObject();
+
+        GameObject obj = null;
+
+        switch (_type)
+        {
+            case CollectableType.Gold:
+                obj = goldCoins.GetPooledObject();
+                break;
+            case CollectableType.Stamina:
+                obj = staminaBars.GetPooledObject();
+                break;
+
+            case CollectableType.PowerUp:
+
+                break;
+
+            default:
+                Debug.LogError("Invalid Request to Collectable Pooler");
+                break;
+        }
         return obj;
     }
 
-    public GameObject GetGoldCoin()
-    {
-        GameObject obj = goldCoins.GetPooledObject();
-        return obj;
-
-    }
 
 
 }
