@@ -5,10 +5,8 @@ using System;
 
 
 //investigate also generating the barriers as well for easy updating
-//need to get rhino snax hooked up for generation
 //still need to make other power ups and connect them
 //upgrades system
-//add in micahs art
 
 public class LevelBlock : MonoBehaviour
 {
@@ -26,6 +24,11 @@ public class LevelBlock : MonoBehaviour
     private List<ObstacleBlock> myObstacles;
 
     [SerializeField]
+    private List<Transform> ObstacleLocations;
+
+    [SerializeField]
+    private List<ObstacleType> obstacles;
+
     private List<Collectable> myCollectables = new List<Collectable>();
 
     [SerializeField]
@@ -48,11 +51,20 @@ public class LevelBlock : MonoBehaviour
 
     public void InitializeBlock(Action<CollectableType> _collectableCallback)
     {
+
+        //will need to make an obstacle pool
+
+        //initialize obstacles
+        
+
+
         for (int i = 0; i < myObstacles.Count; i++)
         {
             myObstacles[i].Initialize();
         }
 
+
+        //initialize collectables
         myCollectables.Clear();
         for (int i = 0; i < collectables.Count; i++)
         {

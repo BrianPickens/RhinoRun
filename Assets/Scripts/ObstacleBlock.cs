@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ObstacleType { Barrier, Breakable };
+public enum ObstacleType { None, Barrier, Breakable };
 public class ObstacleBlock : MonoBehaviour {
 
     private Vector3 previousPos;
