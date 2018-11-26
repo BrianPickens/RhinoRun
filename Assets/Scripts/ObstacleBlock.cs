@@ -17,6 +17,8 @@ public class ObstacleBlock : MonoBehaviour {
     private Collider myCollider;
     private bool checkForCollision;
 
+    private Transform poolTransform;
+
     private void Start()
     {
         previousPos = myTransform.position;
@@ -50,6 +52,13 @@ public class ObstacleBlock : MonoBehaviour {
         gameObject.SetActive(true);
     }
 
+    public void SetLocation(Transform _parent)
+    {
+        poolTransform = transform.parent;
+        gameObject.transform.SetParent(_parent);
+        gameObject.transform.localPosition = Vector3.zero;
+    }
+
     public void Activate()
     {
         previousPos = myTransform.position;
@@ -61,9 +70,17 @@ public class ObstacleBlock : MonoBehaviour {
         checkForCollision = false;
     }
 
+    public void Recycle()
+    {
+        checkForCollision = false;
+        gameObject.transform.SetParent(poolTransform);
+        gameObject.SetActive(false);
+    }
+
     public void Destroyed()
     {
-        gameObject.SetActive(false);
+        checkForCollision = false;
+        //gameObject.SetActive(false);
     }
 
 

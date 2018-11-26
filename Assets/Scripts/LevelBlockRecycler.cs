@@ -11,6 +11,8 @@ public class LevelBlockRecycler : MonoBehaviour {
     {
         if (_other.CompareTag("LevelBlock"))
         {
+
+            _other.GetComponent<LevelBlock>().RecycleBlock();
             if (RecycleBlock != null)
             {
                 RecycleBlock();

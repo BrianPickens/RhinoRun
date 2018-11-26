@@ -12,10 +12,10 @@ public class CollectablePooler : MonoBehaviour
     }
 
     [SerializeField]
-    private ObjectPooler goldCoins;
+    private CollectablePool goldCoins;
 
     [SerializeField]
-    private ObjectPooler staminaBars;
+    private CollectablePool staminaBars;
 
     private void Awake()
     {
@@ -30,18 +30,18 @@ public class CollectablePooler : MonoBehaviour
     }
 
 
-    public GameObject GetCollectable(CollectableType _type)
+    public Collectable GetCollectable(CollectableType _type)
     {
 
-        GameObject obj = null;
+        Collectable collectable = null;
 
         switch (_type)
         {
             case CollectableType.Gold:
-                obj = goldCoins.GetPooledObject();
+                collectable = goldCoins.GetPooledCollectable();
                 break;
             case CollectableType.Stamina:
-                obj = staminaBars.GetPooledObject();
+                collectable = staminaBars.GetPooledCollectable();
                 break;
 
             case CollectableType.PowerUp:
@@ -52,7 +52,7 @@ public class CollectablePooler : MonoBehaviour
                 Debug.LogError("Invalid Request to Collectable Pooler");
                 break;
         }
-        return obj;
+        return collectable;
     }
 
 

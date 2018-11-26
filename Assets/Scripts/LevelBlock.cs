@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 
-//investigate also generating the barriers as well for easy updating
+//make "fog" or some obscuring to hide the level blocks poping in.
 //still need to make other power ups and connect them
 //upgrades system
 
@@ -18,10 +18,12 @@ public class LevelBlock : MonoBehaviour
     private LevelBlock myLevelBlockScript;
 
     [SerializeField]
-    private BlockDifficulty myBlockDifficulty;
+    private GameObject levelBlockBase;
 
     [SerializeField]
-    private List<ObstacleBlock> myObstacles;
+    private BlockDifficulty myBlockDifficulty;
+
+    private List<ObstacleBlock> myObstacles = new List<ObstacleBlock>();
 
     [SerializeField]
     private List<Transform> ObstacleLocations;
@@ -49,20 +51,29 @@ public class LevelBlock : MonoBehaviour
         myLevelBlockScript = GetComponent<LevelBlock>();
     }
 
+    private void Start()
+    {
+        GameObject myBase = (GameObject)Instantiate(levelBlockBase);
+        myBase.transform.SetParent(myTransform);
+        myBase.transform.localPosition = Vector3.zero;
+    }
+
     public void InitializeBlock(Action<CollectableType> _collectableCallback)
     {
 
-        //will need to make an obstacle pool
-
         //initialize obstacles
-        
-
-
-        for (int i = 0; i < myObstacles.Count; i++)
+        myObstacles.Clear();
+        for (int i = 0; i < obstacles.Count; i++)
         {
-            myObstacles[i].Initialize();
-        }
+            if (obstacles[i] != ObstacleType.None)
+            {
+                ObstacleBlock newObstacle = ObstaclePooler.Instance.GetObstacle(obstacles[i]);
+                newObstacle.SetLocation(ObstacleLocations[i]);
+                newObstacle.Initialize();
+                myObstacles.Add(newObstacle);
 
+            }
+        }
 
         //initialize collectables
         myCollectables.Clear();
@@ -70,7 +81,7 @@ public class LevelBlock : MonoBehaviour
         {
             if (collectables[i] != CollectableType.None)
             {
-                Collectable newCollectable = CollectablePooler.Instance.GetCollectable(collectables[i]).GetComponent<Collectable>();
+                Collectable newCollectable = CollectablePooler.Instance.GetCollectable(collectables[i]);
                 newCollectable.SetLocation(collectableLocations[i]);
                 newCollectable.Initialize(_collectableCallback, RemoveCollectable);
                 myCollectables.Add(newCollectable);
@@ -110,27 +121,46 @@ public class LevelBlock : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider _other)
+    public void RecycleBlock()
     {
-        if (_other.CompareTag("BlockRecycler"))
+        for (int i = 0; i < myObstacles.Count; i++)
         {
-
-            for (int i = 0; i < myObstacles.Count; i++)
-            {
-                myObstacles[i].Deactivate();
-            }
-
-            for (int i = 0; i < myCollectables.Count; i++)
-            {
-                myCollectables[i].Recycle();
-            }
-
-            if (BlockRecycled != null)
-            {
-                BlockRecycled(myBlockDifficulty,myLevelBlockScript); 
-            }
-            gameObject.SetActive(false);
+            myObstacles[i].Recycle();
         }
-        
+
+        for (int i = 0; i < myCollectables.Count; i++)
+        {
+            myCollectables[i].Recycle();
+        }
+
+        if (BlockRecycled != null)
+        {
+            BlockRecycled(myBlockDifficulty, myLevelBlockScript);
+        }
+        gameObject.SetActive(false);
     }
+
+    //private void OnTriggerEnter(Collider _other)
+    //{
+    //    if (_other.CompareTag("BlockRecycler"))
+    //    {
+
+    //        for (int i = 0; i < myObstacles.Count; i++)
+    //        {
+    //            myObstacles[i].Recycle();
+    //        }
+
+    //        for (int i = 0; i < myCollectables.Count; i++)
+    //        {
+    //            myCollectables[i].Recycle();
+    //        }
+
+    //        if (BlockRecycled != null)
+    //        {
+    //            BlockRecycled(myBlockDifficulty,myLevelBlockScript); 
+    //        }
+    //        gameObject.SetActive(false);
+    //    }
+        
+    //}
 }

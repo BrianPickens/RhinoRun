@@ -56,6 +56,8 @@ public class LevelGenerator : MonoBehaviour {
 
     private float currentBlockSpeed;
 
+    //private bool gameOver;
+
     private Action<CollectableType> CollectableCallback;
 
     public Action OnBlockPassed;
@@ -103,6 +105,8 @@ public class LevelGenerator : MonoBehaviour {
                 _newBlock.InitializeBlock(CollectableCallback);
                 _newBlock.SetPosition(Vector3.zero);
                 _newBlock.SetSpeed(currentBlockSpeed);
+                
+
             }
             else
             {
@@ -110,6 +114,7 @@ public class LevelGenerator : MonoBehaviour {
                 _newBlock.InitializeBlock(CollectableCallback);
                 _newBlock.SetPosition(levelBlocks[i - 1].GetPosition() + (Vector3.forward * levelBlockSize));
                 _newBlock.SetSpeed(currentBlockSpeed);
+                
             }
         }
     }
@@ -241,7 +246,7 @@ public class LevelGenerator : MonoBehaviour {
 
     public void EndGame()
     {
-
+        //gameOver = true;
         StartCoroutine(EndGameRoutine());
 
     }

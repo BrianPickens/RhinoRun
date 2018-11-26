@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstaclePooler : MonoBehaviour
 {
-    //working on generating walls
+
     private static ObstaclePooler instance;
     public static ObstaclePooler Instance
     {
@@ -12,10 +12,10 @@ public class ObstaclePooler : MonoBehaviour
     }
 
     [SerializeField]
-    private ObjectPooler breakableWalls;
+    private ObstaclePool breakableWalls;
 
     [SerializeField]
-    private ObjectPooler barrierWalls;
+    private ObstaclePool barrierWalls;
 
     private void Awake()
     {
@@ -29,18 +29,18 @@ public class ObstaclePooler : MonoBehaviour
         }
     }
 
-    public GameObject GetWall(ObstacleType _type)
+    public ObstacleBlock GetObstacle(ObstacleType _type)
     {
-        GameObject obj = null;
+        ObstacleBlock obstacle = null;
 
         switch (_type)
         {
             case ObstacleType.Breakable:
-                obj = breakableWalls.GetPooledObject();
+                obstacle = breakableWalls.GetPooledObstacle();
                 break;
 
             case ObstacleType.Barrier:
-                obj = barrierWalls.GetPooledObject();
+                obstacle = barrierWalls.GetPooledObstacle();
                 break;
 
             default:
@@ -48,7 +48,7 @@ public class ObstaclePooler : MonoBehaviour
                 break;
         }
 
-        return obj;
+        return obstacle;
 
     }
 
