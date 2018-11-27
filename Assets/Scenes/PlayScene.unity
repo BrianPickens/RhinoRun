@@ -2282,7 +2282,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 677396958}
-  - component: {fileID: 677396959}
   - component: {fileID: 677396960}
   m_Layer: 0
   m_Name: BreakableWallPooler
@@ -2304,20 +2303,6 @@ Transform:
   m_Father: {fileID: 671561497}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &677396959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 677396957}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1bc63336d385b3469e4fd8cf636d735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 1027710398406232, guid: 99b6a51bd9dd60d4eb45e6d96409636c,
-    type: 2}
-  startAmount: 50
 --- !u!114 &677396960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2556,7 +2541,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 716239748}
-  - component: {fileID: 716239749}
   - component: {fileID: 716239750}
   m_Layer: 0
   m_Name: StaminaPooler
@@ -2578,20 +2562,6 @@ Transform:
   m_Father: {fileID: 1387335738}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &716239749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 716239747}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1bc63336d385b3469e4fd8cf636d735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 1506181543797706, guid: a9a9ade037dda314fbc341937c11d58f,
-    type: 2}
-  startAmount: 5
 --- !u!114 &716239750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5250,7 +5220,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671041622}
-  - component: {fileID: 1671041623}
   - component: {fileID: 1671041624}
   m_Layer: 0
   m_Name: SolidWallPooler
@@ -5272,20 +5241,6 @@ Transform:
   m_Father: {fileID: 671561497}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1671041623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1671041621}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1bc63336d385b3469e4fd8cf636d735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 1172243713930270, guid: 2a6af6b140f68ac41a842bc3696919c4,
-    type: 2}
-  startAmount: 50
 --- !u!114 &1671041624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5610,7 +5565,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1819896933}
-  - component: {fileID: 1819896934}
   - component: {fileID: 1819896935}
   m_Layer: 0
   m_Name: CoinPooler
@@ -5632,20 +5586,6 @@ Transform:
   m_Father: {fileID: 1387335738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1819896934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1819896932}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1bc63336d385b3469e4fd8cf636d735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObject: {fileID: 1221031975097952, guid: 4a8fa6cd0d9dfba4fb919b4379c817ac,
-    type: 2}
-  startAmount: 40
 --- !u!114 &1819896935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5657,7 +5597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6b2382aaa748647a6a4959e6f8f9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledCollectable: {fileID: 114529720853735328, guid: 4a8fa6cd0d9dfba4fb919b4379c817ac,
+  pooledCollectable: {fileID: 114960451258928894, guid: 6de275b8d869713469be8ac709679aa5,
     type: 2}
   startAmount: 40
 --- !u!1001 &1837475963

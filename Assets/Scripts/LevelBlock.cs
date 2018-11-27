@@ -5,8 +5,19 @@ using System;
 
 
 //make "fog" or some obscuring to hide the level blocks poping in.
+//make camera slide back and forth some
+//add screen shake
+//fix exploit where you can land in the middle of the lane
+//make rhino snax bigger
+//make particle effects
+//add in ui - finish loading drop down ui
 //still need to make other power ups and connect them
 //upgrades system
+//make loading system
+//make local and cloud saving
+//google play / game center
+//iap
+//analytics?
 
 public class LevelBlock : MonoBehaviour
 {
