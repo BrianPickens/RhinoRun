@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("Initialization");
         }
 
+        gameUI.Init();
+
         character.OnGameOver += GameOver;
 
         gameUI.OnMenuPress = null;

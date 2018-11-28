@@ -9,12 +9,17 @@ public class LoadingTransition : MonoBehaviour {
 
     public void ShowLoading()
     {
-        myAnimator.SetBool("Loading", true);
+        myAnimator.SetTrigger("MoveIn");
     }
 
     public void HideLoading()
     {
-        myAnimator.SetBool("Loading", false);
+        myAnimator.SetTrigger("MoveOut");
+    }
+
+    public void StartWithLoading()
+    {
+        myAnimator.SetTrigger("StartDown");
     }
 
 }

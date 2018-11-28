@@ -19,6 +19,9 @@ public class InitializationManager : MonoBehaviour
     [SerializeField]
     private SaveManager saveManager;
 
+    [SerializeField]
+    private LoadingTransition loadingScreen;
+
     private void Start()
     {
         if (instance == null)
@@ -49,6 +52,8 @@ public class InitializationManager : MonoBehaviour
             yield return null;
         }
         Debug.Log("Managers Initialized");
+        loadingScreen.ShowLoading();
+        yield return new WaitForSeconds(1f);
         sceneLoadingManager.LoadScene("MainMenu");
     }
 

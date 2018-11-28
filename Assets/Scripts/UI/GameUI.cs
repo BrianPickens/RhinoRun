@@ -15,9 +15,18 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     private Text distanceDisplay;
 
+    [SerializeField]
+    LoadingTransition loadingScreen;
+
     public Action OnMenuPress;
     public Action OnUpgradesPress;
     public Action OnReplayPress;
+
+    public void Init()
+    {
+        loadingScreen.StartWithLoading();
+        loadingScreen.HideLoading();
+    }
 
     public void DisplayPoints(int _points)
     {
@@ -36,26 +45,35 @@ public class GameUI : MonoBehaviour
 
     public void MainMenuButton()
     {
+        loadingScreen.ShowLoading();
         if (OnMenuPress != null)
         {
-            OnMenuPress();
+            StartCoroutine(SceneLoadDelay(OnMenuPress));
         }
     }
 
     public void UpgradesButton()
     {
+        loadingScreen.ShowLoading();
         if (OnUpgradesPress != null)
         {
-            OnUpgradesPress();
+            StartCoroutine(SceneLoadDelay(OnUpgradesPress));
         }
     }
 
     public void ReplayButton()
     {
+        loadingScreen.ShowLoading();
         if (OnReplayPress != null)
         {
-            OnReplayPress();
+            StartCoroutine(SceneLoadDelay(OnReplayPress));
         }
+    }
+
+    private IEnumerator SceneLoadDelay(Action _callback)
+    {
+        yield return new WaitForSeconds(1f);
+        _callback();
     }
 
 }

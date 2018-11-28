@@ -16,13 +16,19 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField]
     private Text scoreText;
 
+    [SerializeField]
+    private LoadingTransition loadingScreen;
+
     public Action OnPlayPress;
     public Action OnUpgradesPress;
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
 
-    private void Start()
+    public void Init()
     {
+        loadingScreen.StartWithLoading();
+        loadingScreen.HideLoading();
+
         settingsUI.CloseSettings();
 
         settingsUI.OnSettingsClose = null;
@@ -42,10 +48,26 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void PlayPress()
     {
+        loadingScreen.ShowLoading();
         if (OnPlayPress != null)
         {
-            OnPlayPress();
+            StartCoroutine(SceneLoadDelay(OnPlayPress));
         }
+    }
+
+    public void UpgradesPress()
+    {
+        loadingScreen.ShowLoading();
+        if (OnUpgradesPress != null)
+        {
+            StartCoroutine(SceneLoadDelay(OnUpgradesPress));
+        }
+    }
+
+    private IEnumerator SceneLoadDelay(Action _callback)
+    {
+        yield return new WaitForSeconds(1f);
+        _callback();
     }
 
     public void OpenSettings()
@@ -56,14 +78,6 @@ public class MainMenuUIManager : MonoBehaviour
     private void CloseSettings()
     {
         settingsUI.gameObject.SetActive(false);
-    }
-
-    public void UpgradesPress()
-    {
-        if (OnUpgradesPress != null)
-        {
-            OnUpgradesPress();
-        }
     }
 
     public void UpdateCoinsDisplay(int _coins)

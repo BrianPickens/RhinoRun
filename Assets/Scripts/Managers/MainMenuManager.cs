@@ -32,6 +32,8 @@ public class MainMenuManager : MonoBehaviour
         mainUI.OnSoundEffectsChange = null;
         mainUI.OnSoundEffectsChange += UpdateSoundEffectsPreference;
 
+        mainUI.Init();
+
         InitializeUI();
 
     }

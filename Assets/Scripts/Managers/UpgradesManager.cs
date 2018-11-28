@@ -20,6 +20,8 @@ public class UpgradesManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("Initialization");
         }
 
+        upgradesUI.Init();
+
         upgradesUI.OnMenuPress = null;
         upgradesUI.OnMenuPress += ReturnToMain;
     }
