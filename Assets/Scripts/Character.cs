@@ -7,6 +7,12 @@ using UnityEngine.UI;
 public enum CharacterState { Idle, Running, Charging, Dead }
 public class Character : MonoBehaviour {
 
+    [SerializeField]
+    private CameraFollow cameraFollow;
+
+    [SerializeField]
+    private ScreenShake screenShake;
+
     private Transform myTransform;
     public Transform MyTransform
     {
@@ -287,6 +293,8 @@ public class Character : MonoBehaviour {
                 Debug.LogError("Changed lanes into strange lane");
                 break;
         }
+
+        cameraFollow.SetTargetPosition(laneNumber);
     }
 
     private void GameOver()
@@ -334,16 +342,19 @@ public class Character : MonoBehaviour {
     {
         if (_obstacle.MyObstacleType == ObstacleType.Barrier)
         {
+            screenShake.Shake();
             GameOver();
             //Debug.Log("crashed");
         }
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
             //Debug.Log("WEEE");
+            screenShake.Shake();
             _obstacle.Destroyed();
         }
         else
         {
+            screenShake.Shake();
             GameOver();
             //Debug.Log("crashed fail");
         }
