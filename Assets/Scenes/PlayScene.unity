@@ -3158,7 +3158,7 @@ MonoBehaviour:
   laneSize: 3
   moveSpeed: 30
   swipeSensitivity: 0.2
-  doubleSwipeSensitivity: 3
+  doubleSwipeSensitivity: 4
   tapSensitivity: 0.1
   drainSpeed: 10
   restoreSpeed: 50

@@ -342,19 +342,19 @@ public class Character : MonoBehaviour {
     {
         if (_obstacle.MyObstacleType == ObstacleType.Barrier)
         {
-            screenShake.Shake();
+          //  screenShake.Shake();
             GameOver();
             //Debug.Log("crashed");
         }
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
             //Debug.Log("WEEE");
-            screenShake.Shake();
+           // screenShake.Shake();
             _obstacle.Destroyed();
         }
         else
         {
-            screenShake.Shake();
+          //  screenShake.Shake();
             GameOver();
             //Debug.Log("crashed fail");
         }
