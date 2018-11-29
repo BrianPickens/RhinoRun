@@ -24,7 +24,29 @@ public class ObstacleBlock : MonoBehaviour {
         previousPos = myTransform.position;
     }
 
-    private void FixedUpdate()
+    //private void FixedUpdate()
+    //{
+    //    if (checkForCollision)
+    //    {
+    //        Vector3 movement = myTransform.position - previousPos;
+
+
+    //        float movementMagnitude = movement.magnitude;
+    //        RaycastHit hitInfo;
+
+    //        if (Physics.Raycast(previousPos, movement, out hitInfo, movementMagnitude, 1 << 9))
+    //        {
+    //            if (hitInfo.collider.CompareTag("Player"))
+    //            {
+    //                hitInfo.collider.GetComponent<Character>().HandleCollision(this);
+    //            }
+    //        }
+
+    //        previousPos = myTransform.position;
+    //    }
+
+    //}
+    private void Update()
     {
         if (checkForCollision)
         {
@@ -44,7 +66,6 @@ public class ObstacleBlock : MonoBehaviour {
 
             previousPos = myTransform.position;
         }
-
     }
 
     public void Initialize()

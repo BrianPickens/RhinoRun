@@ -64,6 +64,7 @@ public class Character : MonoBehaviour {
     [SerializeField]
     private float restoreSpeed;
 
+    [SerializeField]
     private Camera mainCamera;
 
     private Vector3 touchOrigin = Vector3.zero;
@@ -85,7 +86,6 @@ public class Character : MonoBehaviour {
     {
         myTransform = GetComponent<Transform>();
         myRenderer = GetComponent<Renderer>();
-        mainCamera = Camera.main;
 
         chargePower = 100f;
         canSwipe = true;
@@ -125,12 +125,12 @@ public class Character : MonoBehaviour {
             if (touch.phase == TouchPhase.Began)
             {
                 Vector2 rawTouchOrigin = touch.position;
-                touchOrigin = Camera.main.ScreenToWorldPoint(new Vector3(rawTouchOrigin.x, rawTouchOrigin.y, -mainCamera.transform.position.z));
+                touchOrigin = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchOrigin.x, rawTouchOrigin.y, -mainCamera.transform.position.z));
             }
             else if (touch.phase == TouchPhase.Moved && !isTapping)
             {
                 Vector2 rawTouchCurrent = touch.position;
-                touchCurrent = Camera.main.ScreenToWorldPoint(new Vector3(rawTouchCurrent.x, rawTouchCurrent.y, -mainCamera.transform.position.z));
+                touchCurrent = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchCurrent.x, rawTouchCurrent.y, -mainCamera.transform.position.z));
 
                 float swipeDistance = Vector3.Distance(touchOrigin, touchCurrent);
                 //Debug.Log(swipeDistance);
@@ -169,29 +169,29 @@ public class Character : MonoBehaviour {
 
 
             }
-            else if (touch.phase == TouchPhase.Stationary && !isSwiping)
-            {
-                tapDelay += Time.deltaTime;
-                if (tapDelay >= tapSensitivity)
-                {
-                    isTapping = true;
-                }
+            //else if (touch.phase == TouchPhase.Stationary && !isSwiping)
+            //{
+            //    tapDelay += Time.deltaTime;
+            //    if (tapDelay >= tapSensitivity)
+            //    {
+            //        isTapping = true;
+            //    }
 
-                if(myCharacterState != CharacterState.Charging)
-                {
-                    ChargeStart();
-                }
-            }
+            //    if(myCharacterState != CharacterState.Charging)
+            //    {
+            //        ChargeStart();
+            //    }
+            //}
             else if (touch.phase == TouchPhase.Ended)
             {
-                if (myCharacterState == CharacterState.Charging)
-                {
-                    ChargeEnd();
-                }
+                //if (myCharacterState == CharacterState.Charging)
+                //{
+                //    ChargeEnd();
+                //}
                 canSwipe = true;
                 canDoubleSwipe = true;
                 isSwiping = false;
-                isTapping = false;
+                //isTapping = false;
                 tapDelay = 0f;
             }
         }
@@ -313,7 +313,7 @@ public class Character : MonoBehaviour {
         if (chargePower > Mathf.Epsilon)
         {
             myCharacterState = CharacterState.Charging;
-
+            isTapping = true;
             StartCoroutine(ChargeDelay());
         }
     }
@@ -336,25 +336,26 @@ public class Character : MonoBehaviour {
         myCharacterState = CharacterState.Running;
         myRenderer.material = normalMat;
         drainChargePower = false;
+        isTapping = false;
     }
 
     public void HandleCollision(ObstacleBlock _obstacle)
     {
         if (_obstacle.MyObstacleType == ObstacleType.Barrier)
         {
-          //  screenShake.Shake();
+            screenShake.Shake();
             GameOver();
             //Debug.Log("crashed");
         }
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
             //Debug.Log("WEEE");
-           // screenShake.Shake();
+            screenShake.Shake();
             _obstacle.Destroyed();
         }
         else
         {
-          //  screenShake.Shake();
+            screenShake.Shake();
             GameOver();
             //Debug.Log("crashed fail");
         }

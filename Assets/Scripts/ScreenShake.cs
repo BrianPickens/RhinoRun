@@ -52,7 +52,7 @@ public class ScreenShake : MonoBehaviour
 
     private void DetermineNextShakePosition()
     {
-        nextShakePosition = new Vector3(shakeAxis.localPosition.x,//Random.Range(-shakeIntensity, shakeIntensity),
+        nextShakePosition = new Vector3(Random.Range(-shakeIntensity, shakeIntensity),
             Random.Range(-shakeIntensity, shakeIntensity),
             shakeAxis.localPosition.z);
     }
