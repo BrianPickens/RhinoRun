@@ -7,17 +7,36 @@ public class EndingDisplayUI : MonoBehaviour
 {
 
     [SerializeField]
+    private Animator myAnimator;
+
+    [SerializeField]
     private Text endingPointsText;
 
     [SerializeField]
     private Text endingDistanceText;
 
+    private int finalPoints;
 
-    public void DisplayEnding(int _points, int _distance)
+    private int finalDistance;
+
+    public void OpenEndingDisplay(int _points, int _distance)
     {
-        endingPointsText.text = "" + _points + " Money";
-        endingDistanceText.text = "" + _distance + " Meters";
+        finalPoints = _points;
+        finalDistance = _distance;
         gameObject.SetActive(true);
+        myAnimator.SetTrigger("Open");
+    }
+
+    public void StartEndingSequence()
+    {
+        StartCoroutine(EndingSequence());
+    }
+
+    private IEnumerator EndingSequence()
+    {
+        yield return null;
+        endingPointsText.text = "" + finalPoints;
+        endingDistanceText.text = "" + finalDistance + " Meters";
     }
 
 }

@@ -23,22 +23,29 @@ public class MainMenuUIManager : MonoBehaviour
     public Action OnUpgradesPress;
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
+    public Action<bool> OnDoubleSwipeChange;
+    public Action<int> OnSwipeSensitivityChange;
+    public Action<int> OnDoubleSwipeSensitivityChange;
 
     public void Init()
     {
         loadingScreen.StartWithLoading();
         loadingScreen.HideLoading();
 
-        settingsUI.CloseSettings();
-
-        settingsUI.OnSettingsClose = null;
-        settingsUI.OnSettingsClose += CloseSettings;
-
         settingsUI.OnMusicChange = null;
         settingsUI.OnMusicChange += MusicChange;
 
         settingsUI.OnSoundEffectsChange = null;
         settingsUI.OnSoundEffectsChange += SoundEffectsChange;
+
+        settingsUI.OnSwipeSensitivityChange = null;
+        settingsUI.OnSwipeSensitivityChange += SwipeSensivityChange;
+
+        settingsUI.OnDoubleSwipeSensitivityChange = null;
+        settingsUI.OnDoubleSwipeSensitivityChange += DoubleSwipeSensitivityChange;
+
+        settingsUI.OnDoubleSwipeChange = null;
+        settingsUI.OnDoubleSwipeChange = DoubleSwipeChange;
     }
 
     public void InitializeSoundPreferences(bool _musicOn, bool _soundEffectsOn)
@@ -72,12 +79,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        settingsUI.gameObject.SetActive(true);
-    }
-
-    private void CloseSettings()
-    {
-        settingsUI.gameObject.SetActive(false);
+        settingsUI.OpenSettings();
     }
 
     public void UpdateCoinsDisplay(int _coins)
@@ -103,6 +105,30 @@ public class MainMenuUIManager : MonoBehaviour
         if (OnSoundEffectsChange != null)
         {
             OnSoundEffectsChange(_soundEffectsOn);
+        }
+    }
+
+    private void SwipeSensivityChange(int _change)
+    {
+        if (OnSwipeSensitivityChange != null)
+        {
+            OnSwipeSensitivityChange(_change);
+        }
+    }
+
+    private void DoubleSwipeSensitivityChange(int _change)
+    {
+        if (OnDoubleSwipeSensitivityChange != null)
+        {
+            OnDoubleSwipeSensitivityChange(_change);
+        }
+    }
+
+    private void DoubleSwipeChange(bool _change)
+    {
+        if (OnDoubleSwipeChange != null)
+        {
+            OnDoubleSwipeChange(_change);
         }
     }
 

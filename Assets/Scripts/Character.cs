@@ -361,6 +361,20 @@ public class Character : MonoBehaviour {
         }
     }
 
+    public void SetSwipeSensitivity(float _sensitivity)
+    {
+        swipeSensitivity = _sensitivity;
+    }
+
+    public void SetDoubleSwipeSensitivity(float _sensitivity)
+    {
+        doubleSwipeSensitivity = _sensitivity;
+    }
+
+    public void SetDoubleSwipeStatus(bool _status)
+    {
+        allowDoubleMove = _status;
+    }
 
 
     //debug options

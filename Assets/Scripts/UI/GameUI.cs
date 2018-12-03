@@ -10,10 +10,10 @@ public class GameUI : MonoBehaviour
     private EndingDisplayUI endingDisplay;
 
     [SerializeField]
-    private Text pointsDisplay;
+    private SettingsUI settingsUI;
 
     [SerializeField]
-    private Text distanceDisplay;
+    private Text pointsDisplay;
 
     [SerializeField]
     LoadingTransition loadingScreen;
@@ -21,11 +21,37 @@ public class GameUI : MonoBehaviour
     public Action OnMenuPress;
     public Action OnUpgradesPress;
     public Action OnReplayPress;
+    public Action<bool> OnMusicChange;
+    public Action<bool> OnSoundEffectsChange;
+    public Action<bool> OnDoubleSwipeChange;
+    public Action<int> OnSwipeSensitivityChange;
+    public Action<int> OnDoubleSwipeSensitivityChange;
 
     public void Init()
     {
         loadingScreen.StartWithLoading();
         loadingScreen.HideLoading();
+
+        settingsUI.OnMusicChange = null;
+        settingsUI.OnMusicChange += MusicChange;
+
+        settingsUI.OnSoundEffectsChange = null;
+        settingsUI.OnSoundEffectsChange += SoundEffectsChange;
+
+        settingsUI.OnSwipeSensitivityChange = null;
+        settingsUI.OnSwipeSensitivityChange += SwipeSensivityChange;
+
+        settingsUI.OnDoubleSwipeSensitivityChange = null;
+        settingsUI.OnDoubleSwipeSensitivityChange += DoubleSwipeSensitivityChange;
+
+        settingsUI.OnDoubleSwipeChange = null;
+        settingsUI.OnDoubleSwipeChange = DoubleSwipeChange;
+
+    }
+
+    public void InitializeSoundPreferences(bool _musicOn, bool _soundEffectsOn)
+    {
+        settingsUI.InitializeSoundPreferences(_musicOn, _soundEffectsOn);
     }
 
     public void DisplayPoints(int _points)
@@ -33,14 +59,14 @@ public class GameUI : MonoBehaviour
         pointsDisplay.text = "" + _points;
     }
 
-    public void DisplayDistance(int _distance)
-    {
-        distanceDisplay.text = "" + _distance;
-    }
-
     public void DisplayEnding(int _points, int _distance)
     {
-        endingDisplay.DisplayEnding(_points, _distance);
+        endingDisplay.OpenEndingDisplay(_points, _distance);
+    }
+
+    public void SettingsButton()
+    {
+        settingsUI.OpenSettings();
     }
 
     public void MainMenuButton()
@@ -74,6 +100,46 @@ public class GameUI : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _callback();
+    }
+
+    private void MusicChange(bool _musicOn)
+    {
+        if (OnMusicChange != null)
+        {
+            OnMusicChange(_musicOn);
+        }
+    }
+
+    private void SoundEffectsChange(bool _soundEffectsOn)
+    {
+        if (OnSoundEffectsChange != null)
+        {
+            OnSoundEffectsChange(_soundEffectsOn);
+        }
+    }
+
+    private void SwipeSensivityChange(int _change)
+    {
+        if (OnSwipeSensitivityChange != null)
+        {
+            OnSwipeSensitivityChange(_change);
+        }
+    }
+
+    private void DoubleSwipeSensitivityChange(int _change)
+    {
+        if (OnDoubleSwipeSensitivityChange != null)
+        {
+            OnDoubleSwipeSensitivityChange(_change);
+        }
+    }
+
+    private void DoubleSwipeChange(bool _change)
+    {
+        if (OnDoubleSwipeChange != null)
+        {
+            OnDoubleSwipeChange(_change);
+        }
     }
 
 }

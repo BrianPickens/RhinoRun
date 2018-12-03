@@ -22,14 +22,33 @@ public class SettingsUI : MonoBehaviour
     private Sprite soundEffectsOffSprite;
 
     [SerializeField]
+    private Text swipeSensitivityText;
+    [SerializeField]
+    private Text doubleSwipeSensitivityText;
+    [SerializeField]
+    private Image doubleSwipeImage;
+    [SerializeField]
+    private Sprite doubleSwipeOnSprite;
+    [SerializeField]
+    private Sprite doubleSwipeOffSprite;
+
+    [SerializeField]
+    private Animator myAnimator;
+
+    [SerializeField]
     private GameObject creditsUI;
 
-    public Action OnSettingsClose;
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
+    public Action<bool> OnDoubleSwipeChange;
+    public Action<int> OnSwipeSensitivityChange;
+    public Action<int> OnDoubleSwipeSensitivityChange;
 
     private bool musicOn;
     private bool soundEffectsOn;
+    private int swipeSensitivity;
+    private int doubleSwipeSensitivity;
+    private bool doubleSwipeOn;
 
     private void Start()
     {
@@ -60,12 +79,23 @@ public class SettingsUI : MonoBehaviour
 
     }
 
+    public void OpenSettings()
+    {
+        Debug.Log("this happend");
+        gameObject.SetActive(true);
+        myAnimator.SetTrigger("MoveIn");
+        Time.timeScale = 0;
+    }
+
+    public void ExitSettings()
+    {
+        myAnimator.SetTrigger("MoveOut");
+    }
+
     public void CloseSettings()
     {
-        if (OnSettingsClose != null)
-        {
-            OnSettingsClose();
-        }
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void MusicPress()
@@ -116,7 +146,62 @@ public class SettingsUI : MonoBehaviour
     {
         creditsUI.SetActive(false);
     }
-    
-    
+
+    public void SwipeSensitivityChange(int _change)
+    {
+        swipeSensitivity += _change;
+        if (swipeSensitivity < 0)
+        {
+            swipeSensitivity = 1;
+        }
+        else if (swipeSensitivity > 10)
+        {
+            swipeSensitivity = 10;
+        }
+        swipeSensitivityText.text = "" + swipeSensitivity;
+
+        if (OnSwipeSensitivityChange != null)
+        {
+            OnSwipeSensitivityChange(swipeSensitivity);
+        }
+    }
+
+    public void DoubleSwipeToggle()
+    {
+        if (doubleSwipeOn)
+        {
+            doubleSwipeOn = false;
+            doubleSwipeImage.sprite = doubleSwipeOffSprite;
+        }
+        else
+        {
+            doubleSwipeOn = true;
+            doubleSwipeImage.sprite = doubleSwipeOnSprite;
+        }
+
+        if (OnDoubleSwipeChange != null)
+        {
+            OnDoubleSwipeChange(doubleSwipeOn);
+        }
+    }
+
+    public void DoubleSwipeSensitivtyChange(int _change)
+    {
+        doubleSwipeSensitivity += _change;
+        if (doubleSwipeSensitivity < 0)
+        {
+            doubleSwipeSensitivity = 1;
+        }
+        else if (doubleSwipeSensitivity > 10)
+        {
+            doubleSwipeSensitivity = 10;
+        }
+        doubleSwipeSensitivityText.text = "" + doubleSwipeSensitivity;
+
+        if (OnDoubleSwipeSensitivityChange != null)
+        {
+            OnDoubleSwipeSensitivityChange(doubleSwipeSensitivity);
+        }
+    }
 
 }

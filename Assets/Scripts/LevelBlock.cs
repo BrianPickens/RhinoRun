@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
+//do settings next - finish setting sensitivity on load in
+//pausing for settings
 //make "fog" or some obscuring to hide the level blocks poping in.
-//make camera slide back and forth some
-//add screen shake
 //fix exploit where you can land in the middle of the lane
 //make rhino snax bigger
 //make particle effects
-//add in ui - finish loading drop down ui
+//add in ui
 //still need to make other power ups and connect them
 //upgrades system
 //make loading system
 //make local and cloud saving
+//speed increase gradient (increase faster at start but slower mid and ending
 //google play / game center
 //iap
 //analytics?
@@ -51,6 +51,9 @@ public class LevelBlock : MonoBehaviour
     private List<CollectableType> collectables;
 
     [SerializeField]
+    private UnityEngine.UI.Text distanceText;
+
+    [SerializeField]
     private float blockSpeed;
 
     public Action<BlockDifficulty,LevelBlock> BlockRecycled;
@@ -69,8 +72,11 @@ public class LevelBlock : MonoBehaviour
         myBase.transform.localPosition = Vector3.zero;
     }
 
-    public void InitializeBlock(Action<CollectableType> _collectableCallback)
+    public void InitializeBlock(Action<CollectableType> _collectableCallback, int _distanceMarker)
     {
+
+        //initialize distanceMarker
+        distanceText.text = "" + _distanceMarker;
 
         //initialize obstacles
         myObstacles.Clear();

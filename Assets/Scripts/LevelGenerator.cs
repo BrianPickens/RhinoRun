@@ -56,19 +56,13 @@ public class LevelGenerator : MonoBehaviour {
 
     private float currentBlockSpeed;
 
+    private int numBlocksGenerated;
+
     //private bool gameOver;
 
     private Action<CollectableType> CollectableCallback;
 
     public Action OnBlockPassed;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            EndGame();
-        }
-    }
 
     public void Initialize(Action<CollectableType> _collectableCallback)
     {
@@ -102,19 +96,19 @@ public class LevelGenerator : MonoBehaviour {
             if (i == 0)
             {
                 _newBlock.gameObject.SetActive(true);
-                _newBlock.InitializeBlock(CollectableCallback);
+                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated);
                 _newBlock.SetPosition(Vector3.zero);
                 _newBlock.SetSpeed(currentBlockSpeed);
-                
+                numBlocksGenerated++;
 
             }
             else
             {
                 _newBlock.gameObject.SetActive(true);
-                _newBlock.InitializeBlock(CollectableCallback);
+                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated);
                 _newBlock.SetPosition(levelBlocks[i - 1].GetPosition() + (Vector3.forward * levelBlockSize));
                 _newBlock.SetSpeed(currentBlockSpeed);
-                
+                numBlocksGenerated++;
             }
         }
     }
@@ -134,11 +128,12 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         _newBlock.gameObject.SetActive(true);
-        _newBlock.InitializeBlock(CollectableCallback);
+        _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated);
         _newBlock.SetPosition(levelBlocks[levelBlocks.Count - 1].GetPosition() + (Vector3.forward * levelBlockSize));
         _newBlock.SetSpeed(currentBlockSpeed);
         levelBlocks.Add(_newBlock);
         levelBlocks.RemoveAt(0);
+        numBlocksGenerated++;
         blocksPassed++;
         totalBlocksPassed++;
         staminaSpawnCounter++;

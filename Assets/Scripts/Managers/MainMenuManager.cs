@@ -32,6 +32,15 @@ public class MainMenuManager : MonoBehaviour
         mainUI.OnSoundEffectsChange = null;
         mainUI.OnSoundEffectsChange += UpdateSoundEffectsPreference;
 
+        mainUI.OnSwipeSensitivityChange = null;
+        mainUI.OnSwipeSensitivityChange += UpdateSwipeSensitivity;
+
+        mainUI.OnDoubleSwipeSensitivityChange = null;
+        mainUI.OnDoubleSwipeSensitivityChange += UpdateDoubleSwipeSensitivity;
+
+        mainUI.OnDoubleSwipeChange = null;
+        mainUI.OnDoubleSwipeChange += UpdateDoubleSwipeToggle;
+
         mainUI.Init();
 
         InitializeUI();
@@ -86,6 +95,32 @@ public class MainMenuManager : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.UpdateSoundEffectPreference(_soundEffectsOn);
+        }
+    }
+
+    private void UpdateSwipeSensitivity(int _change)
+    {
+        if (SaveManager.Instance != null)
+        {
+            float _newSensitivity = _change / 10f;
+            SaveManager.Instance.SetSwipeSensitivity(_newSensitivity);
+        }
+    }
+
+    private void UpdateDoubleSwipeSensitivity(int _change)
+    {
+        if (SaveManager.Instance != null)
+        {
+            float _newSensitivity = (_change / 10f) + 2.5f;
+            SaveManager.Instance.SetDoubleSwipeSensitivity(_newSensitivity);
+        }
+    }
+
+    private void UpdateDoubleSwipeToggle(bool _change)
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SetDoubleSwipe(_change);
         }
     }
 

@@ -16,6 +16,12 @@ public class SaveManager : MonoBehaviour
 
     private int highscore;
 
+    private float swipeSensitivity;
+
+    private float doubleSwipeSensitivity;
+
+    private bool doubleSwipeOn;
+
     private int coinsUpgradeLevel;
 
     private int staminaUpgradeLevel;
@@ -27,6 +33,12 @@ public class SaveManager : MonoBehaviour
     private const string coinUpgradeString = "coinUpgrade";
 
     private const string staminaUpgradeString = "staminaUpgrade";
+
+    private const string swipeSensitivityString = "swipeSensitivity";
+
+    private const string doubleSwipeSensitivityString = "doubleSwipeSensitivity";
+
+    private const string doubleSwipeString = "doubleSwipe";
 
     private bool initialized;
     public bool Initialized
@@ -67,6 +79,33 @@ public class SaveManager : MonoBehaviour
         else
         {
             highscore = 0;
+        }
+
+        if (PlayerPrefs.HasKey(swipeSensitivityString))
+        {
+            swipeSensitivity = PlayerPrefs.GetFloat(swipeSensitivityString);
+        }
+        else
+        {
+            swipeSensitivity = 0.2f;
+        }
+
+        if (PlayerPrefs.HasKey(doubleSwipeSensitivityString))
+        {
+            doubleSwipeSensitivity = PlayerPrefs.GetFloat(doubleSwipeSensitivityString);
+        }
+        else
+        {
+            doubleSwipeSensitivity = 3f;
+        }
+
+        if (PlayerPrefs.HasKey(doubleSwipeString))
+        {
+            doubleSwipeOn = PlayerPrefs.GetInt(doubleSwipeString) == 1 ? true : false;
+        }
+        else
+        {
+            doubleSwipeOn = true;
         }
 
         if (PlayerPrefs.HasKey(coinUpgradeString))
@@ -153,6 +192,36 @@ public class SaveManager : MonoBehaviour
         }
 
         return upgradeLevel;
+    }
+
+    public void SetSwipeSensitivity(float _sensitivity)
+    {
+        PlayerPrefs.SetFloat(swipeSensitivityString, _sensitivity);
+    }
+
+    public void SetDoubleSwipeSensitivity(float _sensitivity)
+    {
+        PlayerPrefs.SetFloat(doubleSwipeSensitivityString, _sensitivity);
+    }
+
+    public void SetDoubleSwipe(bool _isOn)
+    {
+        PlayerPrefs.SetInt(doubleSwipeString, _isOn ? 1 : 0);
+    }
+
+    public float GetSwipeSensitivity()
+    {
+        return swipeSensitivity;
+    }
+
+    public float GetDoubleSwipeSensitivity()
+    {
+        return doubleSwipeSensitivity;
+    }
+
+    public bool GetDoubleSwipeStatus()
+    {
+        return doubleSwipeOn;
     }
 
     //debug options

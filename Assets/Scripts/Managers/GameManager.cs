@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("Initialization");
         }
 
-        gameUI.Init();
-
         character.OnGameOver += GameOver;
 
         gameUI.OnMenuPress = null;
@@ -51,12 +49,38 @@ public class GameManager : MonoBehaviour
         gameUI.OnReplayPress += Replay;
 
         gameUI.DisplayPoints(0);
-        gameUI.DisplayDistance(0);
+
+        gameUI.OnMusicChange = null;
+        gameUI.OnMusicChange += UpdateMusicPreference;
+
+        gameUI.OnSoundEffectsChange = null;
+        gameUI.OnSoundEffectsChange += UpdateSoundEffectsPreference;
+
+        gameUI.OnSwipeSensitivityChange = null;
+        gameUI.OnSwipeSensitivityChange += UpdateSwipeSensitivity;
+
+        gameUI.OnDoubleSwipeSensitivityChange = null;
+        gameUI.OnDoubleSwipeSensitivityChange += UpdateDoubleSwipeSensitivity;
+
+        gameUI.OnDoubleSwipeChange = null;
+        gameUI.OnDoubleSwipeChange += UpdateDoubleSwipeToggle;
 
         levelGenerator.OnBlockPassed = null;
         levelGenerator.OnBlockPassed += BlockCompleted;
 
         levelGenerator.Initialize(CollectableGained);
+
+        gameUI.Init();
+
+        bool musicOn = true;
+        bool soundEffectsOn = true;
+        if (SoundManager.Instance != null)
+        {
+            musicOn = SoundManager.Instance.MusicOn;
+            soundEffectsOn = SoundManager.Instance.SoundEffectsOn;
+        }
+        gameUI.InitializeSoundPreferences(musicOn, soundEffectsOn);
+
         character.Initialize();
     }
 
@@ -100,7 +124,6 @@ public class GameManager : MonoBehaviour
     private void BlockCompleted()
     {
         distance++;
-        gameUI.DisplayDistance(distance);
     }
 
     private void OpenMainMenu()
@@ -125,6 +148,51 @@ public class GameManager : MonoBehaviour
         if (SceneLoadingManager.Instance != null)
         {
             SceneLoadingManager.Instance.LoadScene("PlayScene");
+        }
+    }
+
+    private void UpdateMusicPreference(bool _musicOn)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.UpdateMusicPreference(_musicOn);
+        }
+    }
+
+    private void UpdateSoundEffectsPreference(bool _soundEffectsOn)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.UpdateSoundEffectPreference(_soundEffectsOn);
+        }
+    }
+
+    private void UpdateSwipeSensitivity(int _change)
+    {
+        if (SaveManager.Instance != null)
+        {
+            float _newSensitivity = _change / 10f;
+            character.SetSwipeSensitivity(_newSensitivity);
+            SaveManager.Instance.SetSwipeSensitivity(_newSensitivity);
+        }
+    }
+
+    private void UpdateDoubleSwipeSensitivity(int _change)
+    {
+        if (SaveManager.Instance != null)
+        {
+            float _newSensitivity = (_change / 10f) + 2.5f;
+            character.SetDoubleSwipeSensitivity(_newSensitivity);
+            SaveManager.Instance.SetDoubleSwipeSensitivity(_newSensitivity);
+        }
+    }
+
+    private void UpdateDoubleSwipeToggle(bool _change)
+    {
+        if (SaveManager.Instance != null)
+        {
+            character.SetDoubleSwipeStatus(_change);
+            SaveManager.Instance.SetDoubleSwipe(_change);
         }
     }
 }
