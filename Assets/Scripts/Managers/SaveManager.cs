@@ -196,16 +196,19 @@ public class SaveManager : MonoBehaviour
 
     public void SetSwipeSensitivity(float _sensitivity)
     {
+        swipeSensitivity = _sensitivity;
         PlayerPrefs.SetFloat(swipeSensitivityString, _sensitivity);
     }
 
     public void SetDoubleSwipeSensitivity(float _sensitivity)
     {
+        doubleSwipeSensitivity = _sensitivity;
         PlayerPrefs.SetFloat(doubleSwipeSensitivityString, _sensitivity);
     }
 
     public void SetDoubleSwipe(bool _isOn)
     {
+        doubleSwipeOn = _isOn;
         PlayerPrefs.SetInt(doubleSwipeString, _isOn ? 1 : 0);
     }
 

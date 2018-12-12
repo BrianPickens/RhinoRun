@@ -53,6 +53,11 @@ public class MainMenuUIManager : MonoBehaviour
         settingsUI.InitializeSoundPreferences(_musicOn, _soundEffectsOn);
     }
 
+    public void InitializeControlPreferences(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
+    {
+        settingsUI.InitializeControlPreference(_swipeSensitivity, _doubleSwipeSensitivity, _doubleSwipeOn);
+    }
+
     public void PlayPress()
     {
         loadingScreen.ShowLoading();

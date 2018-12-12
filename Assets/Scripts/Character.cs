@@ -82,10 +82,14 @@ public class Character : MonoBehaviour {
     // debug options
     private bool allowDoubleMove = true;
 
-    public void Initialize()
+    public void Initialize(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
     {
         myTransform = GetComponent<Transform>();
         myRenderer = GetComponent<Renderer>();
+
+        SetSwipeSensitivity(_swipeSensitivity);
+        SetDoubleSwipeSensitivity(_doubleSwipeSensitivity);
+        SetDoubleSwipeStatus(_doubleSwipeOn);
 
         chargePower = 100f;
         canSwipe = true;

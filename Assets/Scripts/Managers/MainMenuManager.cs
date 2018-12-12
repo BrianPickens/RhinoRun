@@ -49,11 +49,19 @@ public class MainMenuManager : MonoBehaviour
 
     private void InitializeUI()
     {
+
+        float tempSwipeSensitivity = 0.2f;
+        float tempDoubleSwipeSensitivity = 3f;
+        bool tempDoubleSwipeOn = true;
         if (SaveManager.Instance != null)
         {
             mainUI.UpdateCoinsDisplay(SaveManager.Instance.GetCurrentCoins());
             mainUI.UpdateScoreDisplay(SaveManager.Instance.GetCurrentHighscore());
+            tempSwipeSensitivity = SaveManager.Instance.GetSwipeSensitivity();
+            tempDoubleSwipeSensitivity = SaveManager.Instance.GetDoubleSwipeSensitivity();
+            tempDoubleSwipeOn = SaveManager.Instance.GetDoubleSwipeStatus();
         }
+        mainUI.InitializeControlPreferences(tempSwipeSensitivity, tempDoubleSwipeSensitivity, tempDoubleSwipeOn);
 
         bool musicOn = true;
         bool soundEffectsOn = true;

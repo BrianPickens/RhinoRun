@@ -79,9 +79,25 @@ public class SettingsUI : MonoBehaviour
 
     }
 
+    public void InitializeControlPreference(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
+    {
+        swipeSensitivity = Mathf.RoundToInt(_swipeSensitivity * 10f);
+        swipeSensitivityText.text = "" + swipeSensitivity;
+        doubleSwipeSensitivity = Mathf.RoundToInt((_doubleSwipeSensitivity - 2.5f)*10f);
+        doubleSwipeSensitivityText.text = "" + doubleSwipeSensitivity;
+        doubleSwipeOn = _doubleSwipeOn;
+        if (doubleSwipeOn)
+        {
+            doubleSwipeImage.sprite = doubleSwipeOnSprite;
+        }
+        else
+        {
+            doubleSwipeImage.sprite = doubleSwipeOffSprite;
+        }
+    }
+
     public void OpenSettings()
     {
-        Debug.Log("this happend");
         gameObject.SetActive(true);
         myAnimator.SetTrigger("MoveIn");
         Time.timeScale = 0;
@@ -150,7 +166,7 @@ public class SettingsUI : MonoBehaviour
     public void SwipeSensitivityChange(int _change)
     {
         swipeSensitivity += _change;
-        if (swipeSensitivity < 0)
+        if (swipeSensitivity <= 0)
         {
             swipeSensitivity = 1;
         }
@@ -188,7 +204,7 @@ public class SettingsUI : MonoBehaviour
     public void DoubleSwipeSensitivtyChange(int _change)
     {
         doubleSwipeSensitivity += _change;
-        if (doubleSwipeSensitivity < 0)
+        if (doubleSwipeSensitivity <= 0)
         {
             doubleSwipeSensitivity = 1;
         }

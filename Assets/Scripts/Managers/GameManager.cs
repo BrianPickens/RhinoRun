@@ -72,6 +72,19 @@ public class GameManager : MonoBehaviour
 
         gameUI.Init();
 
+
+
+        float tempSwipeSensitivity = 0.2f;
+        float tempDoubleSwipeSensitivity = 3f;
+        bool tempDoubleSwipeOn = true;
+        if (SaveManager.Instance != null)
+        {
+            tempSwipeSensitivity = SaveManager.Instance.GetSwipeSensitivity();
+            tempDoubleSwipeSensitivity = SaveManager.Instance.GetDoubleSwipeSensitivity();
+            tempDoubleSwipeOn = SaveManager.Instance.GetDoubleSwipeStatus();
+        }
+        gameUI.InitializeControlPreferences(tempSwipeSensitivity, tempDoubleSwipeSensitivity, tempDoubleSwipeOn);
+
         bool musicOn = true;
         bool soundEffectsOn = true;
         if (SoundManager.Instance != null)
@@ -81,7 +94,7 @@ public class GameManager : MonoBehaviour
         }
         gameUI.InitializeSoundPreferences(musicOn, soundEffectsOn);
 
-        character.Initialize();
+        character.Initialize(tempSwipeSensitivity, tempDoubleSwipeSensitivity, tempDoubleSwipeOn);
     }
 
     private void GameOver()
