@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-//do settings next - finish setting sensitivity on load in
-//pausing for settings
 //make "fog" or some obscuring to hide the level blocks poping in.
 //fix exploit where you can land in the middle of the lane
 //make rhino snax bigger
