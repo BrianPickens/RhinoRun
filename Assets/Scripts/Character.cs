@@ -13,6 +13,9 @@ public class Character : MonoBehaviour {
     [SerializeField]
     private ScreenShake screenShake;
 
+    [SerializeField]
+    private RhinoDetector rhinoDetection;
+
     private Transform myTransform;
     public Transform MyTransform
     {
@@ -114,13 +117,13 @@ public class Character : MonoBehaviour {
                 DrainChargePower();
             }
 
+            CheckForCollision(rhinoDetection.GetMovementChange());
+
         }
     }
 
     private void CheckForInput()
     {
-
-
         //mobile controls
         if (Input.touchCount > 0)
         {
@@ -341,6 +344,20 @@ public class Character : MonoBehaviour {
         myRenderer.material = normalMat;
         drainChargePower = false;
         isTapping = false;
+    }
+
+    private void CheckForCollision(float _movementAmount)
+    {
+        RaycastHit hitInfo;
+        Vector3 offset = new Vector3(0f, 0f, 0.5f);
+        if (Physics.Raycast(myTransform.position + offset, Vector3.back, out hitInfo, _movementAmount, 1 << 0))
+        {
+            if (hitInfo.collider.CompareTag("ChargeObstacle"))
+            {
+                //need to handle collision!!!
+                Debug.Log("this could work");
+            }
+        }
     }
 
     public void HandleCollision(ObstacleBlock _obstacle)

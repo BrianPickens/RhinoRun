@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//tutorial :(
 //make "fog" or some obscuring to hide the level blocks poping in.
 //fix exploit where you can land in the middle of the lane
 //make rhino snax bigger

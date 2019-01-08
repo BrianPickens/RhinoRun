@@ -11,19 +11,34 @@ ModelImporter:
     100010: Boulder3 1
     100012: Boulder4
     100014: Boulder4 1
-    100016: Boulder5
-    100018: Boulder5 1
-    100020: Boulder6
-    100022: Boulder6 1
-    100024: Boulder7
-    100026: Boulder7 1
-    100028: Boulder8
-    100030: Boulder8 1
-    100032: Boulder9
-    100034: Boulder9 1
-    100036: //RootNode
-    100038: Boulders_L
-    100040: Boulders_R
+    100016: Boulder49
+    100018: Boulder5
+    100020: Boulder5 1
+    100022: Boulder50
+    100024: Boulder51
+    100026: Boulder52
+    100028: Boulder53
+    100030: Boulder54
+    100032: Boulder55
+    100034: Boulder56
+    100036: Boulder57
+    100038: Boulder58
+    100040: Boulder59
+    100042: Boulder6
+    100044: Boulder6 1
+    100046: Boulder60
+    100048: Boulder61
+    100050: Boulder62
+    100052: Boulder63
+    100054: Boulder7
+    100056: Boulder7 1
+    100058: Boulder8
+    100060: Boulder8 1
+    100062: Boulder9
+    100064: Boulder9 1
+    100066: //RootNode
+    100068: Boulders_L
+    100070: Boulders_R
     400000: Boulder10
     400002: Boulder10 1
     400004: Boulder2
@@ -32,19 +47,34 @@ ModelImporter:
     400010: Boulder3 1
     400012: Boulder4
     400014: Boulder4 1
-    400016: Boulder5
-    400018: Boulder5 1
-    400020: Boulder6
-    400022: Boulder6 1
-    400024: Boulder7
-    400026: Boulder7 1
-    400028: Boulder8
-    400030: Boulder8 1
-    400032: Boulder9
-    400034: Boulder9 1
-    400036: //RootNode
-    400038: Boulders_L
-    400040: Boulders_R
+    400016: Boulder49
+    400018: Boulder5
+    400020: Boulder5 1
+    400022: Boulder50
+    400024: Boulder51
+    400026: Boulder52
+    400028: Boulder53
+    400030: Boulder54
+    400032: Boulder55
+    400034: Boulder56
+    400036: Boulder57
+    400038: Boulder58
+    400040: Boulder59
+    400042: Boulder6
+    400044: Boulder6 1
+    400046: Boulder60
+    400048: Boulder61
+    400050: Boulder62
+    400052: Boulder63
+    400054: Boulder7
+    400056: Boulder7 1
+    400058: Boulder8
+    400060: Boulder8 1
+    400062: Boulder9
+    400064: Boulder9 1
+    400066: //RootNode
+    400068: Boulders_L
+    400070: Boulders_R
     2100000: Boulder_Material
     2300000: Boulder10
     2300002: Boulder10 1
@@ -54,16 +84,31 @@ ModelImporter:
     2300010: Boulder3 1
     2300012: Boulder4
     2300014: Boulder4 1
-    2300016: Boulder5
-    2300018: Boulder5 1
-    2300020: Boulder6
-    2300022: Boulder6 1
-    2300024: Boulder7
-    2300026: Boulder7 1
-    2300028: Boulder8
-    2300030: Boulder8 1
-    2300032: Boulder9
-    2300034: Boulder9 1
+    2300016: Boulder49
+    2300018: Boulder5
+    2300020: Boulder5 1
+    2300022: Boulder50
+    2300024: Boulder51
+    2300026: Boulder52
+    2300028: Boulder53
+    2300030: Boulder54
+    2300032: Boulder55
+    2300034: Boulder56
+    2300036: Boulder57
+    2300038: Boulder58
+    2300040: Boulder59
+    2300042: Boulder6
+    2300044: Boulder6 1
+    2300046: Boulder60
+    2300048: Boulder61
+    2300050: Boulder62
+    2300052: Boulder63
+    2300054: Boulder7
+    2300056: Boulder7 1
+    2300058: Boulder8
+    2300060: Boulder8 1
+    2300062: Boulder9
+    2300064: Boulder9 1
     3300000: Boulder10
     3300002: Boulder10 1
     3300004: Boulder2
@@ -72,16 +117,31 @@ ModelImporter:
     3300010: Boulder3 1
     3300012: Boulder4
     3300014: Boulder4 1
-    3300016: Boulder5
-    3300018: Boulder5 1
-    3300020: Boulder6
-    3300022: Boulder6 1
-    3300024: Boulder7
-    3300026: Boulder7 1
-    3300028: Boulder8
-    3300030: Boulder8 1
-    3300032: Boulder9
-    3300034: Boulder9 1
+    3300016: Boulder49
+    3300018: Boulder5
+    3300020: Boulder5 1
+    3300022: Boulder50
+    3300024: Boulder51
+    3300026: Boulder52
+    3300028: Boulder53
+    3300030: Boulder54
+    3300032: Boulder55
+    3300034: Boulder56
+    3300036: Boulder57
+    3300038: Boulder58
+    3300040: Boulder59
+    3300042: Boulder6
+    3300044: Boulder6 1
+    3300046: Boulder60
+    3300048: Boulder61
+    3300050: Boulder62
+    3300052: Boulder63
+    3300054: Boulder7
+    3300056: Boulder7 1
+    3300058: Boulder8
+    3300060: Boulder8 1
+    3300062: Boulder9
+    3300064: Boulder9 1
     4300000: Boulder2
     4300002: Boulder3
     4300004: Boulder4
@@ -91,15 +151,30 @@ ModelImporter:
     4300012: Boulder8
     4300014: Boulder9
     4300016: Boulder10
-    4300018: Boulder2
-    4300020: Boulder3
-    4300022: Boulder4
-    4300024: Boulder5
-    4300026: Boulder6
-    4300028: Boulder7
-    4300030: Boulder8
-    4300032: Boulder9
-    4300034: Boulder10
+    4300018: Boulder53
+    4300020: Boulder54
+    4300022: Boulder55
+    4300024: Boulder56
+    4300026: Boulder60
+    4300028: Boulder61
+    4300030: Boulder62
+    4300032: Boulder63
+    4300034: Boulder2
+    4300036: Boulder3
+    4300038: Boulder4
+    4300040: Boulder5
+    4300042: Boulder6
+    4300044: Boulder7
+    4300046: Boulder8
+    4300048: Boulder9
+    4300050: Boulder10
+    4300052: Boulder49
+    4300054: Boulder50
+    4300056: Boulder51
+    4300058: Boulder52
+    4300060: Boulder57
+    4300062: Boulder58
+    4300064: Boulder59
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -110,12 +185,12 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Boulder Normal
-    second: {fileID: 2800000, guid: 2919afb1d92e63b4496c2b0e8219349a, type: 3}
+    second: {fileID: 2800000, guid: 70da5f6964e45ee41b3c5d94069b2558, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Boulder Texture
-    second: {fileID: 2800000, guid: b0595a65ce2afb941bdf55ee999a0076, type: 3}
+    second: {fileID: 2800000, guid: e2ae342bf07e9e44eab644180d5fbd7f, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
@@ -149,6 +224,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -173,6 +249,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

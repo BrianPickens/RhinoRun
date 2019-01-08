@@ -16,6 +16,9 @@ public class LevelGenerator : MonoBehaviour {
     private LevelBlockPooler levelBlockPooler;
 
     [SerializeField]
+    private RhinoDetector rhinoDetection;
+
+    [SerializeField]
     private int levelBlockSize;
 
     [SerializeField]
@@ -111,6 +114,9 @@ public class LevelGenerator : MonoBehaviour {
                 numBlocksGenerated++;
             }
         }
+
+        rhinoDetection.SetSpeed(currentBlockSpeed);
+
     }
 
     private void GetNewBlock()
@@ -221,6 +227,7 @@ public class LevelGenerator : MonoBehaviour {
             {
                 levelBlocks[i].SetSpeed(currentBlockSpeed);
             }
+            rhinoDetection.SetSpeed(currentBlockSpeed);
         }
     }
 
