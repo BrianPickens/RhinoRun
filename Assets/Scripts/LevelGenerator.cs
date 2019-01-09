@@ -31,6 +31,9 @@ public class LevelGenerator : MonoBehaviour {
     private float speedCap = 50f;
 
     [SerializeField]
+    private float speedAdjustmentThreshold = 20f;
+
+    [SerializeField]
     private int difficultyThreshold = 15;
 
     [SerializeField]
@@ -52,6 +55,8 @@ public class LevelGenerator : MonoBehaviour {
     private int lastBlockIndex;
 
     private int staminaSpawnCounter;
+
+    private int speedThresholdCounter;
 
     private int blocksPassed;
 
@@ -219,6 +224,20 @@ public class LevelGenerator : MonoBehaviour {
 
     private void IncreaseSpeed()
     {
+        Debug.Log(speedIncrease);
+        Debug.Log("current speed is: " + currentBlockSpeed);
+        speedThresholdCounter++;
+        if (speedThresholdCounter >= speedAdjustmentThreshold)
+        {
+            Debug.Log("decreaes speed");
+            speedThresholdCounter = 0;
+            speedIncrease -= 0.1f;
+            if (speedIncrease < 0.1f)
+            {
+                speedIncrease = 0.1f;
+            }
+        }
+
         if (currentBlockSpeed < speedCap)
         {
             currentBlockSpeed += speedIncrease;

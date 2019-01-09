@@ -354,8 +354,7 @@ public class Character : MonoBehaviour {
         {
             if (hitInfo.collider.CompareTag("ChargeObstacle"))
             {
-                //need to handle collision!!!
-                Debug.Log("this could work");
+               HandleCollision(hitInfo.collider.GetComponent<ObstacleBlock>());
             }
         }
     }
@@ -366,11 +365,11 @@ public class Character : MonoBehaviour {
         {
             screenShake.Shake();
             GameOver();
-            //Debug.Log("crashed");
+           // Debug.Log("crashed");
         }
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
-            //Debug.Log("WEEE");
+            //Debug.Log("broke wall");
             screenShake.Shake();
             _obstacle.Destroyed();
         }

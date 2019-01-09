@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//check to see if we still need to wait until end of fixed update in level generator for game over
 //tutorial :(
 //make "fog" or some obscuring to hide the level blocks poping in.
-//fix exploit where you can land in the middle of the lane
 //make rhino snax bigger
 //make particle effects
 //add in ui
@@ -13,10 +13,16 @@ using System;
 //upgrades system
 //make loading system
 //make local and cloud saving
-//speed increase gradient (increase faster at start but slower mid and ending
 //google play / game center
 //iap
 //analytics?
+
+//BALANCING AFTER COMPLETION
+//how often power ups drop
+//how fast things speed up
+//speed cap
+//how fast do we increase difficulty
+//what are the different levels of difficulty
 
 public class LevelBlock : MonoBehaviour
 {

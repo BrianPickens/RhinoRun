@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTransform: {fileID: 4455633242536734}
   myObstacleType: 2
+  myCollider: {fileID: 65501696029288224}
 --- !u!1 &1062284218160144
 GameObject:
   m_ObjectHideFlags: 0
