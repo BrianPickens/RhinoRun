@@ -118,8 +118,16 @@ public class GameManager : MonoBehaviour
                 particleManager.CreateGoldParticles(character.MyTransform.position);
                 break;
 
-            case CollectableType.PowerUp:
+            case CollectableType.Shield:
+                Debug.Log("got shield");
+                break;
 
+            case CollectableType.Boost:
+                Debug.Log("got boost");
+                break;
+
+            case CollectableType.MegaCoin:
+                Debug.Log("got mega coin");
                 break;
 
             case CollectableType.Stamina:

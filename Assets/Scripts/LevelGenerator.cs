@@ -42,6 +42,14 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField]
     private int maxStaminaSpawn = 30;
 
+    [SerializeField]
+    private int minPowerUpSpawn = 15;
+
+    [SerializeField]
+    private int maxPowerUpSpawn = 30;
+
+    private int currentPowerUpSpawn;
+
     private int currentStaminaSpawn;
 
     private GameDifficulty currentDifficulty;
@@ -55,6 +63,8 @@ public class LevelGenerator : MonoBehaviour {
     private int lastBlockIndex;
 
     private int staminaSpawnCounter;
+
+    private int powerUpSpawnCounter;
 
     private int speedThresholdCounter;
 
@@ -82,6 +92,7 @@ public class LevelGenerator : MonoBehaviour {
         currentDifficulty = GameDifficulty.Simple;
 
         currentStaminaSpawn = GenerateStaminaSpawnNumber();
+        currentPowerUpSpawn = GeneratePowerUpSpawnNumber();
 
         currentBlockSpeed = startingBlockSpeed;
         GenerateLevel();
@@ -127,11 +138,17 @@ public class LevelGenerator : MonoBehaviour {
     private void GetNewBlock()
     {
         LevelBlock _newBlock = null;
-        if (staminaSpawnCounter == currentStaminaSpawn)
+        if (staminaSpawnCounter >= currentStaminaSpawn)
         {
             _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.Stamina);
             staminaSpawnCounter = 0;
             currentStaminaSpawn = GenerateStaminaSpawnNumber();
+        }
+        else if (powerUpSpawnCounter >= currentPowerUpSpawn)
+        {
+            _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.PowerUp);
+            powerUpSpawnCounter = 0;
+            currentPowerUpSpawn = GeneratePowerUpSpawnNumber();
         }
         else
         {
@@ -148,6 +165,7 @@ public class LevelGenerator : MonoBehaviour {
         blocksPassed++;
         totalBlocksPassed++;
         staminaSpawnCounter++;
+        powerUpSpawnCounter++;
 
         if (blocksPassed >= difficultyThreshold)
         {
@@ -224,12 +242,9 @@ public class LevelGenerator : MonoBehaviour {
 
     private void IncreaseSpeed()
     {
-        Debug.Log(speedIncrease);
-        Debug.Log("current speed is: " + currentBlockSpeed);
         speedThresholdCounter++;
         if (speedThresholdCounter >= speedAdjustmentThreshold)
         {
-            Debug.Log("decreaes speed");
             speedThresholdCounter = 0;
             speedIncrease -= 0.1f;
             if (speedIncrease < 0.1f)
@@ -263,6 +278,11 @@ public class LevelGenerator : MonoBehaviour {
     private int GenerateStaminaSpawnNumber()
     {
         return UnityEngine.Random.Range(minStaminaSpawn, maxStaminaSpawn);
+    }
+
+    private int GeneratePowerUpSpawnNumber()
+    {
+        return UnityEngine.Random.Range(minPowerUpSpawn, maxPowerUpSpawn);
     }
 
     public void EndGame()

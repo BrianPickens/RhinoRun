@@ -2,6 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//upgrade types
+//increase coin amount
+//shield
+//rhino snax boost and frequency
+//speed run invincibility
+//mega coin
+//powerup drpo frequency
+
+
+//pick up types
+//coins
+//shield
+//rhino snacks
+//speedrun
+//mega coin
+
 public class UpgradesManager : MonoBehaviour
 {
 

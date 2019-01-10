@@ -17,6 +17,15 @@ public class CollectablePooler : MonoBehaviour
     [SerializeField]
     private CollectablePool staminaBars;
 
+    [SerializeField]
+    private CollectablePool shields;
+
+    [SerializeField]
+    private CollectablePool boosts;
+
+    [SerializeField]
+    private CollectablePool megaCoins;
+
     private void Awake()
     {
         if (instance == null)
@@ -44,8 +53,16 @@ public class CollectablePooler : MonoBehaviour
                 collectable = staminaBars.GetPooledCollectable();
                 break;
 
-            case CollectableType.PowerUp:
+            case CollectableType.Shield:
+                collectable = shields.GetPooledCollectable();
+                break;
 
+            case CollectableType.Boost:
+                collectable = boosts.GetPooledCollectable();
+                break;
+
+            case CollectableType.MegaCoin:
+                collectable = megaCoins.GetPooledCollectable();
                 break;
 
             default:
