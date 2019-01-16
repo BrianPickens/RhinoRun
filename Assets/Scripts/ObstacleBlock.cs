@@ -16,6 +16,11 @@ public class ObstacleBlock : MonoBehaviour {
     [SerializeField]
     private Collider myCollider;
 
+    [SerializeField]
+    private GameObject brokenObject;
+    [SerializeField]
+    private GameObject fixedObject;
+
     private Transform poolTransform;
 
     public void Initialize()
@@ -37,6 +42,11 @@ public class ObstacleBlock : MonoBehaviour {
 
     public void Recycle()
     {
+        if (myObstacleType == ObstacleType.Breakable)
+        {
+            fixedObject.SetActive(true);
+            brokenObject.SetActive(false);
+        }
         myTransform.SetParent(poolTransform);
         gameObject.SetActive(false);
     }
@@ -44,6 +54,11 @@ public class ObstacleBlock : MonoBehaviour {
     public void Destroyed()
     {
         myCollider.enabled = false;
+        if (myObstacleType == ObstacleType.Breakable)
+        {
+            fixedObject.SetActive(false);
+            brokenObject.SetActive(true);
+        }
     }
 
 

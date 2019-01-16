@@ -18,7 +18,7 @@ public class CollectablePooler : MonoBehaviour
     private CollectablePool staminaBars;
 
     [SerializeField]
-    private CollectablePool shields;
+    private CollectablePool charges;
 
     [SerializeField]
     private CollectablePool boosts;
@@ -53,8 +53,8 @@ public class CollectablePooler : MonoBehaviour
                 collectable = staminaBars.GetPooledCollectable();
                 break;
 
-            case CollectableType.Shield:
-                collectable = shields.GetPooledCollectable();
+            case CollectableType.Charge:
+                collectable = charges.GetPooledCollectable();
                 break;
 
             case CollectableType.Boost:

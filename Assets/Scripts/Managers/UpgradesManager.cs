@@ -4,7 +4,7 @@ using UnityEngine;
 
 //upgrade types
 //increase coin amount
-//shield
+//unlimited charge
 //rhino snax boost and frequency
 //speed run invincibility
 //mega coin
@@ -13,7 +13,7 @@ using UnityEngine;
 
 //pick up types
 //coins
-//shield
+//unlimited cgarge
 //rhino snacks
 //speedrun
 //mega coin

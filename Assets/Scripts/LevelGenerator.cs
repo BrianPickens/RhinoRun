@@ -146,7 +146,7 @@ public class LevelGenerator : MonoBehaviour {
         }
         else if (powerUpSpawnCounter >= currentPowerUpSpawn)
         {
-            _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.PowerUp);
+            _newBlock = levelBlockPooler.GetPowerUpBlock();
             powerUpSpawnCounter = 0;
             currentPowerUpSpawn = GeneratePowerUpSpawnNumber();
         }

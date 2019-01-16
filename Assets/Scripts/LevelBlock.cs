@@ -5,7 +5,7 @@ using System;
 
 //For Tomorrow:
 //start work on upgrades in gameplay (do upgrades menu after you have upgrades working in game)
-//power ups are generating, now i need to make them have an effect
+//power ups are generating, now i need to make them have an effect and determine how to tell what blocks we have unlock
 
 //fix fence after build
 //check to see if we still need to wait until end of fixed update in level generator for game over
@@ -169,27 +169,4 @@ public class LevelBlock : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    //private void OnTriggerEnter(Collider _other)
-    //{
-    //    if (_other.CompareTag("BlockRecycler"))
-    //    {
-
-    //        for (int i = 0; i < myObstacles.Count; i++)
-    //        {
-    //            myObstacles[i].Recycle();
-    //        }
-
-    //        for (int i = 0; i < myCollectables.Count; i++)
-    //        {
-    //            myCollectables[i].Recycle();
-    //        }
-
-    //        if (BlockRecycled != null)
-    //        {
-    //            BlockRecycled(myBlockDifficulty,myLevelBlockScript); 
-    //        }
-    //        gameObject.SetActive(false);
-    //    }
-        
-    //}
 }

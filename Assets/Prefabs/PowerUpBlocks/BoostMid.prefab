@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelBlockBase: {fileID: 1013870636691884, guid: 3e015f609639bc94f99b7901e2175576,
     type: 3}
-  myBlockDifficulty: 5
+  myBlockDifficulty: 6
   ObstacleLocations:
   - {fileID: 2631677032309961327}
   - {fileID: 2631677032200922415}

@@ -118,8 +118,8 @@ public class GameManager : MonoBehaviour
                 particleManager.CreateGoldParticles(character.MyTransform.position);
                 break;
 
-            case CollectableType.Shield:
-                Debug.Log("got shield");
+            case CollectableType.Charge:
+                Debug.Log("got Charge");
                 break;
 
             case CollectableType.Boost:
