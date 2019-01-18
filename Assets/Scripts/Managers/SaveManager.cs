@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Upgrades { StaminaUpgrade, CoinsUpgrade }
+public enum Upgrades { StaminaUpgrade, CoinsUpgrade, ChargeUpgrade, BoostUpgrade, MegaCoinUpgrade, PowerUpDropUpgrade }
 public class SaveManager : MonoBehaviour
 {
 
@@ -26,6 +26,14 @@ public class SaveManager : MonoBehaviour
 
     private int staminaUpgradeLevel;
 
+    private int chargeUpgradeLevel;
+
+    private int boostUpgradeLevel;
+
+    private int megaCoinUpgradeLevel;
+
+    private int powerUpDropUpgradeLevel;
+
     private const string highscoreString = "highscore";
 
     private const string coinsString = "coins";
@@ -33,6 +41,14 @@ public class SaveManager : MonoBehaviour
     private const string coinUpgradeString = "coinUpgrade";
 
     private const string staminaUpgradeString = "staminaUpgrade";
+
+    private const string chargeUpgradeString = "chargeUpgrade";
+
+    private const string boostUpgradeString = "boostUpgrade";
+
+    private const string megaCoinUpgradeString = "megaCoinUpgrade";
+
+    private const string powerUpDropUpgradeString = "powerUpDropUpgrade";
 
     private const string swipeSensitivityString = "swipeSensitivity";
 
@@ -126,6 +142,42 @@ public class SaveManager : MonoBehaviour
             staminaUpgradeLevel = 0;
         }
 
+        if (PlayerPrefs.HasKey(chargeUpgradeString))
+        {
+            chargeUpgradeLevel = PlayerPrefs.GetInt(chargeUpgradeString);
+        }
+        else
+        {
+            chargeUpgradeLevel = 0;
+        }
+
+        if (PlayerPrefs.HasKey(boostUpgradeString))
+        {
+            boostUpgradeLevel = PlayerPrefs.GetInt(boostUpgradeString);
+        }
+        else
+        {
+            boostUpgradeLevel = 0;
+        }
+
+        if (PlayerPrefs.HasKey(megaCoinUpgradeString))
+        {
+            megaCoinUpgradeLevel = PlayerPrefs.GetInt(megaCoinUpgradeString);
+        }
+        else
+        {
+            megaCoinUpgradeLevel = 0;
+        }
+
+        if (PlayerPrefs.HasKey(powerUpDropUpgradeString))
+        {
+            powerUpDropUpgradeLevel = PlayerPrefs.GetInt(powerUpDropUpgradeString);
+        }
+        else
+        {
+            powerUpDropUpgradeLevel = 0;
+        }
+
     }
 
     public void UpdateScore(int _score)
@@ -167,6 +219,26 @@ public class SaveManager : MonoBehaviour
                 PlayerPrefs.SetInt(staminaUpgradeString, _level);
                 break;
 
+            case Upgrades.ChargeUpgrade:
+                chargeUpgradeLevel = _level;
+                PlayerPrefs.SetInt(chargeUpgradeString, _level);
+                break;
+
+            case Upgrades.BoostUpgrade:
+                boostUpgradeLevel = _level;
+                PlayerPrefs.SetInt(boostUpgradeString, _level);
+                break;
+
+            case Upgrades.MegaCoinUpgrade:
+                megaCoinUpgradeLevel = _level;
+                PlayerPrefs.SetInt(megaCoinUpgradeString, _level);
+                break;
+
+            case Upgrades.PowerUpDropUpgrade:
+                powerUpDropUpgradeLevel = _level;
+                PlayerPrefs.SetInt(powerUpDropUpgradeString, _level);
+                break;
+
             default:
                 Debug.LogError("something wrong in upgradePurchased");
                 break;
@@ -184,6 +256,22 @@ public class SaveManager : MonoBehaviour
 
             case Upgrades.StaminaUpgrade:
                 upgradeLevel = staminaUpgradeLevel;
+                break;
+
+            case Upgrades.ChargeUpgrade:
+                upgradeLevel = chargeUpgradeLevel;
+                break;
+
+            case Upgrades.BoostUpgrade:
+                upgradeLevel = boostUpgradeLevel;
+                break;
+
+            case Upgrades.MegaCoinUpgrade:
+                upgradeLevel = megaCoinUpgradeLevel;
+                break;
+
+            case Upgrades.PowerUpDropUpgrade:
+                upgradeLevel = powerUpDropUpgradeLevel;
                 break;
 
             default:

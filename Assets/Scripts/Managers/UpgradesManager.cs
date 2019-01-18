@@ -5,7 +5,7 @@ using UnityEngine;
 //upgrade types
 //increase coin amount
 //unlimited charge
-//rhino snax boost and frequency
+//rhino snax boost
 //speed run invincibility
 //mega coin
 //powerup drpo frequency

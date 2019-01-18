@@ -14,10 +14,15 @@ public class GameManager : MonoBehaviour
     private LevelGenerator levelGenerator;
 
     [SerializeField]
+    private PowerUpsManager powerUpsManager;
+
+    [SerializeField]
     private GameUI gameUI;
 
     [SerializeField]
     private ParticleManager particleManager;
+
+    private int currentCoinUpgradeLevel;
 
     private int points;
 
@@ -26,7 +31,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Init();
-
     }
 
     private void Init()
@@ -72,7 +76,9 @@ public class GameManager : MonoBehaviour
 
         gameUI.Init();
 
+        powerUpsManager.Initialize();
 
+        currentCoinUpgradeLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.CoinsUpgrade);
 
         float tempSwipeSensitivity = 0.2f;
         float tempDoubleSwipeSensitivity = 3f;
@@ -113,26 +119,33 @@ public class GameManager : MonoBehaviour
         switch (_collectableType)
         {
             case CollectableType.Gold:
-                points += 10;
-                gameUI.DisplayPoints(points);
+                CoinCollected();
                 particleManager.CreateGoldParticles(character.MyTransform.position);
                 break;
 
             case CollectableType.Charge:
                 Debug.Log("got Charge");
+                particleManager.CreateGoldParticles(character.MyTransform.position);
+                powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.Boost:
                 Debug.Log("got boost");
+                particleManager.CreateGoldParticles(character.MyTransform.position);
+                powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.MegaCoin:
                 Debug.Log("got mega coin");
+                particleManager.CreateGoldParticles(character.MyTransform.position);
+                powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.Stamina:
                 //need particles
-                character.RestoreChargePower(10f);
+                //character.RestoreChargePower(10f);
+                particleManager.CreateGoldParticles(character.MyTransform.position);
+                powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             default:
@@ -140,6 +153,31 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+    }
+
+    private void CoinCollected()
+    {
+        int tempPoints = 0;
+        switch (currentCoinUpgradeLevel)
+        {
+            case 0:
+                tempPoints = 10;
+                break;
+
+            case 1:
+                tempPoints = 15;
+                break;
+
+            case 2:
+                tempPoints = 20;
+                break;
+
+            default:
+                Debug.LogError("Somethign wrong in CoinCollected");
+                break;
+        }
+        points += tempPoints;
+        gameUI.DisplayPoints(points);
     }
 
     private void BlockCompleted()
