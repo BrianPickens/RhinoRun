@@ -76,20 +76,31 @@ public class LevelGenerator : MonoBehaviour {
 
     private int numBlocksGenerated;
 
+    private List<Upgrades> avaliableUpgrades = new List<Upgrades>();
+
+    private int currentPowerUpDropLevel;
+
     //private bool gameOver;
 
     private Action<CollectableType> CollectableCallback;
 
     public Action OnBlockPassed;
 
-    public void Initialize(Action<CollectableType> _collectableCallback)
+    public void Initialize(Action<CollectableType> _collectableCallback, List<Upgrades> _avaliableUpgrades)
     {
+
+        avaliableUpgrades = _avaliableUpgrades;
+
         levelBlockRecycler.RecycleBlock -= GetNewBlock;
         levelBlockRecycler.RecycleBlock += GetNewBlock;
 
         CollectableCallback = _collectableCallback;
 
         currentDifficulty = GameDifficulty.Simple;
+
+        currentPowerUpDropLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.PowerUpDropUpgrade);
+
+        SetPowerUpSpawnGates();
 
         currentStaminaSpawn = GenerateStaminaSpawnNumber();
         currentPowerUpSpawn = GeneratePowerUpSpawnNumber();
@@ -146,7 +157,7 @@ public class LevelGenerator : MonoBehaviour {
         }
         else if (powerUpSpawnCounter >= currentPowerUpSpawn)
         {
-            _newBlock = levelBlockPooler.GetPowerUpBlock();
+            _newBlock = levelBlockPooler.GetPowerUpBlock(avaliableUpgrades);
             powerUpSpawnCounter = 0;
             currentPowerUpSpawn = GeneratePowerUpSpawnNumber();
         }
@@ -283,6 +294,40 @@ public class LevelGenerator : MonoBehaviour {
     private int GeneratePowerUpSpawnNumber()
     {
         return UnityEngine.Random.Range(minPowerUpSpawn, maxPowerUpSpawn);
+    }
+
+    private void SetPowerUpSpawnGates()
+    {
+        switch (currentPowerUpDropLevel)
+        {
+            case 0:
+                minPowerUpSpawn = 20;
+                maxPowerUpSpawn = 30;
+                break;
+
+            case 1:
+                minPowerUpSpawn = 18;
+                maxPowerUpSpawn = 28;
+                break;
+
+            case 2:
+                minPowerUpSpawn = 16;
+                maxPowerUpSpawn = 26;
+                break;
+
+            case 3:
+                minPowerUpSpawn = 14;
+                maxPowerUpSpawn = 24;
+                break;
+
+            case 4:
+                minPowerUpSpawn = 12;
+                maxPowerUpSpawn = 22;
+                break;
+            default:
+                Debug.LogError("Invalid power up level");
+                break;
+        }
     }
 
     public void EndGame()

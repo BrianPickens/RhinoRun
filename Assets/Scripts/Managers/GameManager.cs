@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     private int currentCoinUpgradeLevel;
 
+    private int currentMegaCoinUpgradeLevel;
+
     private int points;
 
     private int distance;
@@ -72,13 +74,14 @@ public class GameManager : MonoBehaviour
         levelGenerator.OnBlockPassed = null;
         levelGenerator.OnBlockPassed += BlockCompleted;
 
-        levelGenerator.Initialize(CollectableGained);
+        powerUpsManager.Initialize();
+
+        levelGenerator.Initialize(CollectableGained, powerUpsManager.GetAvaliablePowerUps());
 
         gameUI.Init();
 
-        powerUpsManager.Initialize();
-
         currentCoinUpgradeLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.CoinsUpgrade);
+        currentMegaCoinUpgradeLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.MegaCoinUpgrade);
 
         float tempSwipeSensitivity = 0.2f;
         float tempDoubleSwipeSensitivity = 3f;
@@ -129,21 +132,20 @@ public class GameManager : MonoBehaviour
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
-            case CollectableType.Boost:
-                Debug.Log("got boost");
+            case CollectableType.Shield:
+                Debug.Log("got shield");
                 particleManager.CreateGoldParticles(character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.MegaCoin:
                 Debug.Log("got mega coin");
+                MegaCoinCollected();
                 particleManager.CreateGoldParticles(character.MyTransform.position);
-                powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.Stamina:
-                //need particles
-                //character.RestoreChargePower(10f);
+                Debug.Log("got stamina");
                 particleManager.CreateGoldParticles(character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
@@ -173,9 +175,45 @@ public class GameManager : MonoBehaviour
                 break;
 
             default:
+                tempPoints = 10;
                 Debug.LogError("Somethign wrong in CoinCollected");
                 break;
         }
+        points += tempPoints;
+        gameUI.DisplayPoints(points);
+    }
+
+    private void MegaCoinCollected()
+    {
+        int tempPoints = 0;
+        switch (currentMegaCoinUpgradeLevel)
+        {
+            case 0:
+                tempPoints = 0;
+                break;
+
+            case 1:
+                tempPoints = 25;
+                break;
+
+            case 2:
+                tempPoints = 50;
+                break;
+
+            case 3:
+                tempPoints = 75;
+                break;
+
+            case 4:
+                tempPoints = 100;
+                break;
+
+            default:
+                tempPoints = 0;
+                Debug.LogError("invalid megacoin collected value");
+                break;
+        }
+
         points += tempPoints;
         gameUI.DisplayPoints(points);
     }

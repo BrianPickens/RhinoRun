@@ -58,6 +58,9 @@ public class Character : MonoBehaviour {
 
     private bool drainChargePower;
     private bool restoreChargePower;
+    private bool unlimitedChargePower;
+
+    private float unlimitedChargePowerRemaining;
 
     private float chargePower;
 
@@ -115,6 +118,11 @@ public class Character : MonoBehaviour {
             if (drainChargePower)
             {
                 DrainChargePower();
+            }
+
+            if (unlimitedChargePower)
+            {
+                UnlimitedChargePowerTimer();
             }
 
             CheckForCollision(rhinoDetection.GetMovementChange());
@@ -232,7 +240,7 @@ public class Character : MonoBehaviour {
 
     private void DrainChargePower()
     {
-        if (!restoreChargePower)
+        if (!restoreChargePower && !unlimitedChargePower)
         {
             chargePower = Mathf.MoveTowards(chargePower, 0, Time.deltaTime * drainSpeed);
             chargeMeter.fillAmount = chargePower / 100;
@@ -253,6 +261,27 @@ public class Character : MonoBehaviour {
         }
       //  Debug.Log("restore started");
         StartCoroutine(RestoreChargePowerRoutine(restoreLevel));
+    }
+
+    public void ActivateUnlimitedCharge(float _duration)
+    {
+        unlimitedChargePowerRemaining = _duration;
+        unlimitedChargePower = true;
+    }
+
+    private void DeactivateUnlimitedCharge()
+    {
+        unlimitedChargePower = false;
+    }
+
+    private void UnlimitedChargePowerTimer()
+    {
+        unlimitedChargePowerRemaining -= Time.deltaTime;
+        if (unlimitedChargePowerRemaining <= 0)
+        {
+            unlimitedChargePowerRemaining = 0;
+            DeactivateUnlimitedCharge();
+        }
     }
 
     private IEnumerator RestoreChargePowerRoutine(float _restoreLevel)

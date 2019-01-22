@@ -21,7 +21,7 @@ public class CollectablePooler : MonoBehaviour
     private CollectablePool charges;
 
     [SerializeField]
-    private CollectablePool boosts;
+    private CollectablePool shields;
 
     [SerializeField]
     private CollectablePool megaCoins;
@@ -57,8 +57,8 @@ public class CollectablePooler : MonoBehaviour
                 collectable = charges.GetPooledCollectable();
                 break;
 
-            case CollectableType.Boost:
-                collectable = boosts.GetPooledCollectable();
+            case CollectableType.Shield:
+                collectable = shields.GetPooledCollectable();
                 break;
 
             case CollectableType.MegaCoin:

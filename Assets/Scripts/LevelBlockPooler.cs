@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BlockDifficulty { None, Easy, Medium, Hard, MegaCoin, Stamina, Boost, UnlimitedCharge }
+public enum BlockDifficulty { None, Easy, Medium, Hard, MegaCoin, Stamina, Shield, Charge }
 public class LevelBlockPooler : MonoBehaviour {
 
     [SerializeField]
@@ -21,7 +21,7 @@ public class LevelBlockPooler : MonoBehaviour {
     private List<LevelBlock> MegaCoinBlocks;
 
     [SerializeField]
-    private List<LevelBlock> BoostBlocks;
+    private List<LevelBlock> ShieldBlocks;
 
     [SerializeField]
     private List<LevelBlock> UnlimitedChargeBlocks;
@@ -55,10 +55,10 @@ public class LevelBlockPooler : MonoBehaviour {
             HardBlocks[i].BlockRecycled += AddBlockToList;
         }
 
-        for (int i = 0; i < BoostBlocks.Count; i++)
+        for (int i = 0; i < ShieldBlocks.Count; i++)
         {
-            BoostBlocks[i].BlockRecycled -= AddBlockToList;
-            BoostBlocks[i].BlockRecycled += AddBlockToList;
+            ShieldBlocks[i].BlockRecycled -= AddBlockToList;
+            ShieldBlocks[i].BlockRecycled += AddBlockToList;
         }
 
         for (int i = 0; i < MegaCoinBlocks.Count; i++)
@@ -110,10 +110,10 @@ public class LevelBlockPooler : MonoBehaviour {
                 HardBlocks.Remove(_newBlock);
                 break;
 
-            case BlockDifficulty.Boost:
-                _randomIndex = Random.Range(0, BoostBlocks.Count);
-                _newBlock = BoostBlocks[_randomIndex];
-                BoostBlocks.Remove(_newBlock);
+            case BlockDifficulty.Shield:
+                _randomIndex = Random.Range(0, ShieldBlocks.Count);
+                _newBlock = ShieldBlocks[_randomIndex];
+                ShieldBlocks.Remove(_newBlock);
                 break;
 
             case BlockDifficulty.MegaCoin:
@@ -122,7 +122,7 @@ public class LevelBlockPooler : MonoBehaviour {
                 MegaCoinBlocks.Remove(_newBlock);
                 break;
 
-            case BlockDifficulty.UnlimitedCharge:
+            case BlockDifficulty.Charge:
                 _randomIndex = Random.Range(0, UnlimitedChargeBlocks.Count);
                 _newBlock = UnlimitedChargeBlocks[_randomIndex];
                 UnlimitedChargeBlocks.Remove(_newBlock);
@@ -147,36 +147,41 @@ public class LevelBlockPooler : MonoBehaviour {
 
     }
 
-    public LevelBlock GetPowerUpBlock()
+    public LevelBlock GetPowerUpBlock(List<Upgrades> _avaliableUpgrades)
     {
         LevelBlock _newBlock = null;
-        int _randomIndex = 0;
 
-        BlockDifficulty blockDifficulty = DeterminePowerUp();
+        int _randomUpgradeIndex = Random.Range(0, _avaliableUpgrades.Count);
+
+        Upgrades _currentUpgrade = _avaliableUpgrades[_randomUpgradeIndex];
+
+        BlockDifficulty blockDifficulty = DeterminePowerUpBlock(_currentUpgrade);
+
+        int _randomBlockIndex = 0;
         switch (blockDifficulty)
         {
-            case BlockDifficulty.Boost:
-                _randomIndex = Random.Range(0, BoostBlocks.Count);
-                _newBlock = BoostBlocks[_randomIndex];
-                BoostBlocks.Remove(_newBlock);
+            case BlockDifficulty.Shield:
+                _randomBlockIndex = Random.Range(0, ShieldBlocks.Count);
+                _newBlock = ShieldBlocks[_randomBlockIndex];
+                ShieldBlocks.Remove(_newBlock);
                 break;
 
             case BlockDifficulty.MegaCoin:
-                _randomIndex = Random.Range(0, MegaCoinBlocks.Count);
-                _newBlock = MegaCoinBlocks[_randomIndex];
+                _randomBlockIndex = Random.Range(0, MegaCoinBlocks.Count);
+                _newBlock = MegaCoinBlocks[_randomBlockIndex];
                 MegaCoinBlocks.Remove(_newBlock);
                 break;
 
-            case BlockDifficulty.UnlimitedCharge:
-                _randomIndex = Random.Range(0, UnlimitedChargeBlocks.Count);
-                _newBlock = UnlimitedChargeBlocks[_randomIndex];
+            case BlockDifficulty.Charge:
+                _randomBlockIndex = Random.Range(0, UnlimitedChargeBlocks.Count);
+                _newBlock = UnlimitedChargeBlocks[_randomBlockIndex];
                 UnlimitedChargeBlocks.Remove(_newBlock);
                 break;
 
             default:
-                _randomIndex = Random.Range(0, MegaCoinBlocks.Count);
-                _newBlock = MegaCoinBlocks[_randomIndex];
-                MegaCoinBlocks.Remove(_newBlock);
+                _randomBlockIndex = Random.Range(0, ShieldBlocks.Count);
+                _newBlock = ShieldBlocks[_randomBlockIndex];
+                ShieldBlocks.Remove(_newBlock);
                 break;
         }
 
@@ -184,13 +189,31 @@ public class LevelBlockPooler : MonoBehaviour {
 
     }
 
-    private BlockDifficulty DeterminePowerUp()
+    private BlockDifficulty DeterminePowerUpBlock(Upgrades _upgradeType)
     {
-        Debug.Log("STILL HAVE WORK TO DO HERE");
-        BlockDifficulty blocktype = BlockDifficulty.MegaCoin;
+        BlockDifficulty blockDifficulty = BlockDifficulty.None;
 
+        switch (_upgradeType)
+        {
+            case Upgrades.ChargeUpgrade:
+                blockDifficulty = BlockDifficulty.Charge;
+                break;
 
-        return blocktype;
+            case Upgrades.ShieldUpgrade:
+                blockDifficulty = BlockDifficulty.Shield;
+                break;
+
+            case Upgrades.MegaCoinUpgrade:
+                blockDifficulty = BlockDifficulty.MegaCoin;
+                break;
+
+            default:
+                blockDifficulty = BlockDifficulty.Shield;
+                break;
+        }
+
+        return blockDifficulty;
+
     }
 
     public void AddBlockToList(BlockDifficulty _blockDifficulty, LevelBlock _levelBlock)
@@ -213,15 +236,15 @@ public class LevelBlockPooler : MonoBehaviour {
                 HardBlocks.Add(_levelBlock);
                 break;
 
-            case BlockDifficulty.Boost:
-                BoostBlocks.Add(_levelBlock);
+            case BlockDifficulty.Shield:
+                ShieldBlocks.Add(_levelBlock);
                 break;
 
             case BlockDifficulty.MegaCoin:
                 MegaCoinBlocks.Add(_levelBlock);
                 break;
 
-            case BlockDifficulty.UnlimitedCharge:
+            case BlockDifficulty.Charge:
                 UnlimitedChargeBlocks.Add(_levelBlock);
                 break;
 

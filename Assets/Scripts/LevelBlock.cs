@@ -6,7 +6,8 @@ using System;
 //For Tomorrow:
 //start work on upgrades in gameplay (do upgrades menu after you have upgrades working in game)
 //power ups are generating, now i need to make them have an effect and determine how to tell what blocks we have unlocked
-//change boost to shield
+//working on unlimited charge power effect
+
 
 //fix fence after build
 //check to see if we still need to wait until end of fixed update in level generator for game over

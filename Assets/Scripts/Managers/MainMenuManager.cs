@@ -150,6 +150,11 @@ public class MainMenuManager : MonoBehaviour
         SaveManager.Instance.UpdateCoins(500);
         mainUI.UpdateCoinsDisplay(SaveManager.Instance.GetCurrentCoins());
     }
+
+    public void ClearData()
+    {
+        SaveManager.Instance.ClearPlayerPrefs();
+    }
     //end debug options
 
 }

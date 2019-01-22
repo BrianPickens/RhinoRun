@@ -6,7 +6,7 @@ using UnityEngine;
 //increase coin amount
 //unlimited charge
 //rhino snax boost
-//speed run invincibility
+//shield
 //mega coin
 //powerup drpo frequency
 
@@ -15,7 +15,7 @@ using UnityEngine;
 //coins
 //unlimited cgarge
 //rhino snacks
-//speedrun
+//Shield
 //mega coin
 
 public class UpgradesManager : MonoBehaviour

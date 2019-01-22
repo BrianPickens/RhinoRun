@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Upgrades { StaminaUpgrade, CoinsUpgrade, ChargeUpgrade, BoostUpgrade, MegaCoinUpgrade, PowerUpDropUpgrade }
+public enum Upgrades { StaminaUpgrade, CoinsUpgrade, ChargeUpgrade, ShieldUpgrade, MegaCoinUpgrade, PowerUpDropUpgrade }
 public class SaveManager : MonoBehaviour
 {
 
@@ -28,7 +28,7 @@ public class SaveManager : MonoBehaviour
 
     private int chargeUpgradeLevel;
 
-    private int boostUpgradeLevel;
+    private int shieldUpgradeLevel;
 
     private int megaCoinUpgradeLevel;
 
@@ -44,7 +44,7 @@ public class SaveManager : MonoBehaviour
 
     private const string chargeUpgradeString = "chargeUpgrade";
 
-    private const string boostUpgradeString = "boostUpgrade";
+    private const string shieldUpgradeString = "shieldUpgrade";
 
     private const string megaCoinUpgradeString = "megaCoinUpgrade";
 
@@ -151,13 +151,13 @@ public class SaveManager : MonoBehaviour
             chargeUpgradeLevel = 0;
         }
 
-        if (PlayerPrefs.HasKey(boostUpgradeString))
+        if (PlayerPrefs.HasKey(shieldUpgradeString))
         {
-            boostUpgradeLevel = PlayerPrefs.GetInt(boostUpgradeString);
+            shieldUpgradeLevel = PlayerPrefs.GetInt(shieldUpgradeString);
         }
         else
         {
-            boostUpgradeLevel = 0;
+            shieldUpgradeLevel = 1;
         }
 
         if (PlayerPrefs.HasKey(megaCoinUpgradeString))
@@ -224,9 +224,9 @@ public class SaveManager : MonoBehaviour
                 PlayerPrefs.SetInt(chargeUpgradeString, _level);
                 break;
 
-            case Upgrades.BoostUpgrade:
-                boostUpgradeLevel = _level;
-                PlayerPrefs.SetInt(boostUpgradeString, _level);
+            case Upgrades.ShieldUpgrade:
+                shieldUpgradeLevel = _level;
+                PlayerPrefs.SetInt(shieldUpgradeString, _level);
                 break;
 
             case Upgrades.MegaCoinUpgrade:
@@ -262,8 +262,8 @@ public class SaveManager : MonoBehaviour
                 upgradeLevel = chargeUpgradeLevel;
                 break;
 
-            case Upgrades.BoostUpgrade:
-                upgradeLevel = boostUpgradeLevel;
+            case Upgrades.ShieldUpgrade:
+                upgradeLevel = shieldUpgradeLevel;
                 break;
 
             case Upgrades.MegaCoinUpgrade:
@@ -328,6 +328,11 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt(highscoreString, highscore);
     }
 
+    public void ClearPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneLoadingManager.Instance.LoadScene("Initialization");
+    }
 
 
 }
