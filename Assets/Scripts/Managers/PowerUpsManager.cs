@@ -108,23 +108,23 @@ public class PowerUpsManager : MonoBehaviour
         switch (currentChargeLevel)
         {
             case 0:
-
+                character.ActivateUnlimitedCharge(0f);
                 break;
 
             case 1:
-
+                character.ActivateUnlimitedCharge(6f);
                 break;
 
             case 2:
-
+                character.ActivateUnlimitedCharge(7f);
                 break;
 
             case 3:
-
+                character.ActivateUnlimitedCharge(8f);
                 break;
 
             case 4:
-
+                character.ActivateUnlimitedCharge(9f);
                 break;
 
             default:
@@ -138,23 +138,23 @@ public class PowerUpsManager : MonoBehaviour
         switch (currentShieldLevel)
         {
             case 0:
-
+                character.ActivateShield(0f);
                 break;
 
             case 1:
-
+                character.ActivateShield(5f);
                 break;
 
             case 2:
-
+                character.ActivateShield(6f);
                 break;
 
             case 3:
-
+                character.ActivateShield(7f);
                 break;
 
             case 4:
-
+                character.ActivateShield(8f);
                 break;
 
             default:

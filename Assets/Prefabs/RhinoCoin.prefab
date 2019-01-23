@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4736894312739278}
   - component: {fileID: 135432093391732944}
-  - component: {fileID: 114960451258928894}
   - component: {fileID: 95128641092372944}
+  - component: {fileID: 2005396805152196992}
   m_Layer: 0
   m_Name: RhinoCoin
   m_TagString: Untagged
@@ -47,19 +47,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114960451258928894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1251428178999890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a94dff03b467248b51fd8138bfee82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myCollectableType: 1
 --- !u!95 &95128641092372944
 Animator:
   serializedVersion: 3
@@ -79,6 +66,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2005396805152196992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251428178999890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9918d16bf247af498d079085534f419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollectableType: 1
+  myRenderer: {fileID: 23585479676543342}
+  goldTexture: {fileID: 2800000, guid: 998d3800cf7639f4e9de9f70d521942d, type: 3}
+  silverTexture: {fileID: 2800000, guid: e5e2d9ae13809a14a9efc34e1d1b6170, type: 3}
+  bronzeTexture: {fileID: 2800000, guid: 9635df85ec1b5614b91386e6a7342dd5, type: 3}
 --- !u!1 &1797609755683156
 GameObject:
   m_ObjectHideFlags: 0

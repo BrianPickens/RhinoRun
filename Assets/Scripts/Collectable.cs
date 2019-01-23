@@ -18,6 +18,11 @@ public class Collectable : MonoBehaviour
     public Action<CollectableType> OnCollectForManager;
     public Action<Collectable> OnCollectForLevelBlock;
 
+    public virtual void UpdateTexture(int _level)
+    {
+        //make abstract?
+    }
+
     public void Initialize(Action<CollectableType> _collectableCallbackToManager, Action<Collectable> _collectableCallbackToLevelBlock)
     {
         gameObject.SetActive(true);
@@ -48,6 +53,7 @@ public class Collectable : MonoBehaviour
             Collect();
         }
     }
+
 
     private void Collect()
     {

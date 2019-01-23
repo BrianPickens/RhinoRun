@@ -62,6 +62,10 @@ public class Character : MonoBehaviour {
 
     private float unlimitedChargePowerRemaining;
 
+    private bool shieldActive;
+
+    private float shieldDurationRemaining;
+
     private float chargePower;
 
     [SerializeField]
@@ -123,6 +127,11 @@ public class Character : MonoBehaviour {
             if (unlimitedChargePower)
             {
                 UnlimitedChargePowerTimer();
+            }
+
+            if (shieldActive)
+            {
+                ShieldTimer();
             }
 
             CheckForCollision(rhinoDetection.GetMovementChange());
@@ -251,6 +260,7 @@ public class Character : MonoBehaviour {
         }
     }
 
+    //power up effects
     public void RestoreChargePower(float _amount)
     {
         restoreChargePower = true;
@@ -259,7 +269,7 @@ public class Character : MonoBehaviour {
         {
             restoreLevel = 100f;
         }
-      //  Debug.Log("restore started");
+        //  Debug.Log("restore started");
         StartCoroutine(RestoreChargePowerRoutine(restoreLevel));
     }
 
@@ -284,6 +294,27 @@ public class Character : MonoBehaviour {
         }
     }
 
+    public void ActivateShield(float _duration)
+    {
+        shieldActive = true;
+        shieldDurationRemaining = _duration;
+    }
+
+    private void DeactivateShield()
+    {
+        shieldDurationRemaining = 0;
+        shieldActive = false;
+    }
+
+    private void ShieldTimer()
+    {
+        shieldDurationRemaining -= Time.deltaTime;
+        if (shieldDurationRemaining <= 0)
+        {
+            DeactivateShield();
+        }
+    }
+
     private IEnumerator RestoreChargePowerRoutine(float _restoreLevel)
     {
         while (chargePower < _restoreLevel - Mathf.Epsilon)
@@ -295,8 +326,6 @@ public class Character : MonoBehaviour {
       //  Debug.Log("restore ended");
         restoreChargePower = false;
     }
-
-
 
     private void ChangeLanes(int _direction)
     {
@@ -393,7 +422,15 @@ public class Character : MonoBehaviour {
         if (_obstacle.MyObstacleType == ObstacleType.Barrier)
         {
             screenShake.Shake();
-            GameOver();
+            if (shieldActive)
+            {
+                _obstacle.Destroyed();
+                DeactivateShield();
+            }
+            else
+            {
+                GameOver();
+            }
            // Debug.Log("crashed");
         }
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
@@ -405,7 +442,15 @@ public class Character : MonoBehaviour {
         else
         {
             screenShake.Shake();
-            GameOver();
+            if (shieldActive)
+            {
+                _obstacle.Destroyed();
+                DeactivateShield();
+            }
+            else
+            {
+                GameOver();
+            }
             //Debug.Log("crashed fail");
         }
     }

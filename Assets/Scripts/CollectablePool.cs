@@ -8,12 +8,12 @@ public class CollectablePool : MonoBehaviour
     [SerializeField]
     private Collectable pooledCollectable;
 
-    List<Collectable> pooledCollectables = new List<Collectable>();
+    protected List<Collectable> pooledCollectables = new List<Collectable>();
 
     [SerializeField]
     private int startAmount;
 
-    private void Start()
+    protected virtual void Start()
     {
         for (int i = 0; i < startAmount; i++)
         {

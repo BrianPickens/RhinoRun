@@ -5,24 +5,25 @@ using System;
 
 //For Tomorrow:
 //start work on upgrades in gameplay (do upgrades menu after you have upgrades working in game)
-//power ups are generating, now i need to make them have an effect and determine how to tell what blocks we have unlocked
-//working on unlimited charge power effect
+//Make upgrades menu in Upgrades Scene
 
 
-//fix fence after build
+
+//make meters in 10s instead of singles?
 //check to see if we still need to wait until end of fixed update in level generator for game over
 //tutorial :(
 //make "fog" or some obscuring to hide the level blocks poping in.
 //make rhino snax bigger brighter and look more like a pick up
 //make particle effects
 //add in ui
-//still need to make other power ups and connect them
 //upgrades system
-//make loading system
-//make local and cloud saving
-//google play / game center
-//iap
+//soundEffects
+//background music
+//make local and cloud saving?
+//google play / game center?
+//iap?
 //analytics?
+//ads?
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop

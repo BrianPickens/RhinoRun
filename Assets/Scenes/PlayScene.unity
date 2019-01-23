@@ -4807,7 +4807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eff0c9d36968cd498b6f90e05ab5d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  character: {fileID: 987921827}
 --- !u!1 &1140964048
 GameObject:
   m_ObjectHideFlags: 0
@@ -5883,7 +5883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9a406214f59fc4f8381d153e212ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldCoins: {fileID: 1819896935}
+  goldCoins: {fileID: 1819896934}
   staminaBars: {fileID: 716239750}
   charges: {fileID: 272962336}
   shields: {fileID: 29395094}
@@ -7221,7 +7221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1819896933}
-  - component: {fileID: 1819896935}
+  - component: {fileID: 1819896934}
   m_Layer: 0
   m_Name: CoinPooler
   m_TagString: Untagged
@@ -7243,7 +7243,7 @@ Transform:
   m_Father: {fileID: 1387335738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1819896935
+--- !u!114 &1819896934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7252,10 +7252,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1819896932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f6b2382aaa748647a6a4959e6f8f9c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ec0e654cfa8bf84eb886301eadf520b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledCollectable: {fileID: 114960451258928894, guid: 6de275b8d869713469be8ac709679aa5,
+  pooledCollectable: {fileID: 2005396805152196992, guid: 6de275b8d869713469be8ac709679aa5,
     type: 3}
   startAmount: 40
 --- !u!1001 &1824613234
