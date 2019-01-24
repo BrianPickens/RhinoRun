@@ -5,7 +5,7 @@ using System;
 
 //For Tomorrow:
 //start work on upgrades in gameplay (do upgrades menu after you have upgrades working in game)
-//Make upgrades menu in Upgrades Scene
+//Make upgrades menu in Upgrades Scene - just created Upgrades script, and now you need to populate it.
 
 
 

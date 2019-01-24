@@ -11,18 +11,18 @@ using UnityEngine;
 //powerup drpo frequency
 
 
-//pick up types
-//coins
-//unlimited cgarge
-//rhino snacks
-//Shield
-//mega coin
-
 public class UpgradesManager : MonoBehaviour
 {
 
     [SerializeField]
     private UpgradesUIManager upgradesUI;
+
+    private int currentChargeLevel;
+    private int currentShieldLevel;
+    private int currentMegaCoinLevel;
+    private int currentStaminaLevel;
+    private int currentPowerUpDropLevel;
+    private int currentCoinLevel;
 
     private void Start()
     {
@@ -36,10 +36,32 @@ public class UpgradesManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("Initialization");
         }
 
+        GetCurrentUpgradeLevels();
+
         upgradesUI.Init();
 
         upgradesUI.OnMenuPress = null;
         upgradesUI.OnMenuPress += ReturnToMain;
+    }
+
+    private void GetCurrentUpgradeLevels()
+    {
+        currentChargeLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.ChargeUpgrade);
+        currentShieldLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.ShieldUpgrade);
+        currentMegaCoinLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.MegaCoinUpgrade);
+        currentStaminaLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.StaminaUpgrade);
+        currentPowerUpDropLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.PowerUpDropUpgrade);
+        currentCoinLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.CoinsUpgrade);
+    }
+
+    private void SetCurrentUpgrades()
+    {
+        upgradesUI.InitializeUpgrade(Upgrades.ChargeUpgrade, currentChargeLevel);
+        upgradesUI.InitializeUpgrade(Upgrades.ShieldUpgrade, currentShieldLevel);
+        upgradesUI.InitializeUpgrade(Upgrades.MegaCoinUpgrade, currentMegaCoinLevel);
+        upgradesUI.InitializeUpgrade(Upgrades.StaminaUpgrade, currentStaminaLevel);
+        upgradesUI.InitializeUpgrade(Upgrades.PowerUpDropUpgrade, currentPowerUpDropLevel);
+        upgradesUI.InitializeUpgrade(Upgrades.CoinsUpgrade, currentCoinLevel);
     }
 
     public void ReturnToMain()
@@ -48,6 +70,11 @@ public class UpgradesManager : MonoBehaviour
         {
             SceneLoadingManager.Instance.LoadScene("MainMenu");
         }
+    }
+
+    private void UpgradePurchased(Upgrades _upgradeType)
+    {
+
     }
     
     //debug buttons
