@@ -24,6 +24,9 @@ public class UpgradesManager : MonoBehaviour
     private int currentPowerUpDropLevel;
     private int currentCoinLevel;
 
+    private int currentUpgradePrice;
+    private Upgrades currentUpgradeType;
+
     private void Start()
     {
         Init();   
@@ -42,6 +45,15 @@ public class UpgradesManager : MonoBehaviour
 
         upgradesUI.OnMenuPress = null;
         upgradesUI.OnMenuPress += ReturnToMain;
+
+        upgradesUI.OnUpgradePurchase = null;
+        upgradesUI.OnUpgradePurchase += UpgradePurchased;
+
+        upgradesUI.OnPurchaseConfirm = null;
+        upgradesUI.OnPurchaseConfirm += CompletePurchase;
+
+        GetCurrentUpgradeLevels();
+        SetCurrentUpgrades();
     }
 
     private void GetCurrentUpgradeLevels()
@@ -72,76 +84,59 @@ public class UpgradesManager : MonoBehaviour
         }
     }
 
-    private void UpgradePurchased(Upgrades _upgradeType)
+    private void UpgradePurchased(Upgrades _upgradeType, int _price)
     {
+        int currentCoins = SaveManager.Instance.GetCurrentCoins();
+        currentUpgradePrice = _price;
+        currentUpgradeType = _upgradeType;
 
+        if (_price < currentCoins)
+        {
+            upgradesUI.ShowPurchaseConfirmation();
+        }
+        else
+        {
+            upgradesUI.ShowPurchaseFailure();
+        }
+    }
+
+    private void CompletePurchase()
+    {
+        SaveManager.Instance.UpgradePurchased(currentUpgradeType);
+        SaveManager.Instance.UpdateCoins(-currentUpgradePrice);
+        GetCurrentUpgradeLevels();
+        SetCurrentUpgrades();
     }
     
     //debug buttons
     public void IncreaseCoinUpgrade()
     {
-        int level = SaveManager.Instance.GetUpgradeLevel(Upgrades.CoinsUpgrade);
-        level++;
-        if (level > 2)
-        {
-            level = 2;
-        }
-        SaveManager.Instance.UpgradePurchased(Upgrades.CoinsUpgrade, level);
+        SaveManager.Instance.UpgradePurchased(Upgrades.CoinsUpgrade);
     }
 
     public void IncreaseStaminaUpgrade()
     {
-        int level = SaveManager.Instance.GetUpgradeLevel(Upgrades.StaminaUpgrade);
-        level++;
-        if (level > 4)
-        {
-            level = 4;
-        }
-        SaveManager.Instance.UpgradePurchased(Upgrades.StaminaUpgrade, level);
+        SaveManager.Instance.UpgradePurchased(Upgrades.StaminaUpgrade);
     }
 
     public void IncreaseChargeUpgrade()
     {
-        int level = SaveManager.Instance.GetUpgradeLevel(Upgrades.ChargeUpgrade);
-        level++;
-        if (level > 4)
-        {
-            level = 4;
-        }
-        SaveManager.Instance.UpgradePurchased(Upgrades.ChargeUpgrade, level);
+        SaveManager.Instance.UpgradePurchased(Upgrades.ChargeUpgrade);
     }
 
     public void IncreaseShieldUpgrade()
     {
-        int level = SaveManager.Instance.GetUpgradeLevel(Upgrades.ShieldUpgrade);
-        level++;
-        if (level > 4)
-        {
-            level = 4;
-        }
-        SaveManager.Instance.UpgradePurchased(Upgrades.ShieldUpgrade, level);
+        SaveManager.Instance.UpgradePurchased(Upgrades.ShieldUpgrade);
     }
 
     public void IncreaseMegaCoinUpgrade()
     {
-        int level = SaveManager.Instance.GetUpgradeLevel(Upgrades.MegaCoinUpgrade);
-        level++;
-        if (level > 4)
-        {
-            level = 4;
-        }
-        SaveManager.Instance.UpgradePurchased(Upgrades.MegaCoinUpgrade, level);
+        SaveManager.Instance.UpgradePurchased(Upgrades.MegaCoinUpgrade);
     }
 
     public void IncreaseDropsUpgrade()
     {
-        int level = SaveManager.Instance.GetUpgradeLevel(Upgrades.PowerUpDropUpgrade);
-        level++;
-        if (level > 4)
-        {
-            level = 4;
-        }
-        SaveManager.Instance.UpgradePurchased(Upgrades.PowerUpDropUpgrade, level);
+        SaveManager.Instance.UpgradePurchased(Upgrades.PowerUpDropUpgrade);
     }
     //end debug buttons
 }

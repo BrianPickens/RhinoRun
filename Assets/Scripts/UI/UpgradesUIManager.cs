@@ -10,6 +10,15 @@ public class UpgradesUIManager : MonoBehaviour
     private LoadingTransition loadingScreen;
 
     [SerializeField]
+    private GameObject screenBlocker;
+
+    [SerializeField]
+    private GameObject purchaseConfirmPopUp;
+
+    [SerializeField]
+    private GameObject purchaseFailPopUp;
+
+    [SerializeField]
     private Upgrade chargeUpgradeUI;
 
     [SerializeField]
@@ -28,6 +37,8 @@ public class UpgradesUIManager : MonoBehaviour
     private Upgrade coinUpgradeUI;
 
     public Action OnMenuPress;
+    public Action<Upgrades, int> OnUpgradePurchase;
+    public Action OnPurchaseConfirm;
 
     public void Init()
     {
@@ -49,32 +60,86 @@ public class UpgradesUIManager : MonoBehaviour
         switch (_upgrade)
         {
             case Upgrades.ChargeUpgrade:
+                chargeUpgradeUI.OnUpgradePurchase = null;
+                chargeUpgradeUI.OnUpgradePurchase += BuyUpgrade;
                 chargeUpgradeUI.SetUpgradeInfo(_currentLevel);
                 break;
 
             case Upgrades.ShieldUpgrade:
+                shieldUpgradeUI.OnUpgradePurchase = null;
+                shieldUpgradeUI.OnUpgradePurchase += BuyUpgrade;
                 shieldUpgradeUI.SetUpgradeInfo(_currentLevel);
                 break;
 
             case Upgrades.MegaCoinUpgrade:
+                megaCoinUpgradeUI.OnUpgradePurchase = null;
+                megaCoinUpgradeUI.OnUpgradePurchase += BuyUpgrade;
                 megaCoinUpgradeUI.SetUpgradeInfo(_currentLevel);
                 break;
 
             case Upgrades.StaminaUpgrade:
+                staminaUpgradeUI.OnUpgradePurchase = null;
+                staminaUpgradeUI.OnUpgradePurchase += BuyUpgrade;
                 staminaUpgradeUI.SetUpgradeInfo(_currentLevel);
                 break;
 
             case Upgrades.PowerUpDropUpgrade:
+                powerUpDropUpgradeUI.OnUpgradePurchase = null;
+                powerUpDropUpgradeUI.OnUpgradePurchase += BuyUpgrade;
                 powerUpDropUpgradeUI.SetUpgradeInfo(_currentLevel);
                 break;
 
             case Upgrades.CoinsUpgrade:
+                coinUpgradeUI.OnUpgradePurchase = null;
+                coinUpgradeUI.OnUpgradePurchase += BuyUpgrade;
                 coinUpgradeUI.SetUpgradeInfo(_currentLevel);
                 break;
 
             default:
                 Debug.LogError("invalide upgrade in initializeUpgrade");
                 break;
+        }
+    }
+
+    public void ShowPurchaseConfirmation()
+    {
+        screenBlocker.gameObject.SetActive(true);
+        purchaseConfirmPopUp.gameObject.SetActive(true);
+    }
+
+    public void PurchasedConfirmed()
+    {
+        purchaseConfirmPopUp.gameObject.SetActive(false);
+        screenBlocker.gameObject.SetActive(false);
+        if (OnPurchaseConfirm != null)
+        {
+            OnPurchaseConfirm();
+        }
+    }
+
+    public void PurchaseDenied()
+    {
+        purchaseConfirmPopUp.gameObject.SetActive(false);
+        screenBlocker.gameObject.SetActive(false);
+    }
+
+    public void ShowPurchaseFailure()
+    {
+        screenBlocker.gameObject.SetActive(false);
+        purchaseFailPopUp.gameObject.SetActive(true);
+    }
+
+    public void ClosePurchaseFailure()
+    {
+        purchaseFailPopUp.gameObject.SetActive(false);
+        screenBlocker.gameObject.SetActive(false);
+    }
+
+    private void BuyUpgrade(Upgrades _upgradeType, int _price)
+    {
+        if (OnUpgradePurchase != null)
+        {
+            OnUpgradePurchase(_upgradeType, _price);
         }
     }
 

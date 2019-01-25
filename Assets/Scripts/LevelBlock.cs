@@ -6,6 +6,8 @@ using System;
 //For Tomorrow:
 //start work on upgrades in gameplay (do upgrades menu after you have upgrades working in game)
 //Make upgrades menu in Upgrades Scene - just created Upgrades script, and now you need to populate it.
+//need to add your currenty amoutn to the upgrades scene
+//need to name the upgrades in the scene
 
 
 
@@ -22,6 +24,7 @@ using System;
 //make local and cloud saving?
 //google play / game center?
 //iap?
+//leader boards?
 //analytics?
 //ads?
 

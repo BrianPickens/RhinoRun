@@ -205,38 +205,62 @@ public class SaveManager : MonoBehaviour
         return highscore;
     }
 
-    public void UpgradePurchased(Upgrades _upgrade, int _level)
+    public void UpgradePurchased(Upgrades _upgrade)
     {
         switch (_upgrade)
         {
             case Upgrades.CoinsUpgrade:
-                coinsUpgradeLevel = _level;
-                PlayerPrefs.SetInt(coinUpgradeString, _level);
+                coinsUpgradeLevel++;
+                if (coinsUpgradeLevel > 2)
+                {
+                    coinsUpgradeLevel = 2;
+                }
+                PlayerPrefs.SetInt(coinUpgradeString, coinsUpgradeLevel);
                 break;
 
             case Upgrades.StaminaUpgrade:
-                staminaUpgradeLevel = _level;
-                PlayerPrefs.SetInt(staminaUpgradeString, _level);
+                staminaUpgradeLevel++;
+                if (staminaUpgradeLevel > 4)
+                {
+                    staminaUpgradeLevel = 4;
+                }
+                PlayerPrefs.SetInt(staminaUpgradeString, staminaUpgradeLevel);
                 break;
 
             case Upgrades.ChargeUpgrade:
-                chargeUpgradeLevel = _level;
-                PlayerPrefs.SetInt(chargeUpgradeString, _level);
+                chargeUpgradeLevel++;
+                if (chargeUpgradeLevel > 4)
+                {
+                    chargeUpgradeLevel = 4;
+                }
+                PlayerPrefs.SetInt(chargeUpgradeString, chargeUpgradeLevel);
                 break;
 
             case Upgrades.ShieldUpgrade:
-                shieldUpgradeLevel = _level;
-                PlayerPrefs.SetInt(shieldUpgradeString, _level);
+                shieldUpgradeLevel++;
+                if (shieldUpgradeLevel > 4)
+                {
+                    shieldUpgradeLevel = 4;
+                }
+                PlayerPrefs.SetInt(shieldUpgradeString, shieldUpgradeLevel);
                 break;
 
             case Upgrades.MegaCoinUpgrade:
-                megaCoinUpgradeLevel = _level;
-                PlayerPrefs.SetInt(megaCoinUpgradeString, _level);
+                megaCoinUpgradeLevel++;
+                if (megaCoinUpgradeLevel > 4)
+                {
+                    megaCoinUpgradeLevel = 4;
+                }
+                PlayerPrefs.SetInt(megaCoinUpgradeString, megaCoinUpgradeLevel);
                 break;
 
             case Upgrades.PowerUpDropUpgrade:
-                powerUpDropUpgradeLevel = _level;
-                PlayerPrefs.SetInt(powerUpDropUpgradeString, _level);
+                powerUpDropUpgradeLevel++;
+                if (powerUpDropUpgradeLevel > 4)
+                {
+                    powerUpDropUpgradeLevel = 4;
+                }
+                PlayerPrefs.SetInt(powerUpDropUpgradeString, powerUpDropUpgradeLevel);
                 break;
 
             default:
