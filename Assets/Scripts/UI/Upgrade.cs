@@ -10,7 +10,13 @@ public class Upgrade : MonoBehaviour
     private Upgrades upgradeType;
 
     [SerializeField]
+    private string upgradeName;
+
+    [SerializeField]
     private int maxLevels;
+
+    [SerializeField]
+    private Text upgradeNameText;
 
     [SerializeField]
     private Text currentLevelInfo;
@@ -43,6 +49,7 @@ public class Upgrade : MonoBehaviour
     public void SetUpgradeInfo(int _currentLevel)
     {
         currentLevel = _currentLevel;
+        upgradeNameText.text = upgradeName;
         SetUpgradeText(_currentLevel);
         SetUpgradeLevelImages(_currentLevel);
         SetPrice(_currentLevel);

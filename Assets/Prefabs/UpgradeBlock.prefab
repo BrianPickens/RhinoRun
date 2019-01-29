@@ -769,7 +769,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeType: 0
+  upgradeName: 
   maxLevels: 5
+  upgradeNameText: {fileID: 7634324418935642561}
   currentLevelInfo: {fileID: 7634324418492923066}
   nextLevelInfo: {fileID: 7634324418850066888}
   priceText: {fileID: 4824943734565187969}

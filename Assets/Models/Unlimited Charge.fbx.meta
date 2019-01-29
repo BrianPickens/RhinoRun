@@ -1,62 +1,25 @@
 fileFormatVersion: 2
-guid: c6a9028a3ca20ae42992e6211f802921
+guid: 64ccfbd09fbb2b848ac9fe9bc220d85b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface1
-    100004: polySurface2
-    100006: polySurface3
-    100008: polySurface4
-    100010: polySurface5
-    100012: polySurface6
-    100014: Post_L
-    100016: Post_R
     400000: //RootNode
-    400002: polySurface1
-    400004: polySurface2
-    400006: polySurface3
-    400008: polySurface4
-    400010: polySurface5
-    400012: polySurface6
-    400014: Post_L
-    400016: Post_R
-    2100000: Rhino_Fence_Material
-    2300000: polySurface1
-    2300002: polySurface2
-    2300004: polySurface3
-    2300006: polySurface4
-    2300008: polySurface5
-    2300010: polySurface6
-    2300012: Post_L
-    2300014: Post_R
-    3300000: polySurface1
-    3300002: polySurface2
-    3300004: polySurface3
-    3300006: polySurface4
-    3300008: polySurface5
-    3300010: polySurface6
-    3300012: Post_L
-    3300014: Post_R
-    4300000: Post_L
-    4300002: polySurface2
-    4300004: polySurface4
-    4300006: polySurface6
-    4300008: Post_R
-    4300010: polySurface1
-    4300012: polySurface3
-    4300014: polySurface5
+    2100000: UnlimitedBoost_Material
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Unlimited_Charge
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Rhino_Fence_Material
-    second: {fileID: 2100000, guid: 1a08574c75a5d86489e9e4444e553738, type: 2}
+      name: UnlimitedBoost_Material
+    second: {fileID: 2100000, guid: a67769916c8acaf4398874178feeb5f6, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Fence_Color.png
-    second: {fileID: 2800000, guid: bfc8ad724ede55a44aeb0c8dc86fc752, type: 3}
+      name: Unlimited charge Color
+    second: {fileID: 2800000, guid: 2804071081180b6418b36fc20bb07c2d, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

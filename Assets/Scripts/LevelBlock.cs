@@ -4,29 +4,37 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-//start work on upgrades in gameplay (do upgrades menu after you have upgrades working in game)
-//Make upgrades menu in Upgrades Scene - just created Upgrades script, and now you need to populate it.
-//need to add your currenty amoutn to the upgrades scene
-//need to name the upgrades in the scene
 
-
-
-//make meters in 10s instead of singles?
+//REQUIRED FOR RELEASE
 //check to see if we still need to wait until end of fixed update in level generator for game over
 //tutorial :(
 //make "fog" or some obscuring to hide the level blocks poping in.
-//make rhino snax bigger brighter and look more like a pick up
-//make particle effects
-//add in ui
-//upgrades system
-//soundEffects
-//background music
-//make local and cloud saving?
-//google play / game center?
-//iap?
-//leader boards?
-//analytics?
-//ads?
+//all models
+//basic animations
+//figure out charge button
+//showing power up UI
+
+
+//POLISH
+//make meters in 10s instead of singles?
+//ui animations
+//sounds
+//particles
+//music
+//power up animations
+//background variability
+//lighting
+//make all coins spin in unison or be staggered
+
+
+//POST COMPLETION SYSTEMS
+//local / cloud saving
+//googple play / game center
+//iap
+//leader boards
+//ads
+//analytics
+//look into batching
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop

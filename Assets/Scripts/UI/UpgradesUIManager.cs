@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class UpgradesUIManager : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class UpgradesUIManager : MonoBehaviour
 
     [SerializeField]
     private Upgrade coinUpgradeUI;
+
+    [SerializeField]
+    private Text coinText;
 
     public Action OnMenuPress;
     public Action<Upgrades, int> OnUpgradePurchase;
@@ -99,6 +103,11 @@ public class UpgradesUIManager : MonoBehaviour
                 Debug.LogError("invalide upgrade in initializeUpgrade");
                 break;
         }
+    }
+
+    public void UpdateCurrency(int _amount)
+    {
+        coinText.text = "" + _amount;
     }
 
     public void ShowPurchaseConfirmation()

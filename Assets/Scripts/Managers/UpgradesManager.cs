@@ -52,6 +52,9 @@ public class UpgradesManager : MonoBehaviour
         upgradesUI.OnPurchaseConfirm = null;
         upgradesUI.OnPurchaseConfirm += CompletePurchase;
 
+        int currentCoins = SaveManager.Instance.GetCurrentCoins();
+        upgradesUI.UpdateCurrency(currentCoins);
+
         GetCurrentUpgradeLevels();
         SetCurrentUpgrades();
     }
@@ -106,6 +109,9 @@ public class UpgradesManager : MonoBehaviour
         SaveManager.Instance.UpdateCoins(-currentUpgradePrice);
         GetCurrentUpgradeLevels();
         SetCurrentUpgrades();
+        int currentCoins = SaveManager.Instance.GetCurrentCoins();
+        upgradesUI.UpdateCurrency(currentCoins);
+
     }
     
     //debug buttons
