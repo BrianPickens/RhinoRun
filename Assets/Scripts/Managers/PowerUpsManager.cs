@@ -7,14 +7,51 @@ public class PowerUpsManager : MonoBehaviour
     [SerializeField]
     private Character character;
 
+    [SerializeField]
+    private GameUI gameUI;
+
     private int currentChargeLevel;
     private int currentShieldLevel;
     private int currentMegaCoinLevel;
     private int currentStaminaLevel;
 
+    private bool chargeActive;
+    private bool shieldActive;
+    private float chargeTimer;
+    private float shieldTimer;
+    private float chargeTimerRemaining;
+    private float shieldTimerRemaining;
+
     public void Initialize()
     {
         SetCurrentPowerUpLevels();
+    }
+
+    private void Update()
+    {
+        if (chargeActive)
+        {
+            chargeTimerRemaining -= Time.deltaTime;
+            gameUI.UpdateUnlimitedChargeTimer(chargeTimerRemaining / chargeTimer);
+            if (chargeTimerRemaining <= 0)
+            {
+                chargeActive = false;
+                gameUI.HideUnlimitedChargeTimer();
+                character.DeactivateUnlimitedCharge();
+            }
+        }
+
+        if (shieldActive)
+        {
+            shieldTimerRemaining -= Time.deltaTime;
+            gameUI.UpdateShieldTimer(shieldTimerRemaining / shieldTimer);
+            if (shieldTimerRemaining <= 0)
+            {
+                shieldActive = false;
+                gameUI.HideShieldTimer();
+                character.DeactivateShield();
+            }
+        }
     }
 
     private void SetCurrentPowerUpLevels()
@@ -105,62 +142,84 @@ public class PowerUpsManager : MonoBehaviour
 
     public void ChargeCollected()
     {
+        float duration = 0f;
+
         switch (currentChargeLevel)
         {
             case 0:
-                character.ActivateUnlimitedCharge(0f);
+                character.ActivateUnlimitedCharge();
+                duration = 0f;
                 break;
 
             case 1:
-                character.ActivateUnlimitedCharge(6f);
+                character.ActivateUnlimitedCharge();
+                duration = 5f;
                 break;
 
             case 2:
-                character.ActivateUnlimitedCharge(7f);
+                character.ActivateUnlimitedCharge();
+                duration = 6f;
                 break;
 
             case 3:
-                character.ActivateUnlimitedCharge(8f);
+                character.ActivateUnlimitedCharge();
+                duration = 7f;
                 break;
 
             case 4:
-                character.ActivateUnlimitedCharge(9f);
+                character.ActivateUnlimitedCharge();
+                duration = 8f;
                 break;
 
             default:
                 Debug.LogError("Invalid level in Charge Collected");
                 break;
         }
+
+        character.ActivateUnlimitedCharge();
+        gameUI.DisplayUnlimitedChargeTimer();
+        chargeActive = true;
+        chargeTimer = duration;
+        chargeTimerRemaining = duration;
     }
 
     public void ShieldCollected()
     {
+        float duration = 0f;
+
         switch (currentShieldLevel)
         {
             case 0:
-                character.ActivateShield(0f);
+                duration = 0f;
                 break;
 
             case 1:
-                character.ActivateShield(5f);
+                duration = 5f;
                 break;
 
             case 2:
-                character.ActivateShield(6f);
+                duration = 6f;
                 break;
 
             case 3:
-                character.ActivateShield(7f);
+                duration = 7f;
                 break;
 
             case 4:
-                character.ActivateShield(8f);
+                duration = 8f;
                 break;
 
             default:
                 Debug.LogError("Invalid level in Shield Collected");
                 break;
         }
+
+        character.ActivateShield();
+        gameUI.DisplayShieldTimer();
+        shieldActive = true;
+        shieldTimer = duration;
+        shieldTimerRemaining = duration;
+
     }
     
 }

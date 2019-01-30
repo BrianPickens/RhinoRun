@@ -59,12 +59,8 @@ public class Character : MonoBehaviour {
     private bool drainChargePower;
     private bool restoreChargePower;
     private bool unlimitedChargePower;
-
-    private float unlimitedChargePowerRemaining;
-
+    private bool chargeButtonHeld;
     private bool shieldActive;
-
-    private float shieldDurationRemaining;
 
     private float chargePower;
 
@@ -122,16 +118,6 @@ public class Character : MonoBehaviour {
             if (drainChargePower)
             {
                 DrainChargePower();
-            }
-
-            if (unlimitedChargePower)
-            {
-                UnlimitedChargePowerTimer();
-            }
-
-            if (shieldActive)
-            {
-                ShieldTimer();
             }
 
             CheckForCollision(rhinoDetection.GetMovementChange());
@@ -233,7 +219,7 @@ public class Character : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            ChargeStart();
+            ChargeButton();
         }
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
@@ -273,46 +259,31 @@ public class Character : MonoBehaviour {
         StartCoroutine(RestoreChargePowerRoutine(restoreLevel));
     }
 
-    public void ActivateUnlimitedCharge(float _duration)
+    public void ActivateUnlimitedCharge()
     {
-        unlimitedChargePowerRemaining = _duration;
+        ChargeStart();
         unlimitedChargePower = true;
     }
 
-    private void DeactivateUnlimitedCharge()
+    public void DeactivateUnlimitedCharge()
     {
         unlimitedChargePower = false;
-    }
-
-    private void UnlimitedChargePowerTimer()
-    {
-        unlimitedChargePowerRemaining -= Time.deltaTime;
-        if (unlimitedChargePowerRemaining <= 0)
+        Debug.Log("this happened");
+        if (!chargeButtonHeld)
         {
-            unlimitedChargePowerRemaining = 0;
-            DeactivateUnlimitedCharge();
+            Debug.Log("we tried to end the charge");
+            ChargeEnd();
         }
     }
 
-    public void ActivateShield(float _duration)
+    public void ActivateShield()
     {
         shieldActive = true;
-        shieldDurationRemaining = _duration;
     }
 
-    private void DeactivateShield()
+    public void DeactivateShield()
     {
-        shieldDurationRemaining = 0;
         shieldActive = false;
-    }
-
-    private void ShieldTimer()
-    {
-        shieldDurationRemaining -= Time.deltaTime;
-        if (shieldDurationRemaining <= 0)
-        {
-            DeactivateShield();
-        }
     }
 
     private IEnumerator RestoreChargePowerRoutine(float _restoreLevel)
@@ -321,10 +292,15 @@ public class Character : MonoBehaviour {
         {
             chargePower = Mathf.MoveTowards(chargePower, _restoreLevel, Time.deltaTime * restoreSpeed);
             chargeMeter.fillAmount = chargePower / 100;
+            if (_restoreLevel - chargePower <= Mathf.Epsilon)
+            {
+                restoreChargePower = false;
+                break;
+            }
             yield return null;
         }
       //  Debug.Log("restore ended");
-        restoreChargePower = false;
+        
     }
 
     private void ChangeLanes(int _direction)
@@ -373,6 +349,12 @@ public class Character : MonoBehaviour {
 
     }
 
+    public void ChargeButton()
+    {
+        chargeButtonHeld = true;
+        ChargeStart();
+    }
+
     public void ChargeStart()
     {
         if (chargePower > Mathf.Epsilon)
@@ -398,10 +380,14 @@ public class Character : MonoBehaviour {
 
     public void ChargeEnd()
     {
-        myCharacterState = CharacterState.Running;
-        myRenderer.material = normalMat;
-        drainChargePower = false;
-        isTapping = false;
+        if (!unlimitedChargePower)
+        {
+            myCharacterState = CharacterState.Running;
+            myRenderer.material = normalMat;
+            drainChargePower = false;
+            isTapping = false;
+        }
+        chargeButtonHeld = false;
     }
 
     private void CheckForCollision(float _movementAmount)

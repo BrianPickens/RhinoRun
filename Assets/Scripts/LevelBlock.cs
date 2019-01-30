@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
+//need to solve early exit for shield
+//if you have shield and unlimited charge, hitting a fence shouldnt take your shield
 
 //REQUIRED FOR RELEASE
 //check to see if we still need to wait until end of fixed update in level generator for game over

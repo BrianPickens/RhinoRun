@@ -16,6 +16,12 @@ public class GameUI : MonoBehaviour
     private Text pointsDisplay;
 
     [SerializeField]
+    private PowerUpTimer shieldTimer;
+
+    [SerializeField]
+    private PowerUpTimer unlimitedChargeTimer;
+
+    [SerializeField]
     LoadingTransition loadingScreen;
 
     public Action OnMenuPress;
@@ -101,11 +107,42 @@ public class GameUI : MonoBehaviour
         }
     }
 
+    public void DisplayShieldTimer( )
+    {
+        shieldTimer.DisplayTimer();
+    }
+
+    public void UpdateShieldTimer(float _fillAmount)
+    {
+        shieldTimer.UpdateTimer(_fillAmount);
+    }
+
+    public void HideShieldTimer()
+    {
+        shieldTimer.EndTimer();
+    }
+
+    public void DisplayUnlimitedChargeTimer( )
+    {
+        unlimitedChargeTimer.DisplayTimer();
+    }
+
+    public void UpdateUnlimitedChargeTimer(float _fillAmount)
+    {
+        unlimitedChargeTimer.UpdateTimer(_fillAmount);
+    }
+
+    public void HideUnlimitedChargeTimer()
+    {
+        unlimitedChargeTimer.EndTimer();
+    }
+
     private IEnumerator SceneLoadDelay(Action _callback)
     {
         yield return new WaitForSeconds(1f);
         _callback();
     }
+
 
     private void MusicChange(bool _musicOn)
     {

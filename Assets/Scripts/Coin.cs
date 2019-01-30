@@ -19,7 +19,6 @@ public class Coin : Collectable
 
     public override void UpdateTexture(int _level)
     {
-        Debug.Log("this got called");
         switch (_level)
         {
             case 0:

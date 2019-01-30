@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5408608024185711806}
   - component: {fileID: 8378834332001119287}
   - component: {fileID: 4413879666704411860}
+  - component: {fileID: 1447867210580277746}
   m_Layer: 0
   m_Name: Charge
   m_TagString: Untagged
@@ -59,6 +60,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollectableType: 3
+--- !u!95 &1447867210580277746
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160465775004824005}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50eaaf7327a89f2449c4defb2f7a3df4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2987986643629207875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76,7 +96,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64ccfbd09fbb2b848ac9fe9bc220d85b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.94
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64ccfbd09fbb2b848ac9fe9bc220d85b, type: 3}
       propertyPath: m_LocalPosition.z
