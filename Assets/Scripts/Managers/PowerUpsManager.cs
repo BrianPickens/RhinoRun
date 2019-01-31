@@ -24,6 +24,9 @@ public class PowerUpsManager : MonoBehaviour
 
     public void Initialize()
     {
+        character.OnShieldBreak = null;
+        character.OnShieldBreak += ShieldBreak;
+
         SetCurrentPowerUpLevels();
     }
 
@@ -221,5 +224,12 @@ public class PowerUpsManager : MonoBehaviour
         shieldTimerRemaining = duration;
 
     }
-    
+
+    private void ShieldBreak()
+    {
+        shieldActive = false;
+        gameUI.HideShieldTimer();
+        character.DeactivateShield();
+    }
+
 }

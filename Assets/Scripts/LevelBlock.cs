@@ -4,8 +4,7 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-//need to solve early exit for shield
-//if you have shield and unlimited charge, hitting a fence shouldnt take your shield
+//do a fade drop in on the buttons panel and a fade drop in on the meters / points
 
 //REQUIRED FOR RELEASE
 //check to see if we still need to wait until end of fixed update in level generator for game over
@@ -18,6 +17,9 @@ using System;
 
 
 //POLISH
+//end animations for things
+//put something in the disatance
+//cover up the sides with something
 //make meters in 10s instead of singles?
 //ui animations
 //sounds
@@ -27,7 +29,8 @@ using System;
 //background variability
 //lighting
 //make all coins spin in unison or be staggered
-
+//maybe do some camera zoom in?
+//loading spinner
 
 //POST COMPLETION SYSTEMS
 //local / cloud saving

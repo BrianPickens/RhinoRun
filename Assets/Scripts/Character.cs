@@ -27,6 +27,9 @@ public class Character : MonoBehaviour {
     private Image chargeMeter;
 
     [SerializeField]
+    private GameObject shield;
+
+    [SerializeField]
     private Material normalMat;
 
     [SerializeField]
@@ -84,6 +87,7 @@ public class Character : MonoBehaviour {
 
     public Action OnGameOver;
 
+    public Action OnShieldBreak;
 
     // debug options
     private bool allowDoubleMove = true;
@@ -279,11 +283,13 @@ public class Character : MonoBehaviour {
     public void ActivateShield()
     {
         shieldActive = true;
+        shield.SetActive(true);
     }
 
     public void DeactivateShield()
     {
         shieldActive = false;
+        shield.SetActive(false);
     }
 
     private IEnumerator RestoreChargePowerRoutine(float _restoreLevel)
@@ -411,7 +417,10 @@ public class Character : MonoBehaviour {
             if (shieldActive)
             {
                 _obstacle.Destroyed();
-                DeactivateShield();
+                if (OnShieldBreak != null)
+                {
+                    OnShieldBreak();
+                }
             }
             else
             {
@@ -431,7 +440,10 @@ public class Character : MonoBehaviour {
             if (shieldActive)
             {
                 _obstacle.Destroyed();
-                DeactivateShield();
+                if (OnShieldBreak != null)
+                {
+                    OnShieldBreak();
+                }
             }
             else
             {
