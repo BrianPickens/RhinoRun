@@ -4,17 +4,18 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-//do a fade drop in on the buttons panel and a fade drop in on the meters / points
+//look through and fix anything obvious you see
+//figure out how to do fog that obscures things appearing
 
 //REQUIRED FOR RELEASE
-//check to see if we still need to wait until end of fixed update in level generator for game over
+//maybe try the new charge system out?
 //tutorial :(
 //make "fog" or some obscuring to hide the level blocks poping in.
 //all models
 //basic animations
 //figure out charge button
 //showing power up UI
-
+//character animations once i get the character
 
 //POLISH
 //end animations for things
@@ -33,13 +34,14 @@ using System;
 //loading spinner
 
 //POST COMPLETION SYSTEMS
-//local / cloud saving
-//googple play / game center
+//local / cloud saving - priority 1
+//googple play / game center - may also mix with priority 1,2,3 
 //iap
-//leader boards
-//ads
+//leader boards - priority 3
+//ads - priority 2
 //analytics
-//look into batching
+//look into batching further
+//daily reward coins
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop

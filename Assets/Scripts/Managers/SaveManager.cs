@@ -339,6 +339,18 @@ public class SaveManager : MonoBehaviour
         return doubleSwipeOn;
     }
 
+    public bool CheckIfHighscoore(int _score)
+    {
+        if (_score > highscore)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     //debug options
     public void ResetMoney()
     {

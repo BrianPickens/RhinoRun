@@ -332,20 +332,24 @@ public class LevelGenerator : MonoBehaviour {
 
     public void EndGame()
     {
-        //gameOver = true;
-        StartCoroutine(EndGameRoutine());
-
-    }
-
-    IEnumerator EndGameRoutine()
-    {
-        //necessary because movement and detection of collision are happening in the same fixed update frame, so we need to wait for the end
-        //the fixed update frame to stop all the levelblocks
-        yield return new WaitForEndOfFrame();
         for (int i = 0; i < levelBlocks.Count; i++)
         {
             levelBlocks[i].SetSpeed(0);
         }
+        //gameOver = true;
+       // StartCoroutine(EndGameRoutine());
+
     }
+
+    //IEnumerator EndGameRoutine()
+    //{
+    //    //necessary because movement and detection of collision are happening in the same fixed update frame, so we need to wait for the end
+    //    //the fixed update frame to stop all the levelblocks
+    //    yield return new WaitForEndOfFrame();
+    //    for (int i = 0; i < levelBlocks.Count; i++)
+    //    {
+    //        levelBlocks[i].SetSpeed(0);
+    //    }
+    //}
 
 }

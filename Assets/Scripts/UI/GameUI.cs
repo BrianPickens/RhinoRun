@@ -22,6 +22,9 @@ public class GameUI : MonoBehaviour
     private PowerUpTimer unlimitedChargeTimer;
 
     [SerializeField]
+    private GameObject unlimitedChargeMeter;
+
+    [SerializeField]
     LoadingTransition loadingScreen;
 
     public Action OnMenuPress;
@@ -70,9 +73,9 @@ public class GameUI : MonoBehaviour
         pointsDisplay.text = "" + _points;
     }
 
-    public void DisplayEnding(int _points, int _distance)
+    public void DisplayEnding(int _points, int _distance, bool _isHighscore)
     {
-        endingDisplay.OpenEndingDisplay(_points, _distance);
+        endingDisplay.OpenEndingDisplay(_points, _distance, _isHighscore);
     }
 
     public void SettingsButton()
@@ -135,6 +138,16 @@ public class GameUI : MonoBehaviour
     public void HideUnlimitedChargeTimer()
     {
         unlimitedChargeTimer.EndTimer();
+    }
+
+    public void DisplayUnlimitedChargeMeter()
+    {
+        unlimitedChargeMeter.SetActive(true);
+    }
+
+    public void HideUnlimitedChargeMeter()
+    {
+        unlimitedChargeMeter.SetActive(false);
     }
 
     private IEnumerator SceneLoadDelay(Action _callback)

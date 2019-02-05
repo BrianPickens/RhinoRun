@@ -39,6 +39,7 @@ public class PowerUpsManager : MonoBehaviour
             if (chargeTimerRemaining <= 0)
             {
                 chargeActive = false;
+                gameUI.HideUnlimitedChargeMeter();
                 gameUI.HideUnlimitedChargeTimer();
                 character.DeactivateUnlimitedCharge();
             }
@@ -180,6 +181,7 @@ public class PowerUpsManager : MonoBehaviour
         }
 
         character.ActivateUnlimitedCharge();
+        gameUI.DisplayUnlimitedChargeMeter();
         gameUI.DisplayUnlimitedChargeTimer();
         chargeActive = true;
         chargeTimer = duration;

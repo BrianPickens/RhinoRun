@@ -109,7 +109,9 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         levelGenerator.EndGame();
-        gameUI.DisplayEnding(points, distance);
+        bool isHighscore = SaveManager.Instance.CheckIfHighscoore(distance);
+
+        gameUI.DisplayEnding(points, distance, isHighscore);
         if (SaveManager.Instance != null)
         {
             SaveManager.Instance.UpdateScore(distance);
