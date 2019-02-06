@@ -4,8 +4,7 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-//look through and fix anything obvious you see
-//figure out how to do fog that obscures things appearing
+//get feedback on fog
 
 //REQUIRED FOR RELEASE
 //maybe try the new charge system out?
