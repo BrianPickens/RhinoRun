@@ -5,11 +5,10 @@ using System;
 
 //For Tomorrow:
 //get feedback on fog
+//try doing velocity to check swipe
 
 //REQUIRED FOR RELEASE
-//maybe try the new charge system out?
 //tutorial :(
-//make "fog" or some obscuring to hide the level blocks poping in.
 //all models
 //basic animations
 //figure out charge button

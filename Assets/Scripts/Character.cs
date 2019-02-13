@@ -55,8 +55,6 @@ public class Character : MonoBehaviour {
 
     private bool canSwipe;
     private bool canDoubleSwipe;
-    private bool isSwiping;
-    private bool isTapping;
     private float tapDelay;
 
     private bool drainChargePower;
@@ -141,17 +139,15 @@ public class Character : MonoBehaviour {
                 Vector2 rawTouchOrigin = touch.position;
                 touchOrigin = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchOrigin.x, rawTouchOrigin.y, -mainCamera.transform.position.z));
             }
-            else if (touch.phase == TouchPhase.Moved && !isTapping)
+            else if (touch.phase == TouchPhase.Moved)
             {
                 Vector2 rawTouchCurrent = touch.position;
                 touchCurrent = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchCurrent.x, rawTouchCurrent.y, -mainCamera.transform.position.z));
 
                 float swipeDistance = Vector3.Distance(touchOrigin, touchCurrent);
-                //Debug.Log(swipeDistance);
+
                 if (swipeDistance > swipeSensitivity && canSwipe)
                 {
-
-                    isSwiping = true;
                     canSwipe = false;
                     if (touchCurrent.x > touchOrigin.x)
                     {
@@ -183,29 +179,10 @@ public class Character : MonoBehaviour {
 
 
             }
-            //else if (touch.phase == TouchPhase.Stationary && !isSwiping)
-            //{
-            //    tapDelay += Time.deltaTime;
-            //    if (tapDelay >= tapSensitivity)
-            //    {
-            //        isTapping = true;
-            //    }
-
-            //    if(myCharacterState != CharacterState.Charging)
-            //    {
-            //        ChargeStart();
-            //    }
-            //}
             else if (touch.phase == TouchPhase.Ended)
             {
-                //if (myCharacterState == CharacterState.Charging)
-                //{
-                //    ChargeEnd();
-                //}
                 canSwipe = true;
                 canDoubleSwipe = true;
-                isSwiping = false;
-                //isTapping = false;
                 tapDelay = 0f;
             }
         }
@@ -366,7 +343,6 @@ public class Character : MonoBehaviour {
         if (chargePower > Mathf.Epsilon)
         {
             myCharacterState = CharacterState.Charging;
-            isTapping = true;
             StartCoroutine(ChargeDelay());
         }
     }
@@ -391,7 +367,6 @@ public class Character : MonoBehaviour {
             myCharacterState = CharacterState.Running;
             myRenderer.material = normalMat;
             drainChargePower = false;
-            isTapping = false;
         }
         chargeButtonHeld = false;
     }
