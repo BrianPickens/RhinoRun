@@ -87,6 +87,15 @@ public class Character : MonoBehaviour {
 
     public Action OnShieldBreak;
 
+    //test code
+    private Vector3 touchPrevious;
+    private Vector3 touchNow;
+    private Vector3 touchVelocity;
+    bool canCalculate;
+    private int frameDelay = 3;
+    private int currentFrameDelay;
+    bool touchingScreen;
+
     // debug options
     private bool allowDoubleMove = true;
 
@@ -109,104 +118,239 @@ public class Character : MonoBehaviour {
 
     private void Update()
     {
-        if (myCharacterState != CharacterState.Dead)
-        {
-            if (myCharacterState == CharacterState.Running || myCharacterState == CharacterState.Charging)
-            {
+        //if (myCharacterState != CharacterState.Dead)
+        //{
+        //    if (myCharacterState == CharacterState.Running || myCharacterState == CharacterState.Charging)
+        //    {
                 CheckForInput();
-                MoveCharacter();
-            }
+            //    MoveCharacter();
+            //}
 
-            if (drainChargePower)
-            {
-                DrainChargePower();
-            }
+            //if (drainChargePower)
+            //{
+            //    DrainChargePower();
+            //}
 
-            CheckForCollision(rhinoDetection.GetMovementChange());
+            //CheckForCollision(rhinoDetection.GetMovementChange());
 
-        }
+        //}
     }
 
     private void CheckForInput()
     {
-        //mobile controls
+
+        //new hold / swipe
+
+        //check that we are touching the screen
         if (Input.touchCount > 0)
         {
+            //get the first touch on the screen
             Touch touch = Input.touches[0];
 
+            //get the first touch's position
+            Vector2 rawTouchPosition = touch.position;
+
+           // Debug.Log("Raw touch position: " + rawTouchPosition);
+            //convert the touch position to a Vector3 world point
+            //Debug.Log("Set now position");
+            touchNow = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchPosition.x, rawTouchPosition.y, -mainCamera.transform.position.z));
+
+            //we dont want to calculate on this frame, so we skip over this and wait for canCalculate bool to be turned on by Touchphase.Began
+            if (canCalculate)
+            {
+                //get the velocity vector
+                touchVelocity = touchNow - touchPrevious;
+                // Debug.Log("now Vector: " + touchNow);
+                //  Debug.Log("previous vector: " + touchPrevious);
+                //  Debug.Log("Velocity Vector: " + touchVelocity);
+
+                //get the aboslute value of x from the velocity vector
+                float xVelocity = touchVelocity.x;
+                float absXVelocity = Mathf.Abs(touchVelocity.x);
+                //Debug.Log("Velocity: " + absXVelocity);
+                if (absXVelocity > 0.001f)
+                {
+                    Debug.Log("Swipe");
+                    if (xVelocity > 0)
+                    {
+                        ChangeLanes(1);
+                    }
+                    else if (xVelocity < 0)
+                    {
+                        ChangeLanes(-1);
+                    }
+                    {
+
+                    }
+                    canCalculate = false;
+                }
+                else
+                {
+                    Debug.Log("Hold");
+                    ChargeButton();
+                    canCalculate = false;
+                }
+            }
+
+            //allow the touch Velocity Vector to be calculate on the following frame
             if (touch.phase == TouchPhase.Began)
             {
-                Vector2 rawTouchOrigin = touch.position;
-                touchOrigin = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchOrigin.x, rawTouchOrigin.y, -mainCamera.transform.position.z));
-            }
-            else if (touch.phase == TouchPhase.Moved)
-            {
-                Vector2 rawTouchCurrent = touch.position;
-                touchCurrent = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchCurrent.x, rawTouchCurrent.y, -mainCamera.transform.position.z));
-
-                float swipeDistance = Vector3.Distance(touchOrigin, touchCurrent);
-
-                if (swipeDistance > swipeSensitivity && canSwipe)
-                {
-                    canSwipe = false;
-                    if (touchCurrent.x > touchOrigin.x)
-                    {
-                        ChangeLanes(1);
-                    }
-                    else
-                    {
-                        ChangeLanes(-1);
-                    }
-
-                    if (myCharacterState == CharacterState.Charging)
-                    {
-                        ChargeEnd();
-                    }
-                }
-
-                if (swipeDistance > doubleSwipeSensitivity && canDoubleSwipe && allowDoubleMove)
-                {
-                    canDoubleSwipe = false;
-                    if (touchCurrent.x > touchOrigin.x)
-                    {
-                        ChangeLanes(1);
-                    }
-                    else
-                    {
-                        ChangeLanes(-1);
-                    }
-                }
-
+               // Debug.Log("Touch Began phase");
+                //canCalculate = true;
+                touchingScreen = true;
+                currentFrameDelay = frameDelay;
 
             }
+            //reset canCalculate so that the next time we touch the screen is will skip over calculating the velocity vector until the next frame
             else if (touch.phase == TouchPhase.Ended)
             {
-                canSwipe = true;
-                canDoubleSwipe = true;
-                tapDelay = 0f;
+               // Debug.Log("Touch Ended Phase");
+                canCalculate = false;
+                touchingScreen = false;
+                ChargeEnd();
+            }
+
+            //if we are touching the screen set our current touch as the last touch
+            if (currentFrameDelay == frameDelay)
+            {
+               // Debug.Log("set previous position");
+                touchPrevious = touchNow;
+            }
+
+            if (touchingScreen)
+            {
+                currentFrameDelay--;
+                if (currentFrameDelay == 0)
+                {
+                    canCalculate = true;
+                }
             }
         }
-        //end mobile controls
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ChangeLanes(-1);
-        }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ChangeLanes(1);
-        }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            ChargeButton();
-        }
+        //end new controls
 
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            ChargeEnd();
-        }
+        ////mobile controls
+        //if (Input.touchCount > 0)
+        //{
+        //    Touch touch = Input.touches[0];
+
+        //    Vector2 rawTouchPosition = touch.position;
+
+        //    Debug.Log("Set Now");
+        //    touchNow = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchPosition.x, rawTouchPosition.y, -mainCamera.transform.position.z));
+        //    if (canCalculate)
+        //    {
+        //        touchVelocity = touchNow - touchPrevious;
+        //        float xVelocity = Mathf.Abs(touchVelocity.x);
+        //        Debug.Log("now Vector: " + touchNow);
+        //        Debug.Log("previous vector: " + touchPrevious);
+        //        Debug.Log("Velocity Vector: " + touchVelocity);
+        //        Debug.Log("Velocity: " + xVelocity);
+        //        if (xVelocity > 0.001f)
+        //        {
+        //            Debug.Log("Swipe");
+        //            canCalculate = false;
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("Hold");
+        //            canCalculate = false;
+        //        }
+        //        // Debug.Log(touchNow - touchPrevious);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("one pass");
+        //    }
+        //    //do calculation with touch previous
+
+        //    if (touch.phase == TouchPhase.Began)
+        //    {
+        //        canCalculate = true;
+        //        Vector2 rawTouchOrigin = touch.position;
+        //        touchOrigin = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchOrigin.x, rawTouchOrigin.y, -mainCamera.transform.position.z));
+        //    }
+        //    else if (touch.phase == TouchPhase.Moved)
+        //    {
+        //        Vector2 rawTouchCurrent = touch.position;
+        //        touchCurrent = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchCurrent.x, rawTouchCurrent.y, -mainCamera.transform.position.z));
+
+        //        float swipeDistance = Vector3.Distance(touchOrigin, touchCurrent);
+
+        //        if (swipeDistance > swipeSensitivity && canSwipe)
+        //        {
+        //            canSwipe = false;
+        //            if (touchCurrent.x > touchOrigin.x)
+        //            {
+        //                ChangeLanes(1);
+        //            }
+        //            else
+        //            {
+        //                ChangeLanes(-1);
+        //            }
+
+        //            if (myCharacterState == CharacterState.Charging)
+        //            {
+        //                ChargeEnd();
+        //            }
+        //        }
+
+        //        if (swipeDistance > doubleSwipeSensitivity && canDoubleSwipe && allowDoubleMove)
+        //        {
+        //            canDoubleSwipe = false;
+        //            if (touchCurrent.x > touchOrigin.x)
+        //            {
+        //                ChangeLanes(1);
+        //            }
+        //            else
+        //            {
+        //                ChangeLanes(-1);
+        //            }
+        //        }
+
+
+        //    }
+        //    else if (touch.phase == TouchPhase.Ended)
+        //    {
+        //        canCalculate = false;
+        //        canSwipe = true;
+        //        canDoubleSwipe = true;
+        //        tapDelay = 0f;
+        //    }
+
+
+
+
+        //    if (canCalculate)
+        //    {
+        //        Debug.Log("set Previous");
+        //        touchPrevious = touchNow;
+        //    }
+
+        //}
+        ////end mobile controls
+
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    ChangeLanes(-1);
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    ChangeLanes(1);
+        //}
+
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    ChargeButton();
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.UpArrow))
+        //{
+        //    ChargeEnd();
+        //}
     }
 
     private void MoveCharacter()
