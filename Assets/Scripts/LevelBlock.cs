@@ -5,7 +5,6 @@ using System;
 
 //For Tomorrow:
 //get feedback on fog
-//try doing velocity to check swipe
 
 //REQUIRED FOR RELEASE
 //tutorial :(
