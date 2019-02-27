@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollectableType: 2
+  myAnimator: {fileID: 1958138831772003481}
 --- !u!95 &1958138831772003481
 Animator:
   serializedVersion: 3

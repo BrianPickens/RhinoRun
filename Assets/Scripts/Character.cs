@@ -244,7 +244,6 @@ public class Character : MonoBehaviour {
         {
             restoreLevel = 100f;
         }
-        //  Debug.Log("restore started");
         StartCoroutine(RestoreChargePowerRoutine(restoreLevel));
     }
 
@@ -257,10 +256,8 @@ public class Character : MonoBehaviour {
     public void DeactivateUnlimitedCharge()
     {
         unlimitedChargePower = false;
-        Debug.Log("this happened");
         if (!chargeButtonHeld)
         {
-            Debug.Log("we tried to end the charge");
             ChargeEnd();
         }
     }
@@ -290,7 +287,6 @@ public class Character : MonoBehaviour {
             }
             yield return null;
         }
-      //  Debug.Log("restore ended");
         
     }
 
@@ -399,11 +395,9 @@ public class Character : MonoBehaviour {
             {
                 GameOver();
             }
-           // Debug.Log("crashed");
         }
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
-            //Debug.Log("broke wall");
             screenShake.Shake();
             _obstacle.Destroyed();
         }
@@ -422,7 +416,6 @@ public class Character : MonoBehaviour {
             {
                 GameOver();
             }
-            //Debug.Log("crashed fail");
         }
     }
 

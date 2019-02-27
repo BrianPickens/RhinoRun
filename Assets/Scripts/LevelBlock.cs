@@ -4,20 +4,17 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-//get feedback on fog
 
 //REQUIRED FOR RELEASE
 //tutorial :(
 //all models
 //basic animations
-//figure out charge button
-//showing power up UI
+//UI locations
 //character animations once i get the character
+//cover up the sides with something
 
 //POLISH
-//end animations for things
 //put something in the disatance
-//cover up the sides with something
 //make meters in 10s instead of singles?
 //ui animations
 //sounds
@@ -26,7 +23,6 @@ using System;
 //power up animations
 //background variability
 //lighting
-//make all coins spin in unison or be staggered
 //maybe do some camera zoom in?
 //loading spinner
 
@@ -102,7 +98,7 @@ public class LevelBlock : MonoBehaviour
         myBase.transform.localPosition = Vector3.zero;
     }
 
-    public void InitializeBlock(Action<CollectableType> _collectableCallback, int _distanceMarker)
+    public void InitializeBlock(Action<CollectableType> _collectableCallback, int _distanceMarker, float _coinRotationOffset)
     {
 
         //initialize distanceMarker
@@ -130,7 +126,7 @@ public class LevelBlock : MonoBehaviour
             {
                 Collectable newCollectable = CollectablePooler.Instance.GetCollectable(collectables[i]);
                 newCollectable.SetLocation(collectableLocations[i]);
-                newCollectable.Initialize(_collectableCallback, RemoveCollectable);
+                newCollectable.Initialize(_collectableCallback, RemoveCollectable, _coinRotationOffset);
                 myCollectables.Add(newCollectable);
             }
         }

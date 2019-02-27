@@ -13,6 +13,9 @@ public class Collectable : MonoBehaviour
         get { return myCollectableType; }
     }
 
+    [SerializeField]
+    private Animator myAnimator;
+
     private Transform poolTransform;
 
     public Action<CollectableType> OnCollectForManager;
@@ -23,9 +26,10 @@ public class Collectable : MonoBehaviour
         //make abstract?
     }
 
-    public void Initialize(Action<CollectableType> _collectableCallbackToManager, Action<Collectable> _collectableCallbackToLevelBlock)
+    public void Initialize(Action<CollectableType> _collectableCallbackToManager, Action<Collectable> _collectableCallbackToLevelBlock, float _animationOffset)
     {
         gameObject.SetActive(true);
+        myAnimator.SetFloat("Offset", _animationOffset);
         OnCollectForManager = null;
         OnCollectForManager += _collectableCallbackToManager;
         OnCollectForLevelBlock = null;

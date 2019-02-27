@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCollectableType: 1
+  myAnimator: {fileID: 95128641092372944}
   myRenderer: {fileID: 23585479676543342}
   goldTexture: {fileID: 2800000, guid: 998d3800cf7639f4e9de9f70d521942d, type: 3}
   silverTexture: {fileID: 2800000, guid: e5e2d9ae13809a14a9efc34e1d1b6170, type: 3}

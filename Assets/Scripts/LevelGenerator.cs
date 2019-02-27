@@ -80,6 +80,8 @@ public class LevelGenerator : MonoBehaviour {
 
     private int currentPowerUpDropLevel;
 
+    private float coinSpinTime;
+
     //private bool gameOver;
 
     private Action<CollectableType> CollectableCallback;
@@ -109,6 +111,15 @@ public class LevelGenerator : MonoBehaviour {
         GenerateLevel();
     }
 
+    private void Update()
+    {
+        coinSpinTime += Time.deltaTime;
+        if (coinSpinTime > 1f)
+        {
+            coinSpinTime = 0f;
+        }
+    }
+
     public void GenerateLevel()
     {
         for (int i = 0; i < 10; i++)
@@ -126,7 +137,7 @@ public class LevelGenerator : MonoBehaviour {
             if (i == 0)
             {
                 _newBlock.gameObject.SetActive(true);
-                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated);
+                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated, coinSpinTime);
                 _newBlock.SetPosition(Vector3.zero);
                 _newBlock.SetSpeed(currentBlockSpeed);
                 numBlocksGenerated++;
@@ -135,7 +146,7 @@ public class LevelGenerator : MonoBehaviour {
             else
             {
                 _newBlock.gameObject.SetActive(true);
-                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated);
+                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated, coinSpinTime);
                 _newBlock.SetPosition(levelBlocks[i - 1].GetPosition() + (Vector3.forward * levelBlockSize));
                 _newBlock.SetSpeed(currentBlockSpeed);
                 numBlocksGenerated++;
@@ -167,7 +178,7 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         _newBlock.gameObject.SetActive(true);
-        _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated);
+        _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated, coinSpinTime);
         _newBlock.SetPosition(levelBlocks[levelBlocks.Count - 1].GetPosition() + (Vector3.forward * levelBlockSize));
         _newBlock.SetSpeed(currentBlockSpeed);
         levelBlocks.Add(_newBlock);
