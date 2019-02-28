@@ -2,15 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct PlayerSave
+{
+    public int coins;
+    public int highscore;
+    public int coinsUpgradeLevel;
+    public int staminaUpgradeLevel;
+    public int chargeUpgradeLevel;
+    public int shieldUpgradeLevel;
+    public int megaCoinUpgradeLevel;
+    public int powerUpDropUpgradeLevel;
+
+}
+
 public enum Upgrades { StaminaUpgrade, CoinsUpgrade, ChargeUpgrade, ShieldUpgrade, MegaCoinUpgrade, PowerUpDropUpgrade }
 public class SaveManager : MonoBehaviour
 {
+
+
 
     private static SaveManager instance = null;
     public static SaveManager Instance
     {
         get { return instance; }
     }
+
+    private PlayerSave playerSave;
 
     private int coins;
 
@@ -72,111 +89,83 @@ public class SaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        GetStats();
+        GetPlayerData();
         initialized = true;
 
     }
 
-    private void GetStats()
+    private void GetPlayerData()
     {
-        if (PlayerPrefs.HasKey(coinsString))
-        {
-            coins = PlayerPrefs.GetInt(coinsString);
-        }
-        else
-        {
-            coins = 0;
-        }
+        PlayerSave cloudSave = LoadCloudData();
+        PlayerSave localSave = LoadLocalData();
+        PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
 
-        if (PlayerPrefs.HasKey(highscoreString))
-        {
-            highscore = PlayerPrefs.GetInt(highscoreString);
-        }
-        else
-        {
-            highscore = 0;
-        }
+        playerSave = compiledSave;
 
-        if (PlayerPrefs.HasKey(swipeSensitivityString))
-        {
-            swipeSensitivity = PlayerPrefs.GetFloat(swipeSensitivityString);
-        }
-        else
-        {
-            swipeSensitivity = 0.2f;
-        }
+    }
 
-        if (PlayerPrefs.HasKey(doubleSwipeSensitivityString))
-        {
-            doubleSwipeSensitivity = PlayerPrefs.GetFloat(doubleSwipeSensitivityString);
-        }
-        else
-        {
-            doubleSwipeSensitivity = 3f;
-        }
+    private PlayerSave LoadCloudData()
+    {
+        CloudSaving.GatherCloudData();
+        PlayerSave cloudSave = new PlayerSave();
+        cloudSave.coins = CloudSaving.GetCloudInt(coinsString);
+        cloudSave.highscore = CloudSaving.GetCloudInt(highscoreString);
+        cloudSave.coinsUpgradeLevel = CloudSaving.GetCloudInt(coinUpgradeString);
+        cloudSave.staminaUpgradeLevel = CloudSaving.GetCloudInt(staminaUpgradeString);
+        cloudSave.chargeUpgradeLevel = CloudSaving.GetCloudInt(chargeUpgradeString);
+        cloudSave.shieldUpgradeLevel = CloudSaving.GetCloudInt(shieldUpgradeString);
+        cloudSave.megaCoinUpgradeLevel = CloudSaving.GetCloudInt(megaCoinUpgradeString);
+        cloudSave.powerUpDropUpgradeLevel = CloudSaving.GetCloudInt(powerUpDropUpgradeString);
 
-        if (PlayerPrefs.HasKey(doubleSwipeString))
-        {
-            doubleSwipeOn = PlayerPrefs.GetInt(doubleSwipeString) == 1 ? true : false;
-        }
-        else
-        {
-            doubleSwipeOn = true;
-        }
+        return cloudSave;
+    }
 
-        if (PlayerPrefs.HasKey(coinUpgradeString))
-        {
-            coinsUpgradeLevel = PlayerPrefs.GetInt(coinUpgradeString);
-        }
-        else
-        {
-            coinsUpgradeLevel = 0;
-        }
+    private PlayerSave LoadLocalData()
+    {
+        PlayerSave localSave = new PlayerSave();
+        localSave.coins = LocalSaving.GetLocalInt(coinsString, 0);
+        localSave.highscore = LocalSaving.GetLocalInt(highscoreString, 0);
+        localSave.coinsUpgradeLevel = LocalSaving.GetLocalInt(coinUpgradeString, 0);
+        localSave.staminaUpgradeLevel = LocalSaving.GetLocalInt(staminaUpgradeString, 0);
+        localSave.chargeUpgradeLevel = LocalSaving.GetLocalInt(chargeUpgradeString, 0);
+        localSave.shieldUpgradeLevel = LocalSaving.GetLocalInt(shieldUpgradeString, 1); //shield upgrade is always 1
+        localSave.megaCoinUpgradeLevel = LocalSaving.GetLocalInt(megaCoinUpgradeString, 0);
+        localSave.powerUpDropUpgradeLevel = LocalSaving.GetLocalInt(powerUpDropUpgradeString, 0);
 
-        if (PlayerPrefs.HasKey(staminaUpgradeString))
-        {
-            staminaUpgradeLevel = PlayerPrefs.GetInt(staminaUpgradeString);
-        }
-        else
-        {
-            staminaUpgradeLevel = 0;
-        }
+        //only saved local
+        swipeSensitivity = LocalSaving.GetLocalFloat(swipeSensitivityString, 0.2f);
+        doubleSwipeSensitivity = LocalSaving.GetLocalFloat(doubleSwipeSensitivityString, 3f);
+        doubleSwipeOn = LocalSaving.GetLocalBool(doubleSwipeString, 1);
+        //end only saved local
 
-        if (PlayerPrefs.HasKey(chargeUpgradeString))
-        {
-            chargeUpgradeLevel = PlayerPrefs.GetInt(chargeUpgradeString);
-        }
-        else
-        {
-            chargeUpgradeLevel = 0;
-        }
+        return localSave;
+    }
 
-        if (PlayerPrefs.HasKey(shieldUpgradeString))
-        {
-            shieldUpgradeLevel = PlayerPrefs.GetInt(shieldUpgradeString);
-        }
-        else
-        {
-            shieldUpgradeLevel = 1;
-        }
+    private PlayerSave CompareCloudAndLocalData(PlayerSave _cloudSave, PlayerSave _localSave)
+    {
+        PlayerSave compiledSave = new PlayerSave();
+        compiledSave.coins = Mathf.Max(_cloudSave.coins, _localSave.coins);
+        compiledSave.highscore = Mathf.Max(_cloudSave.highscore, _localSave.highscore);
+        compiledSave.coinsUpgradeLevel = Mathf.Max(_cloudSave.coinsUpgradeLevel, _localSave.coinsUpgradeLevel);
 
-        if (PlayerPrefs.HasKey(megaCoinUpgradeString))
-        {
-            megaCoinUpgradeLevel = PlayerPrefs.GetInt(megaCoinUpgradeString);
-        }
-        else
-        {
-            megaCoinUpgradeLevel = 0;
-        }
 
-        if (PlayerPrefs.HasKey(powerUpDropUpgradeString))
-        {
-            powerUpDropUpgradeLevel = PlayerPrefs.GetInt(powerUpDropUpgradeString);
-        }
-        else
-        {
-            powerUpDropUpgradeLevel = 0;
-        }
+        return compiledSave;
+
+    }
+
+    private void SaveData()
+    {
+        //save cloud
+        //then save local
+    }
+
+    private void SaveCloud()
+    {
+
+    }
+
+    private void SaveLocal()
+    {
 
     }
 

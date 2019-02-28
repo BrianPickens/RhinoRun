@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
+//finish cloud and local saving!
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -12,6 +13,16 @@ using System;
 //UI locations
 //character animations once i get the character
 //cover up the sides with something
+
+//POST COMPLETION SYSTEMS
+//local / cloud saving - priority 1
+//googple play / game center - may also mix with priority 1,2,3 
+//iap
+//leader boards - priority 3
+//ads - priority 2
+//analytics
+//look into batching further
+//daily reward coins
 
 //POLISH
 //put something in the disatance
@@ -26,15 +37,7 @@ using System;
 //maybe do some camera zoom in?
 //loading spinner
 
-//POST COMPLETION SYSTEMS
-//local / cloud saving - priority 1
-//googple play / game center - may also mix with priority 1,2,3 
-//iap
-//leader boards - priority 3
-//ads - priority 2
-//analytics
-//look into batching further
-//daily reward coins
+
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop
