@@ -96,11 +96,18 @@ public class SaveManager : MonoBehaviour
 
     private void GetPlayerData()
     {
-        PlayerSave cloudSave = LoadCloudData();
-        PlayerSave localSave = LoadLocalData();
-        PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
 
-        playerSave = compiledSave;
+        string[] val = { "1", "2", "3", "4", "5" };
+        string sep = ",";
+        string result;
+
+        result = string.Join(sep, val);
+        Debug.Log(result);
+        //PlayerSave cloudSave = LoadCloudData();
+        //PlayerSave localSave = LoadLocalData();
+        //PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
+
+        //playerSave = compiledSave;
 
     }
 

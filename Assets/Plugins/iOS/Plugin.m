@@ -21,6 +21,23 @@ void iCloudKV_SetFloat(char * key, float value) {
     [[NSUbiquitousKeyValueStore defaultStore] setObject:[NSNumber numberWithFloat:value] forKey:[NSString stringWithUTF8String:key]];
 }
 
+void iCloudKV_SetString(char * key, char * value)
+{
+	[[NSUbiquitousKeyValueStore defaultStore] setObject:[NSString stringWithUTF8String:value] forKey: [NSString stringWithUTF8String:key]];
+}
+
+char* ConvertNSStringToCharArray (const char * string)
+{
+	if(string == NULL)
+	{
+		return NULL;
+	}
+	
+	char* stringCopy = malloc(strlen(string) + 1);
+	strcpy(stringCopy, string);
+	return stringCopy;
+}
+
 int iCloudKV_GetInt(char * key) {
     NSNumber * num = (NSNumber *)([[NSUbiquitousKeyValueStore defaultStore] objectForKey:[NSString stringWithUTF8String:key]]);
     int i = 0;
@@ -35,6 +52,11 @@ float iCloudKV_GetFloat(char * key) {
     if (num != nil)
         i = [num floatValue];
     return i;
+}
+
+char* iCloudKV_GetString(char * key) {
+	NSString * newString = (NSString *)([[NSUbiquitousKeyValueStore defaultStore] objectForKey:[NSString stringWithUTF8String:key]]);
+	return ConvertNSStringToCharArray([newString UTF8String]);
 }
 
 void iCloudKV_Reset() {
