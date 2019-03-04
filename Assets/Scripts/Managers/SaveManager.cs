@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
-public struct PlayerSave
+public class PlayerSave
 {
     public int coins;
     public int highscore;
@@ -13,13 +14,100 @@ public struct PlayerSave
     public int megaCoinUpgradeLevel;
     public int powerUpDropUpgradeLevel;
 
-}
+    public const string coinsString = "coins";
+    public const string highscoreString = "highscore";
+    public const string coinUpgradeString = "coinUpgrade";
+    public const string staminaUpgradeString = "staminaUpgrade";
+    public const string chargeUpgradeString = "chargeUpgrade";
+    public const string shieldUpgradeString = "shieldUpgrade";
+    public const string megaCoinUpgradeString = "megaCoinUpgrade";
+    public const string powerUpDropUpgradeString = "powerUpDropUpgrade";
 
+    private List<string> saveDataList = new List<string>();
+
+    public PlayerSave(int _coins = 0, int _highscore = 0, int _coinsUpgradeLevel = 0, int _staminaUpgradeLevel = 0, int _chargeUpgradeLevel = 0, int _shieldUpgradeLevel = 1, int _megaCoinUpgradeLevel = 0, int _powerUpDropUpgradeLevel = 0)
+    {
+        coins = _coins;
+        highscore = _highscore;
+        coinsUpgradeLevel = _coinsUpgradeLevel;
+        staminaUpgradeLevel = _staminaUpgradeLevel;
+        chargeUpgradeLevel = _chargeUpgradeLevel;
+        shieldUpgradeLevel = _shieldUpgradeLevel;
+        megaCoinUpgradeLevel = _megaCoinUpgradeLevel;
+        powerUpDropUpgradeLevel = _powerUpDropUpgradeLevel;
+    }
+
+    public string GetSavableData()
+    {
+        //list is formated, string name followed by string level
+        List<string> tempSaveList = new List<string>();
+
+        tempSaveList.Add(coinsString);
+        tempSaveList.Add(Utility.IntToString(coins));
+
+        tempSaveList.Add(highscoreString);
+        tempSaveList.Add(Utility.IntToString(highscore));
+
+        tempSaveList.Add(coinUpgradeString);
+        tempSaveList.Add(Utility.IntToString(coinsUpgradeLevel));
+
+        tempSaveList.Add(staminaUpgradeString);
+        tempSaveList.Add(Utility.IntToString(staminaUpgradeLevel));
+
+        tempSaveList.Add(chargeUpgradeString);
+        tempSaveList.Add(Utility.IntToString(chargeUpgradeLevel));
+
+        tempSaveList.Add(shieldUpgradeString);
+        tempSaveList.Add(Utility.IntToString(shieldUpgradeLevel));
+
+        tempSaveList.Add(megaCoinUpgradeString);
+        tempSaveList.Add(Utility.IntToString(megaCoinUpgradeLevel));
+
+        tempSaveList.Add(powerUpDropUpgradeString);
+        tempSaveList.Add(Utility.IntToString(powerUpDropUpgradeLevel));
+
+        string saveData = Utility.ConvertStringListToString(tempSaveList);
+
+        return saveData;
+    }
+
+    //get player levels from teh save string
+    public void ConvertDataFromString(string _saveData)
+    {
+        saveDataList = Utility.ConvertStringToStringList(_saveData);
+        coins = GetSavedIntByString(coinsString);
+        highscore = GetSavedIntByString(highscoreString);
+        coinsUpgradeLevel = GetSavedIntByString(coinUpgradeString);
+        staminaUpgradeLevel = GetSavedIntByString(staminaUpgradeString);
+        chargeUpgradeLevel = GetSavedIntByString(chargeUpgradeString);
+        shieldUpgradeLevel = GetSavedIntByString(shieldUpgradeString);
+        megaCoinUpgradeLevel = GetSavedIntByString(megaCoinUpgradeString);
+        powerUpDropUpgradeLevel = GetSavedIntByString(powerUpDropUpgradeString);
+
+    }
+
+    //pass in a string, and get and int level returned
+    private int GetSavedIntByString(string _stringId)
+    {
+        for (int i = 0; i < saveDataList.Count; i++)
+        {
+            if (_stringId == saveDataList[i])
+            {
+                return Utility.StringToInt(saveDataList[i + 1]);
+            }
+        }
+
+        return 0;
+    }
+
+}
+//PLAYER SAVE ENDS HERE
+
+
+//SAVE MANAGER STARTS HERE
 public enum Upgrades { StaminaUpgrade, CoinsUpgrade, ChargeUpgrade, ShieldUpgrade, MegaCoinUpgrade, PowerUpDropUpgrade }
 public class SaveManager : MonoBehaviour
 {
-
-
 
     private static SaveManager instance = null;
     public static SaveManager Instance
@@ -29,43 +117,13 @@ public class SaveManager : MonoBehaviour
 
     private PlayerSave playerSave;
 
-    private int coins;
-
-    private int highscore;
+    public const string saveString = "gameSaveData";
 
     private float swipeSensitivity;
 
     private float doubleSwipeSensitivity;
 
     private bool doubleSwipeOn;
-
-    private int coinsUpgradeLevel;
-
-    private int staminaUpgradeLevel;
-
-    private int chargeUpgradeLevel;
-
-    private int shieldUpgradeLevel;
-
-    private int megaCoinUpgradeLevel;
-
-    private int powerUpDropUpgradeLevel;
-
-    private const string highscoreString = "highscore";
-
-    private const string coinsString = "coins";
-
-    private const string coinUpgradeString = "coinUpgrade";
-
-    private const string staminaUpgradeString = "staminaUpgrade";
-
-    private const string chargeUpgradeString = "chargeUpgrade";
-
-    private const string shieldUpgradeString = "shieldUpgrade";
-
-    private const string megaCoinUpgradeString = "megaCoinUpgrade";
-
-    private const string powerUpDropUpgradeString = "powerUpDropUpgrade";
 
     private const string swipeSensitivityString = "swipeSensitivity";
 
@@ -96,33 +154,26 @@ public class SaveManager : MonoBehaviour
 
     private void GetPlayerData()
     {
+        //create default save data
+        playerSave = new PlayerSave();
 
-        string[] val = { "1", "2", "3", "4", "5" };
-        string sep = ",";
-        string result;
+        PlayerSave cloudSave = LoadCloudData();
+        PlayerSave localSave = LoadLocalData();
+        PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
 
-        result = string.Join(sep, val);
-        Debug.Log(result);
-        //PlayerSave cloudSave = LoadCloudData();
-        //PlayerSave localSave = LoadLocalData();
-        //PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
-
-        //playerSave = compiledSave;
-
+        playerSave = compiledSave;
+        SaveData();
     }
 
     private PlayerSave LoadCloudData()
     {
-        CloudSaving.GatherCloudData();
+        CloudSaving.GatherCloudData();//need to finish how gathering cloud data works
+        //creat default save data
         PlayerSave cloudSave = new PlayerSave();
-        cloudSave.coins = CloudSaving.GetCloudInt(coinsString);
-        cloudSave.highscore = CloudSaving.GetCloudInt(highscoreString);
-        cloudSave.coinsUpgradeLevel = CloudSaving.GetCloudInt(coinUpgradeString);
-        cloudSave.staminaUpgradeLevel = CloudSaving.GetCloudInt(staminaUpgradeString);
-        cloudSave.chargeUpgradeLevel = CloudSaving.GetCloudInt(chargeUpgradeString);
-        cloudSave.shieldUpgradeLevel = CloudSaving.GetCloudInt(shieldUpgradeString);
-        cloudSave.megaCoinUpgradeLevel = CloudSaving.GetCloudInt(megaCoinUpgradeString);
-        cloudSave.powerUpDropUpgradeLevel = CloudSaving.GetCloudInt(powerUpDropUpgradeString);
+        //get save data string
+        string cloudSaveData = CloudSaving.GetCloudString(saveString);
+        //convert the data
+        cloudSave.ConvertDataFromString(cloudSaveData);
 
         return cloudSave;
     }
@@ -130,14 +181,10 @@ public class SaveManager : MonoBehaviour
     private PlayerSave LoadLocalData()
     {
         PlayerSave localSave = new PlayerSave();
-        localSave.coins = LocalSaving.GetLocalInt(coinsString, 0);
-        localSave.highscore = LocalSaving.GetLocalInt(highscoreString, 0);
-        localSave.coinsUpgradeLevel = LocalSaving.GetLocalInt(coinUpgradeString, 0);
-        localSave.staminaUpgradeLevel = LocalSaving.GetLocalInt(staminaUpgradeString, 0);
-        localSave.chargeUpgradeLevel = LocalSaving.GetLocalInt(chargeUpgradeString, 0);
-        localSave.shieldUpgradeLevel = LocalSaving.GetLocalInt(shieldUpgradeString, 1); //shield upgrade is always 1
-        localSave.megaCoinUpgradeLevel = LocalSaving.GetLocalInt(megaCoinUpgradeString, 0);
-        localSave.powerUpDropUpgradeLevel = LocalSaving.GetLocalInt(powerUpDropUpgradeString, 0);
+
+        string localSaveData = LocalSaving.GetLocalString(saveString);
+
+        localSave.ConvertDataFromString(localSaveData);
 
         //only saved local
         swipeSensitivity = LocalSaving.GetLocalFloat(swipeSensitivityString, 0.2f);
@@ -148,13 +195,18 @@ public class SaveManager : MonoBehaviour
         return localSave;
     }
 
+    //compare local and cloud save and give player the best from both
     private PlayerSave CompareCloudAndLocalData(PlayerSave _cloudSave, PlayerSave _localSave)
     {
         PlayerSave compiledSave = new PlayerSave();
         compiledSave.coins = Mathf.Max(_cloudSave.coins, _localSave.coins);
         compiledSave.highscore = Mathf.Max(_cloudSave.highscore, _localSave.highscore);
         compiledSave.coinsUpgradeLevel = Mathf.Max(_cloudSave.coinsUpgradeLevel, _localSave.coinsUpgradeLevel);
-
+        compiledSave.staminaUpgradeLevel = Mathf.Max(_cloudSave.staminaUpgradeLevel, _localSave.staminaUpgradeLevel);
+        compiledSave.chargeUpgradeLevel = Mathf.Max(_cloudSave.chargeUpgradeLevel, _localSave.chargeUpgradeLevel);
+        compiledSave.shieldUpgradeLevel = Mathf.Max(_cloudSave.shieldUpgradeLevel, _localSave.shieldUpgradeLevel);
+        compiledSave.megaCoinUpgradeLevel = Mathf.Max(_cloudSave.megaCoinUpgradeLevel, _localSave.megaCoinUpgradeLevel);
+        compiledSave.powerUpDropUpgradeLevel = Mathf.Max(_cloudSave.powerUpDropUpgradeLevel, _localSave.powerUpDropUpgradeLevel);
 
         return compiledSave;
 
@@ -162,43 +214,39 @@ public class SaveManager : MonoBehaviour
 
     private void SaveData()
     {
-        //save cloud
+        string newSaveData = playerSave.GetSavableData();
+
+        //save string to cloud
+        CloudSaving.SaveCloudString(newSaveData, saveString);
+        CloudSaving.SaveCloudData(); //need to finish how this actually works
+
         //then save local
-    }
-
-    private void SaveCloud()
-    {
-
-    }
-
-    private void SaveLocal()
-    {
-
+        LocalSaving.SaveLocalString(newSaveData, saveString);
     }
 
     public void UpdateScore(int _score)
     {
-        if (_score > highscore)
+        if (_score > playerSave.highscore)
         {
-            PlayerPrefs.SetInt(highscoreString, _score);
-            highscore = _score;
+            playerSave.highscore = _score;
+            SaveData();
         }
     }
 
     public void UpdateCoins(int _change)
     {
-        coins += _change;
-        PlayerPrefs.SetInt(coinsString, coins);
+        playerSave.coins += _change;
+        SaveData();
     }
 
     public int GetCurrentCoins()
     {
-        return coins;
+        return playerSave.coins;
     }
 
     public int GetCurrentHighscore()
     {
-        return highscore;
+        return playerSave.highscore;
     }
 
     public void UpgradePurchased(Upgrades _upgrade)
@@ -206,63 +254,58 @@ public class SaveManager : MonoBehaviour
         switch (_upgrade)
         {
             case Upgrades.CoinsUpgrade:
-                coinsUpgradeLevel++;
-                if (coinsUpgradeLevel > 2)
+                playerSave.coinsUpgradeLevel++;
+                if (playerSave.coinsUpgradeLevel > 2)
                 {
-                    coinsUpgradeLevel = 2;
+                    playerSave.coinsUpgradeLevel = 2;
                 }
-                PlayerPrefs.SetInt(coinUpgradeString, coinsUpgradeLevel);
                 break;
 
             case Upgrades.StaminaUpgrade:
-                staminaUpgradeLevel++;
-                if (staminaUpgradeLevel > 4)
+                playerSave.staminaUpgradeLevel++;
+                if (playerSave.staminaUpgradeLevel > 4)
                 {
-                    staminaUpgradeLevel = 4;
+                    playerSave.staminaUpgradeLevel = 4;
                 }
-                PlayerPrefs.SetInt(staminaUpgradeString, staminaUpgradeLevel);
                 break;
 
             case Upgrades.ChargeUpgrade:
-                chargeUpgradeLevel++;
-                if (chargeUpgradeLevel > 4)
+                playerSave.chargeUpgradeLevel++;
+                if (playerSave.chargeUpgradeLevel > 4)
                 {
-                    chargeUpgradeLevel = 4;
+                    playerSave.chargeUpgradeLevel = 4;
                 }
-                PlayerPrefs.SetInt(chargeUpgradeString, chargeUpgradeLevel);
                 break;
 
             case Upgrades.ShieldUpgrade:
-                shieldUpgradeLevel++;
-                if (shieldUpgradeLevel > 4)
+                playerSave.shieldUpgradeLevel++;
+                if (playerSave.shieldUpgradeLevel > 4)
                 {
-                    shieldUpgradeLevel = 4;
+                    playerSave.shieldUpgradeLevel = 4;
                 }
-                PlayerPrefs.SetInt(shieldUpgradeString, shieldUpgradeLevel);
                 break;
 
             case Upgrades.MegaCoinUpgrade:
-                megaCoinUpgradeLevel++;
-                if (megaCoinUpgradeLevel > 4)
+                playerSave.megaCoinUpgradeLevel++;
+                if (playerSave.megaCoinUpgradeLevel > 4)
                 {
-                    megaCoinUpgradeLevel = 4;
+                    playerSave.megaCoinUpgradeLevel = 4;
                 }
-                PlayerPrefs.SetInt(megaCoinUpgradeString, megaCoinUpgradeLevel);
                 break;
 
             case Upgrades.PowerUpDropUpgrade:
-                powerUpDropUpgradeLevel++;
-                if (powerUpDropUpgradeLevel > 4)
+                playerSave.powerUpDropUpgradeLevel++;
+                if (playerSave.powerUpDropUpgradeLevel > 4)
                 {
-                    powerUpDropUpgradeLevel = 4;
+                    playerSave.powerUpDropUpgradeLevel = 4;
                 }
-                PlayerPrefs.SetInt(powerUpDropUpgradeString, powerUpDropUpgradeLevel);
                 break;
 
             default:
                 Debug.LogError("something wrong in upgradePurchased");
                 break;
         }
+        SaveData();
     }
 
     public int GetUpgradeLevel(Upgrades _upgrade)
@@ -271,27 +314,27 @@ public class SaveManager : MonoBehaviour
         switch (_upgrade)
         {
             case Upgrades.CoinsUpgrade:
-                upgradeLevel = coinsUpgradeLevel;
+                upgradeLevel = playerSave.coinsUpgradeLevel;
                 break;
 
             case Upgrades.StaminaUpgrade:
-                upgradeLevel = staminaUpgradeLevel;
+                upgradeLevel = playerSave.staminaUpgradeLevel;
                 break;
 
             case Upgrades.ChargeUpgrade:
-                upgradeLevel = chargeUpgradeLevel;
+                upgradeLevel = playerSave.chargeUpgradeLevel;
                 break;
 
             case Upgrades.ShieldUpgrade:
-                upgradeLevel = shieldUpgradeLevel;
+                upgradeLevel = playerSave.shieldUpgradeLevel;
                 break;
 
             case Upgrades.MegaCoinUpgrade:
-                upgradeLevel = megaCoinUpgradeLevel;
+                upgradeLevel = playerSave.megaCoinUpgradeLevel;
                 break;
 
             case Upgrades.PowerUpDropUpgrade:
-                upgradeLevel = powerUpDropUpgradeLevel;
+                upgradeLevel = playerSave.powerUpDropUpgradeLevel;
                 break;
 
             default:
@@ -337,7 +380,7 @@ public class SaveManager : MonoBehaviour
 
     public bool CheckIfHighscoore(int _score)
     {
-        if (_score > highscore)
+        if (_score > playerSave.highscore)
         {
             return true;
         }
@@ -350,19 +393,21 @@ public class SaveManager : MonoBehaviour
     //debug options
     public void ResetMoney()
     {
-        coins = 0;
-        PlayerPrefs.SetInt(coinsString, coins);
+        playerSave.coins = 0;
+        SaveData();
     }
 
     public void ResetScore()
     {
-        highscore = 0;
-        PlayerPrefs.SetInt(highscoreString, highscore);
+        playerSave.highscore = 0;
+        SaveData();
     }
 
     public void ClearPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
+        playerSave = new PlayerSave();
+        SaveData();
         SceneLoadingManager.Instance.LoadScene("Initialization");
     }
 

@@ -15,10 +15,16 @@ public static class CloudSaving
     private static extern void iCloudKV_SetFloat(string key, float value);
 
     [DllImport("__Internal")]
+    private static extern void iCloudKV_SetString(string key, string value);
+
+    [DllImport("__Internal")]
     private static extern int iCloudKV_GetInt(string key);
 
     [DllImport("__Internal")]
     private static extern float iCloudKV_GetFloat(string key);
+
+    [DllImport("__Internal")]
+    private static extern string iCloudKV_GetString(string key);
 
     [DllImport("__Internal")]
     private static extern void iCloudKV_Reset();
@@ -43,6 +49,11 @@ public static class CloudSaving
         iCloudKV_SetFloat(_saveString, _value);
     }
 
+    public static void SaveCloudString(string _value, string _saveString)
+    {
+        iCloudKV_SetString(_saveString, _value);
+    }
+
     public static int GetCloudInt(string _saveString)
     {
         int cloudInt = iCloudKV_GetInt(_saveString);
@@ -53,6 +64,12 @@ public static class CloudSaving
     {
         float cloudFloat = iCloudKV_GetFloat(_saveString);
         return cloudFloat;
+    }
+
+    public static string GetCloudString(string _saveString)
+    {
+        string cloudString = iCloudKV_GetString(_saveString);
+        return cloudString;
     }
 
     public static void ResetCloud()
