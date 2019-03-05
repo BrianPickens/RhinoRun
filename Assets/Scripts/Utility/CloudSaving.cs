@@ -29,12 +29,7 @@ public static class CloudSaving
     [DllImport("__Internal")]
     private static extern void iCloudKV_Reset();
 
-    public static void GatherCloudData()
-    {
-        iCloudKV_Synchronize();
-    }
-
-    public static void SaveCloudData()
+    public static void UpdateCloudData()
     {
         iCloudKV_Synchronize();
     }

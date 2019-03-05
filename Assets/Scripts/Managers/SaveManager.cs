@@ -115,6 +115,9 @@ public class SaveManager : MonoBehaviour
         get { return instance; }
     }
 
+    [SerializeField]
+    private CloudSaveAssistant cloudSaveAssistant;
+
     private PlayerSave playerSave;
 
     public const string saveString = "gameSaveData";
@@ -167,15 +170,29 @@ public class SaveManager : MonoBehaviour
 
     private PlayerSave LoadCloudData()
     {
-        CloudSaving.GatherCloudData();//need to finish how gathering cloud data works
+        //NEED TO FIGURE OUT ORDERING FOR THIS
+        //GET CLOUD DATA
+        //need to finish how gathering cloud data works
         //creat default save data
         PlayerSave cloudSave = new PlayerSave();
         //get save data string
-        string cloudSaveData = CloudSaving.GetCloudString(saveString);
+#if UNITY_EDITOR
+        //do nothing if in editor
+//#elif UNITY_IOS
+        cloudSaveAssistant.LoadCloudSaveData(saveString, CloudLoadCompleted);
         //convert the data
-        cloudSave.ConvertDataFromString(cloudSaveData);
+       // cloudSave.ConvertDataFromString(cloudSaveData);
+#endif
 
         return cloudSave;
+    }
+
+    private void CloudLoadCompleted(string _loadedData)
+    {
+        if (_loadedData != null && _loadedData != "loading")
+        {
+            //cloudSave.ConvertDataFromString(cloudSaveData);
+        }
     }
 
     private PlayerSave LoadLocalData()
@@ -195,7 +212,7 @@ public class SaveManager : MonoBehaviour
         return localSave;
     }
 
-    //compare local and cloud save and give player the best from both
+    //compare local and cloud save and give player the best from both - need to change to have a time stamp
     private PlayerSave CompareCloudAndLocalData(PlayerSave _cloudSave, PlayerSave _localSave)
     {
         PlayerSave compiledSave = new PlayerSave();
@@ -216,12 +233,16 @@ public class SaveManager : MonoBehaviour
     {
         string newSaveData = playerSave.GetSavableData();
 
-        //save string to cloud
-        CloudSaving.SaveCloudString(newSaveData, saveString);
-        CloudSaving.SaveCloudData(); //need to finish how this actually works
-
-        //then save local
+#if UNITY_EDITOR
+        //save local
         LocalSaving.SaveLocalString(newSaveData, saveString);
+#elif UNITY_IOS
+        //save local
+        LocalSaving.SaveLocalString(newSaveData, saveString);
+        //save string to cloud
+        cloudSaveAssistant.CreateNewCloudSaveAttempt(newSaveData, saveString);
+#endif
+
     }
 
     public void UpdateScore(int _score)

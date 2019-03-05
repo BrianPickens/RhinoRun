@@ -5,8 +5,7 @@ using System;
 
 //For Tomorrow:
 //finish cloud and local saving!
-//make cloud saving have delay / timing out, and be able to handle multiple save calls at the same time
-//make coudl save not attempt if we are on unity editor, or more like only do it if we are on ios
+//need to figure out ordering for cloud loading so the game waits for the load to finish before conitnueing
 
 //REQUIRED FOR RELEASE
 //tutorial :(
