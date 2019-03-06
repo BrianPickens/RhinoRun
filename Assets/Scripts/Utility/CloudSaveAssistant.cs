@@ -28,8 +28,6 @@ public class CloudSaveAssistant : MonoBehaviour
 
     private List<SaveInfo> saveAttempts = new List<SaveInfo>();
 
-    private Action<string> OnLoadComplete;
-
     public void CreateNewCloudSaveAttempt(string _saveData, string _saveString)
     {
         SaveInfo newSave = new SaveInfo();

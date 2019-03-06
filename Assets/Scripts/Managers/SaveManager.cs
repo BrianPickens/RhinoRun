@@ -201,7 +201,6 @@ public class SaveManager : MonoBehaviour
         PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
 
         playerSave = compiledSave;
-        SaveData();
         dataLoaded = true;
     }
 
