@@ -181,7 +181,7 @@ public class SaveManager : MonoBehaviour
         yield return null;
 
 #elif UNITY_IOS
-
+        Debug.Log("CLOUD LOAD");
         PlayerSave localSave = LoadLocalData();
         PlayerSave cloudSave = new PlayerSave();
         cloudSaveAssistant.LoadCloudSaveData(saveString);

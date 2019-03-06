@@ -47,6 +47,7 @@ public class CloudSaveAssistant : MonoBehaviour
         saving = true;
         for (int i = 0; i < saveAttempts.Count; i++)
         {
+            Debug.Log("attempting cloud save");
             //get the last save string
             string lastSave = CloudSaving.GetCloudString(saveAttempts[i].saveString);
             ///set the new string to cloud
@@ -70,6 +71,7 @@ public class CloudSaveAssistant : MonoBehaviour
             }
 
         }
+        Debug.Log("save ending");
         saveAttempts.Clear();
         saving = false;
     }

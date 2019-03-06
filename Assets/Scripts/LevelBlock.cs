@@ -16,15 +16,12 @@ using System;
 
 //POST COMPLETION SYSTEMS
 //local / cloud saving - priority 1
-//googple play / game center - may also mix with priority 1,2,3 
-//iap
 //leader boards - priority 3
 //ads - priority 2
-//analytics
 //look into batching further
-//daily reward coins
 
 //POLISH
+//fonts!
 //put something in the disatance
 //make meters in 10s instead of singles?
 //ui animations
@@ -37,8 +34,6 @@ using System;
 //maybe do some camera zoom in?
 //loading spinner
 
-
-
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop
 //how fast things speed up
@@ -47,7 +42,11 @@ using System;
 //what are the different levels of difficulty
 //adjust power up and staminia spawn rates
 
-
+//IF I EVER REVIST THIS
+//daily reward coins
+//iap
+//googleplay and game center
+//analytics
 public class LevelBlock : MonoBehaviour
 {
 
