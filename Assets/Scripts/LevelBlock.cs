@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-//finish cloud and local saving!
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -15,7 +14,6 @@ using System;
 //cover up the sides with something
 
 //POST COMPLETION SYSTEMS
-//local / cloud saving - priority 1
 //leader boards - priority 3
 //ads - priority 2
 //look into batching further
@@ -47,6 +45,7 @@ using System;
 //iap
 //googleplay and game center
 //analytics
+//come up with a better way for telling which save is the correct one to keep // remove save exploits
 public class LevelBlock : MonoBehaviour
 {
 

@@ -45,7 +45,7 @@ public class CloudSaveAssistant : MonoBehaviour
         saving = true;
         for (int i = 0; i < saveAttempts.Count; i++)
         {
-            Debug.Log("attempting cloud save");
+            //Debug.Log("attempting cloud save");
             //get the last save string
             string lastSave = CloudSaving.GetCloudString(saveAttempts[i].saveString);
             ///set the new string to cloud
@@ -58,18 +58,18 @@ public class CloudSaveAssistant : MonoBehaviour
             //now as long as the cloud string is equal to what it was before we sent the new string, then it hasn't updated
             while (CloudSaving.GetCloudString(saveAttempts[i].saveString) == lastSave)
             {
-                Debug.Log("saving to cloud");
+                //Debug.Log("saving to cloud");
                 timeOutSaveTime -= Time.deltaTime;
                 if (timeOutSaveTime <= 0)
                 {
-                    Debug.Log("cloud save failed");
+                    //Debug.Log("cloud save failed");
                     break;
                 }
                 yield return null;
             }
 
         }
-        Debug.Log("save ending");
+        //Debug.Log("save ending");
         saveAttempts.Clear();
         saving = false;
     }
@@ -95,11 +95,11 @@ public class CloudSaveAssistant : MonoBehaviour
         //while the loaded data is eqaup to our temp string, the data hasn't loaded
         while (loadedDataString == tempLoadString)
         {
-            Debug.Log("loading");
+           // Debug.Log("loading");
             timeOutLoadTime -= Time.deltaTime;
             if (timeOutLoadTime <= 0)
             {
-                Debug.Log("cloud Load failed");
+                //Debug.Log("cloud Load failed");
                 break;
             }
             yield return null;

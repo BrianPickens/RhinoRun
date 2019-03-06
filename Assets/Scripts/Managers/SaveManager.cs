@@ -181,7 +181,7 @@ public class SaveManager : MonoBehaviour
         yield return null;
 
 #elif UNITY_IOS
-        Debug.Log("CLOUD LOAD");
+       // Debug.Log("CLOUD LOAD");
         PlayerSave localSave = LoadLocalData();
         PlayerSave cloudSave = new PlayerSave();
         cloudSaveAssistant.LoadCloudSaveData(saveString);
@@ -195,7 +195,7 @@ public class SaveManager : MonoBehaviour
         if (loadedCloudData != "loading" && loadedCloudData != null)
         {
             cloudSave.ConvertDataFromString(loadedCloudData);
-            Debug.Log("cloud Data Loaded");
+           // Debug.Log("cloud Data Loaded");
         }
 #endif
         PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
@@ -219,7 +219,7 @@ public class SaveManager : MonoBehaviour
         doubleSwipeOn = LocalSaving.GetLocalBool(doubleSwipeString, 1);
         //end only saved local
 
-        Debug.Log("local data loaded");
+       // Debug.Log("local data loaded");
 
         return localSave;
     }
