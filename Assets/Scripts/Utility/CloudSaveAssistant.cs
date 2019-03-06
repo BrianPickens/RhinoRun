@@ -14,6 +14,12 @@ public class CloudSaveAssistant : MonoBehaviour
 
     private bool saving;
 
+    private string loadedData;
+    public string LoadedData
+    {
+        get { return loadedData; }
+    }
+
     private bool loading;
     public bool Loading
     {
@@ -68,15 +74,15 @@ public class CloudSaveAssistant : MonoBehaviour
         saving = false;
     }
 
-    public void LoadCloudSaveData(string _saveString, Action<string> _callback)
+    public void LoadCloudSaveData(string _saveString)
     {
-        OnLoadComplete = null;
-        OnLoadComplete = _callback;
+        loading = true;
         StartCoroutine(LoadRoutine(_saveString));
     }
 
     private IEnumerator LoadRoutine(string _saveString)
     {
+
         string tempLoadString = "loading";
         string loadedDataString = tempLoadString;
         //updated data
@@ -89,6 +95,7 @@ public class CloudSaveAssistant : MonoBehaviour
         //while the loaded data is eqaup to our temp string, the data hasn't loaded
         while (loadedDataString == tempLoadString)
         {
+            Debug.Log("loading");
             timeOutLoadTime -= Time.deltaTime;
             if (timeOutLoadTime <= 0)
             {
@@ -97,10 +104,8 @@ public class CloudSaveAssistant : MonoBehaviour
             }
             yield return null;
         }
+        loadedData = loadedDataString;
+        loading = false;
 
-        if (OnLoadComplete != null)
-        {
-            OnLoadComplete(loadedDataString);
-        }
     }
 }

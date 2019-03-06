@@ -122,6 +122,8 @@ public class SaveManager : MonoBehaviour
 
     public const string saveString = "gameSaveData";
 
+    private bool dataLoaded = false;
+
     private float swipeSensitivity;
 
     private float doubleSwipeSensitivity;
@@ -150,49 +152,57 @@ public class SaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        GetPlayerData();
-        initialized = true;
+        StartCoroutine(InitializeRoutine());
+
 
     }
 
-    private void GetPlayerData()
+    private IEnumerator InitializeRoutine()
     {
-        //create default save data
+        StartCoroutine(GetPlayerData());
+
+        while (!dataLoaded)
+        {
+            yield return null;
+        }
+
+        initialized = true;
+    }
+
+    private IEnumerator GetPlayerData()
+    {
+
         playerSave = new PlayerSave();
 
-        PlayerSave cloudSave = LoadCloudData();
+#if UNITY_EDITOR
+
         PlayerSave localSave = LoadLocalData();
+        PlayerSave cloudSave = new PlayerSave();
+        yield return null;
+
+#elif UNITY_IOS
+
+        PlayerSave localSave = LoadLocalData();
+        PlayerSave cloudSave = new PlayerSave();
+        cloudSaveAssistant.LoadCloudSaveData(saveString);
+        while (cloudSaveAssistant.Loading)
+        {
+            yield return null;
+        }
+
+        string loadedCloudData = cloudSaveAssistant.LoadedData;
+
+        if (loadedCloudData != "loading" && loadedCloudData != null)
+        {
+            cloudSave.ConvertDataFromString(loadedCloudData);
+            Debug.Log("cloud Data Loaded");
+        }
+#endif
         PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
 
         playerSave = compiledSave;
         SaveData();
-    }
-
-    private PlayerSave LoadCloudData()
-    {
-        //NEED TO FIGURE OUT ORDERING FOR THIS
-        //GET CLOUD DATA
-        //need to finish how gathering cloud data works
-        //creat default save data
-        PlayerSave cloudSave = new PlayerSave();
-        //get save data string
-#if UNITY_EDITOR
-        //do nothing if in editor
-//#elif UNITY_IOS
-        cloudSaveAssistant.LoadCloudSaveData(saveString, CloudLoadCompleted);
-        //convert the data
-       // cloudSave.ConvertDataFromString(cloudSaveData);
-#endif
-
-        return cloudSave;
-    }
-
-    private void CloudLoadCompleted(string _loadedData)
-    {
-        if (_loadedData != null && _loadedData != "loading")
-        {
-            //cloudSave.ConvertDataFromString(cloudSaveData);
-        }
+        dataLoaded = true;
     }
 
     private PlayerSave LoadLocalData()
@@ -203,16 +213,19 @@ public class SaveManager : MonoBehaviour
 
         localSave.ConvertDataFromString(localSaveData);
 
+
         //only saved local
         swipeSensitivity = LocalSaving.GetLocalFloat(swipeSensitivityString, 0.2f);
         doubleSwipeSensitivity = LocalSaving.GetLocalFloat(doubleSwipeSensitivityString, 3f);
         doubleSwipeOn = LocalSaving.GetLocalBool(doubleSwipeString, 1);
         //end only saved local
 
+        Debug.Log("local data loaded");
+
         return localSave;
     }
 
-    //compare local and cloud save and give player the best from both - need to change to have a time stamp
+    //compare local and cloud save and give player the best from both
     private PlayerSave CompareCloudAndLocalData(PlayerSave _cloudSave, PlayerSave _localSave)
     {
         PlayerSave compiledSave = new PlayerSave();

@@ -5,7 +5,6 @@ using System;
 
 //For Tomorrow:
 //finish cloud and local saving!
-//need to figure out ordering for cloud loading so the game waits for the load to finish before conitnueing
 
 //REQUIRED FOR RELEASE
 //tutorial :(
