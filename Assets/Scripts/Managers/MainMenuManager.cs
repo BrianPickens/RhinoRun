@@ -52,7 +52,10 @@ public class MainMenuManager : MonoBehaviour
         InitializeUI();
 
 #if UNITY_IOS
-        InitializeGameCenter();
+        if (!GameCenter.initialLogInAttempted)
+        {
+            InitializeGameCenter();
+        }
 #endif
 
     }

@@ -8,6 +8,8 @@ using System;
 public static class GameCenter
 {
 
+    public static bool initialLogInAttempted;
+
     public static bool loggedIn;
 
     private static string leaderboardId = "1b2r3i4a5n";
@@ -16,6 +18,7 @@ public static class GameCenter
 
     public static void AuthenticateUser(Action<bool> _callback = null)
     {
+        initialLogInAttempted = true;
         Debug.Log("Attempting Authentication");
         if (!loggedIn)
         {
