@@ -43,6 +43,7 @@ public class SettingsUI : MonoBehaviour
     public Action<bool> OnDoubleSwipeChange;
     public Action<int> OnSwipeSensitivityChange;
     public Action<int> OnDoubleSwipeSensitivityChange;
+    public Action OnGameCenterPress;
 
     private bool musicOn;
     private bool soundEffectsOn;
@@ -220,4 +221,11 @@ public class SettingsUI : MonoBehaviour
         }
     }
 
+    public void GameCenterPress()
+    {
+        if (OnGameCenterPress != null)
+        {
+            OnGameCenterPress();
+        }
+    }
 }

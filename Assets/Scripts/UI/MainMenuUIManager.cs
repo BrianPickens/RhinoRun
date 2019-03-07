@@ -26,6 +26,8 @@ public class MainMenuUIManager : MonoBehaviour
     public Action<bool> OnDoubleSwipeChange;
     public Action<int> OnSwipeSensitivityChange;
     public Action<int> OnDoubleSwipeSensitivityChange;
+    public Action OnGameCenterPress;
+    public Action OnLeaderBoardPress;
 
     public void Init()
     {
@@ -46,6 +48,9 @@ public class MainMenuUIManager : MonoBehaviour
 
         settingsUI.OnDoubleSwipeChange = null;
         settingsUI.OnDoubleSwipeChange = DoubleSwipeChange;
+
+        settingsUI.OnGameCenterPress = null;
+        settingsUI.OnGameCenterPress += GameCenterPress;
     }
 
     public void InitializeSoundPreferences(bool _musicOn, bool _soundEffectsOn)
@@ -134,6 +139,22 @@ public class MainMenuUIManager : MonoBehaviour
         if (OnDoubleSwipeChange != null)
         {
             OnDoubleSwipeChange(_change);
+        }
+    }
+
+    private void GameCenterPress()
+    {
+        if (OnGameCenterPress != null)
+        {
+            OnGameCenterPress();
+        }
+    }
+
+    public void LeaderboardPress()
+    {
+        if (OnLeaderBoardPress != null)
+        {
+            OnLeaderBoardPress();
         }
     }
 

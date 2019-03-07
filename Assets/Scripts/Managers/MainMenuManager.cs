@@ -41,9 +41,19 @@ public class MainMenuManager : MonoBehaviour
         mainUI.OnDoubleSwipeChange = null;
         mainUI.OnDoubleSwipeChange += UpdateDoubleSwipeToggle;
 
+        mainUI.OnGameCenterPress = null;
+        mainUI.OnGameCenterPress += InitializeGameCenter;
+
+        mainUI.OnLeaderBoardPress = null;
+        mainUI.OnLeaderBoardPress += ShowLeaderBoard;
+
         mainUI.Init();
 
         InitializeUI();
+
+#if UNITY_IOS
+        InitializeGameCenter();
+#endif
 
     }
 
@@ -72,6 +82,16 @@ public class MainMenuManager : MonoBehaviour
         }
         mainUI.InitializeSoundPreferences(musicOn, soundEffectsOn);
 
+    }
+
+    private void InitializeGameCenter()
+    {
+        GameCenter.AuthenticateUser();
+    }
+
+    private void ShowLeaderBoard()
+    {
+        GameCenter.ShowLeaderBoard();
     }
 
     private void PlayGame()

@@ -261,6 +261,9 @@ public class SaveManager : MonoBehaviour
     {
         if (_score > playerSave.highscore)
         {
+#if UNITY_IOS
+            GameCenter.PostScoreToLeaderBoard(_score);
+#endif
             playerSave.highscore = _score;
             SaveData();
         }
