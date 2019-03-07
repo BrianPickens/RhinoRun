@@ -17,7 +17,7 @@ public static class GameCenter
     public static void AuthenticateUser(Action<bool> _callback = null)
     {
         Debug.Log("Attempting Authentication");
-        if (loggedIn)
+        if (!loggedIn)
         {
             OnAuthenticationComplete = null;
             OnAuthenticationComplete += _callback;
