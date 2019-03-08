@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
+// impletment and test ads adn rewarded ads
 
 //REQUIRED FOR RELEASE
 //tutorial :(

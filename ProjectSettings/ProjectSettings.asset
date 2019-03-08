@@ -728,10 +728,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 2
-  cloudProjectId: 
+  cloudProjectId: 3cf958b4-fd7b-4528-8489-484517ee427f
   framebufferDepthMemorylessMode: 0
-  projectName: Template_3D
-  organizationId: 
+  projectName: Rhino Run
+  organizationId: brian-pickens-7d2e5f6e-1f2b-4ec5-be89-b94a6694e68b
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
