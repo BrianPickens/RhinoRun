@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     private int distance;
 
+    private string currentLoadString;
+
     private void Start()
     {
         Init();
@@ -104,6 +106,8 @@ public class GameManager : MonoBehaviour
         gameUI.InitializeSoundPreferences(musicOn, soundEffectsOn);
 
         character.Initialize(tempSwipeSensitivity, tempDoubleSwipeSensitivity, tempDoubleSwipeOn);
+
+        StaticInfo.AddPlay();
     }
 
     private void GameOver()
@@ -229,28 +233,102 @@ public class GameManager : MonoBehaviour
 
     private void OpenMainMenu()
     {
-        if (SceneLoadingManager.Instance != null)
-        {
-            SceneLoadingManager.Instance.LoadScene("MainMenu");
-        }
-        
+        currentLoadString = "MainMenu";
+        CheckForAd();
     }
 
     private void OpenUpgrades()
     {
-        if (SceneLoadingManager.Instance != null)
-        {
-            SceneLoadingManager.Instance.LoadScene("Upgrades");
-        }
+        currentLoadString = "Upgrades";
+        CheckForAd();
     }
 
     private void Replay()
     {
-        if (SceneLoadingManager.Instance != null)
+        currentLoadString = "PlayScene";
+        CheckForAd();
+    }
+
+    private void CheckForAd()
+    {
+        int numPlays = StaticInfo.GetNumberOfPlays();
+        if (numPlays > 0 && numPlays % 2 == 0)
         {
-            SceneLoadingManager.Instance.LoadScene("PlayScene");
+            if (UnityAds.CheckForAd())
+            {
+                UnityAds.ShowAd(AdCompleted);
+            }
+            else
+            {
+                LoadScene(currentLoadString);
+            }
+        }
+        else
+        {
+            LoadScene(currentLoadString);
         }
     }
+
+    private void CheckForRewardedAd()
+    {
+        if (UnityAds.CheckForRewardedAd())
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    private void AdCompleted(AdType _adType, bool _completed)
+    {
+        switch (_adType)
+        {
+            case AdType.Normal:
+                if (_completed)
+                {
+                    Debug.Log("normal ad completed");
+                }
+                else
+                {
+                    Debug.Log("normal ad fialed");
+                }
+
+                LoadScene(currentLoadString);
+
+                break;
+
+            case AdType.Rewarded:
+
+                if (_completed)
+                {
+                    Debug.Log("rewarded ad completed");
+                }
+                else
+                {
+                    Debug.Log("rewarded ad failed or skiped");
+                }
+
+                break;
+
+            default:
+                Debug.Log("unknown ad type reutrned to ad completed");
+                break;
+        }
+
+    }
+
+
+
+    private void LoadScene(string _scene)
+    {
+        if (SceneLoadingManager.Instance != null)
+        {
+            SceneLoadingManager.Instance.LoadScene(_scene);
+        }
+    }
+
 
     private void UpdateMusicPreference(bool _musicOn)
     {

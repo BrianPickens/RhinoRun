@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-// impletment and test ads adn rewarded ads
+// impletment and test ads adn rewarded ads - added rewarded ad button, need to make it function adn give reward
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -15,20 +15,19 @@ using System;
 //cover up the sides with something
 
 //POST COMPLETION SYSTEMS
-//leader boards - priority 3
 //ads - priority 2
 //look into batching further
 
 //POLISH
 //fonts!
-//put something in the disatance
+//put something in the disatance and on sides
 //make meters in 10s instead of singles?
 //ui animations
 //sounds
 //particles
 //music
 //power up animations
-//background variability
+//background variability / sides varaibility 
 //lighting
 //maybe do some camera zoom in?
 //loading spinner
@@ -41,10 +40,13 @@ using System;
 //what are the different levels of difficulty
 //adjust power up and staminia spawn rates
 
+//GAMEPLAY HELP
+//make more variation of level blocks that more barriers
+
 //IF I EVER REVIST THIS
 //daily reward coins
 //iap
-//googleplay and game center
+//googleplay
 //analytics
 //come up with a better way for telling which save is the correct one to keep // remove save exploits
 public class LevelBlock : MonoBehaviour

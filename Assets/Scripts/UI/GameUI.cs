@@ -16,6 +16,9 @@ public class GameUI : MonoBehaviour
     private Text pointsDisplay;
 
     [SerializeField]
+    private GameObject coinsHolder;
+
+    [SerializeField]
     private PowerUpTimer shieldTimer;
 
     [SerializeField]
@@ -23,6 +26,15 @@ public class GameUI : MonoBehaviour
 
     [SerializeField]
     private GameObject unlimitedChargeMeter;
+
+    [SerializeField]
+    private GameObject chargeMeter;
+
+    [SerializeField]
+    private GameObject settingsButton;
+
+    [SerializeField]
+    private GameObject chargeButton;
 
     [SerializeField]
     LoadingTransition loadingScreen;
@@ -75,6 +87,12 @@ public class GameUI : MonoBehaviour
 
     public void DisplayEnding(int _points, int _distance, bool _isHighscore)
     {
+        HideSettingsButton();
+        HideCoins();
+        HideChargeButton();
+        HideChargeMeter();
+        HideUnlimitedChargeTimer();
+        HideShieldTimer();
         endingDisplay.OpenEndingDisplay(_points, _distance, _isHighscore);
     }
 
@@ -107,6 +125,23 @@ public class GameUI : MonoBehaviour
         if (OnReplayPress != null)
         {
             StartCoroutine(SceneLoadDelay(OnReplayPress));
+        }
+    }
+
+    public void MultiplyCoinsButton()
+    {
+        //show multipley coins pop up
+    }
+
+    public void MultiplyCoinsResponse(bool _confirm)
+    {
+        if (_confirm)
+        {
+            //show ad
+        }
+        else
+        {
+            //hide popup
         }
     }
 
@@ -148,6 +183,26 @@ public class GameUI : MonoBehaviour
     public void HideUnlimitedChargeMeter()
     {
         unlimitedChargeMeter.SetActive(false);
+    }
+
+    public void HideChargeButton()
+    {
+        chargeButton.gameObject.SetActive(false);
+    }
+
+    public void HideChargeMeter()
+    {
+        chargeMeter.gameObject.SetActive(false);
+    }
+
+    public void HideSettingsButton()
+    {
+        settingsButton.gameObject.SetActive(false);
+    }
+
+    public void HideCoins()
+    {
+        coinsHolder.gameObject.SetActive(false);
     }
 
     private IEnumerator SceneLoadDelay(Action _callback)
