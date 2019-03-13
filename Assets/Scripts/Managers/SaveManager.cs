@@ -136,6 +136,11 @@ public class SaveManager : MonoBehaviour
 
     private const string doubleSwipeString = "doubleSwipe";
 
+    private int levelOneCost = 100;
+    private int levelTwoCost = 200;
+    private int levelThreeCost = 300;
+    private int levelFourCost = 400;
+
     private bool initialized;
     public bool Initialized
     {
@@ -198,9 +203,9 @@ public class SaveManager : MonoBehaviour
            // Debug.Log("cloud Data Loaded");
         }
 #endif
-        PlayerSave compiledSave = CompareCloudAndLocalData(cloudSave, localSave);
+        PlayerSave bestSave = CompareCloudAndLocalData(cloudSave, localSave);
 
-        playerSave = compiledSave;
+        playerSave = bestSave;
         dataLoaded = true;
     }
 
@@ -224,20 +229,72 @@ public class SaveManager : MonoBehaviour
         return localSave;
     }
 
-    //compare local and cloud save and give player the best from both
+    //compare local and cloud save and give player the save with the most value
     private PlayerSave CompareCloudAndLocalData(PlayerSave _cloudSave, PlayerSave _localSave)
     {
-        PlayerSave compiledSave = new PlayerSave();
-        compiledSave.coins = Mathf.Max(_cloudSave.coins, _localSave.coins);
-        compiledSave.highscore = Mathf.Max(_cloudSave.highscore, _localSave.highscore);
-        compiledSave.coinsUpgradeLevel = Mathf.Max(_cloudSave.coinsUpgradeLevel, _localSave.coinsUpgradeLevel);
-        compiledSave.staminaUpgradeLevel = Mathf.Max(_cloudSave.staminaUpgradeLevel, _localSave.staminaUpgradeLevel);
-        compiledSave.chargeUpgradeLevel = Mathf.Max(_cloudSave.chargeUpgradeLevel, _localSave.chargeUpgradeLevel);
-        compiledSave.shieldUpgradeLevel = Mathf.Max(_cloudSave.shieldUpgradeLevel, _localSave.shieldUpgradeLevel);
-        compiledSave.megaCoinUpgradeLevel = Mathf.Max(_cloudSave.megaCoinUpgradeLevel, _localSave.megaCoinUpgradeLevel);
-        compiledSave.powerUpDropUpgradeLevel = Mathf.Max(_cloudSave.powerUpDropUpgradeLevel, _localSave.powerUpDropUpgradeLevel);
 
-        return compiledSave;
+        int localSaveValue = CompilePlayerSaveValue(_localSave);
+        int cloudSaveValue = CompilePlayerSaveValue(_cloudSave);
+
+        if (localSaveValue >= cloudSaveValue)
+        {
+            return _localSave;
+        }
+        else
+        {
+            return _cloudSave;
+        }
+
+    }
+
+    //determines the coin value of a player save
+    private int CompilePlayerSaveValue(PlayerSave _playersave)
+    {
+        int value = 0;
+
+        value += _playersave.coins;
+        value += GetUpgradeValue(_playersave.coinsUpgradeLevel);
+        value += GetUpgradeValue(_playersave.staminaUpgradeLevel);
+        value += GetUpgradeValue(_playersave.chargeUpgradeLevel);
+        value += GetUpgradeValue(_playersave.shieldUpgradeLevel);
+        value += GetUpgradeValue(_playersave.megaCoinUpgradeLevel);
+        value += GetUpgradeValue(_playersave.powerUpDropUpgradeLevel);
+
+        return value;
+    }
+
+    private int GetUpgradeValue(int _level)
+    {
+        int upgradeValue = 0;
+        switch (_level)
+        {
+            case 0:
+                upgradeValue = 0;
+                break;
+
+            case 1:
+                upgradeValue = levelOneCost;
+                break;
+
+            case 2:
+                upgradeValue = levelOneCost + levelTwoCost;
+                break;
+
+            case 3:
+                upgradeValue = levelOneCost + levelTwoCost + levelThreeCost;
+                break;
+
+            case 4:
+                upgradeValue = levelOneCost + levelTwoCost + levelThreeCost + levelFourCost;
+                break;
+
+            default:
+                upgradeValue = 0;
+                Debug.Log("invalid level passed to GetUpgradeValue");
+                break;
+        }
+
+        return upgradeValue;
 
     }
 

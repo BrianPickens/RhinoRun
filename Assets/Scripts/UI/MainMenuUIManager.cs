@@ -47,7 +47,7 @@ public class MainMenuUIManager : MonoBehaviour
         settingsUI.OnDoubleSwipeSensitivityChange += DoubleSwipeSensitivityChange;
 
         settingsUI.OnDoubleSwipeChange = null;
-        settingsUI.OnDoubleSwipeChange = DoubleSwipeChange;
+        settingsUI.OnDoubleSwipeChange += DoubleSwipeChange;
 
         settingsUI.OnGameCenterPress = null;
         settingsUI.OnGameCenterPress += GameCenterPress;

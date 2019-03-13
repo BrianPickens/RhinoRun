@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
         gameUI.OnDoubleSwipeChange = null;
         gameUI.OnDoubleSwipeChange += UpdateDoubleSwipeToggle;
 
+        gameUI.OnRewardedAdConfirmation = null;
+        gameUI.OnRewardedAdConfirmation += CheckForRewardedAd;
+
         levelGenerator.OnBlockPassed = null;
         levelGenerator.OnBlockPassed += BlockCompleted;
 
@@ -256,6 +259,7 @@ public class GameManager : MonoBehaviour
         {
             if (UnityAds.CheckForAd())
             {
+                SoundManager.Instance.FadeOutBackgroundMusic(1f);
                 UnityAds.ShowAd(AdCompleted);
             }
             else
@@ -273,11 +277,12 @@ public class GameManager : MonoBehaviour
     {
         if (UnityAds.CheckForRewardedAd())
         {
-
+            SoundManager.Instance.FadeOutBackgroundMusic(1f);
+            UnityAds.ShowRewardedAd(AdCompleted);
         }
         else
         {
-
+            gameUI.DisplayRewardedAdResult("No Ads Avaliable");
         }
     }
 
@@ -288,11 +293,13 @@ public class GameManager : MonoBehaviour
             case AdType.Normal:
                 if (_completed)
                 {
+                    SoundManager.Instance.FadeInBackgroundMusic(1f);
                     Debug.Log("normal ad completed");
                 }
                 else
                 {
-                    Debug.Log("normal ad fialed");
+                    SoundManager.Instance.FadeInBackgroundMusic(1f);
+                    Debug.Log("normal ad failed");
                 }
 
                 LoadScene(currentLoadString);
@@ -303,11 +310,21 @@ public class GameManager : MonoBehaviour
 
                 if (_completed)
                 {
+                    if (SaveManager.Instance != null)
+                    {
+                        SaveManager.Instance.UpdateCoins(points);
+                    }
+                    SoundManager.Instance.FadeInBackgroundMusic(1f);
+                    gameUI.DisableMultiplierButton();
+                    string resultString = "You gained a bonus " + points + " coins!";
+                    gameUI.DisplayRewardedAdResult(resultString);
                     Debug.Log("rewarded ad completed");
                 }
                 else
                 {
-                    Debug.Log("rewarded ad failed or skiped");
+                    SoundManager.Instance.FadeInBackgroundMusic(1f);
+                    gameUI.DisplayRewardedAdResult("Rewarded Ad Failed");
+                    Debug.Log("rewarded ad failed or skipped");
                 }
 
                 break;

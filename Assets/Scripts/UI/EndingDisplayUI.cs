@@ -22,6 +22,9 @@ public class EndingDisplayUI : MonoBehaviour
     private GameObject coinsDisplay;
 
     [SerializeField]
+    private GameObject multiplierButton;
+
+    [SerializeField]
     private GameObject buttonsPanel;
 
     [SerializeField]
@@ -40,6 +43,11 @@ public class EndingDisplayUI : MonoBehaviour
         bestDistance = _isHighscore;
         gameObject.SetActive(true);
         myAnimator.SetTrigger("Open");
+    }
+
+    public void DisableMultiplierButton()
+    {
+        multiplierButton.GetComponent<Button>().interactable = false;
     }
 
     public void StartEndingSequence()
@@ -82,8 +90,12 @@ public class EndingDisplayUI : MonoBehaviour
             t += Time.deltaTime * 0.8f;
             yield return null;
         }
+
         endingPointsText.text = "" + finalPoints;
 
+        multiplierButton.SetActive(true);
+
+        yield return new WaitForSeconds(0.25f);
         buttonsPanel.SetActive(true);
     }
 

@@ -37,6 +37,12 @@ public class GameUI : MonoBehaviour
     private GameObject chargeButton;
 
     [SerializeField]
+    private RewardedAdPopup rewardedAdPopup;
+
+    [SerializeField]
+    private RewardedAdResult rewardedAdResult;
+
+    [SerializeField]
     LoadingTransition loadingScreen;
 
     public Action OnMenuPress;
@@ -47,6 +53,7 @@ public class GameUI : MonoBehaviour
     public Action<bool> OnDoubleSwipeChange;
     public Action<int> OnSwipeSensitivityChange;
     public Action<int> OnDoubleSwipeSensitivityChange;
+    public Action OnRewardedAdConfirmation;
 
     public void Init()
     {
@@ -66,7 +73,10 @@ public class GameUI : MonoBehaviour
         settingsUI.OnDoubleSwipeSensitivityChange += DoubleSwipeSensitivityChange;
 
         settingsUI.OnDoubleSwipeChange = null;
-        settingsUI.OnDoubleSwipeChange = DoubleSwipeChange;
+        settingsUI.OnDoubleSwipeChange += DoubleSwipeChange;
+
+        rewardedAdPopup.OnRewardedAdResponse = null;
+        rewardedAdPopup.OnRewardedAdResponse += MultiplyCoinsResponse;
 
     }
 
@@ -130,19 +140,28 @@ public class GameUI : MonoBehaviour
 
     public void MultiplyCoinsButton()
     {
-        //show multipley coins pop up
+        rewardedAdPopup.OpenRewardedAdPopup();
     }
 
     public void MultiplyCoinsResponse(bool _confirm)
     {
         if (_confirm)
         {
-            //show ad
+            if (OnRewardedAdConfirmation != null)
+            {
+                OnRewardedAdConfirmation();
+            }
         }
-        else
-        {
-            //hide popup
-        }
+    }
+
+    public void DisplayRewardedAdResult(string _result)
+    {
+        rewardedAdResult.SetInfo(_result);
+    }
+
+    public void DisableMultiplierButton()
+    {
+        endingDisplay.DisableMultiplierButton();
     }
 
     public void DisplayShieldTimer( )

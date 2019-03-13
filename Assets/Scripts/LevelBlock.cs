@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-// impletment and test ads adn rewarded ads - added rewarded ad button, need to make it function adn give reward
+//iap or sound, whatever you are feeling
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -15,8 +15,8 @@ using System;
 //cover up the sides with something
 
 //POST COMPLETION SYSTEMS
-//ads - priority 2
-//look into batching further
+//optimization - batching
+//remove ads iap
 
 //POLISH
 //fonts!
@@ -45,10 +45,10 @@ using System;
 
 //IF I EVER REVIST THIS
 //daily reward coins
-//iap
 //googleplay
 //analytics
-//come up with a better way for telling which save is the correct one to keep // remove save exploits
+
+
 public class LevelBlock : MonoBehaviour
 {
 
