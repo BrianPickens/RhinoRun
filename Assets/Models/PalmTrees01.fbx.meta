@@ -1,25 +1,77 @@
 fileFormatVersion: 2
-guid: 7eb1ee1d047aaed4997b6e3a6b1ca1a0
+guid: 72876a11e2553ce4caa5ff2e1430c47e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: Diamond Material
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Diamond
+    100000: PalmTree.002
+    100002: PalmTree.003
+    100004: PalmTree.004
+    100006: PalmTree.005
+    100008: PalmTree.006
+    100010: PalmTree.007
+    100012: PalmTree.008
+    100014: PalmTree.009
+    100016: PalmTree.010
+    100018: PalmTree.011
+    100020: PalmTree.012
+    100022: //RootNode
+    400000: PalmTree.002
+    400002: PalmTree.003
+    400004: PalmTree.004
+    400006: PalmTree.005
+    400008: PalmTree.006
+    400010: PalmTree.007
+    400012: PalmTree.008
+    400014: PalmTree.009
+    400016: PalmTree.010
+    400018: PalmTree.011
+    400020: PalmTree.012
+    400022: //RootNode
+    2100000: Tree Material
+    2300000: PalmTree.002
+    2300002: PalmTree.003
+    2300004: PalmTree.004
+    2300006: PalmTree.005
+    2300008: PalmTree.006
+    2300010: PalmTree.007
+    2300012: PalmTree.008
+    2300014: PalmTree.009
+    2300016: PalmTree.010
+    2300018: PalmTree.011
+    2300020: PalmTree.012
+    3300000: PalmTree.002
+    3300002: PalmTree.003
+    3300004: PalmTree.004
+    3300006: PalmTree.005
+    3300008: PalmTree.006
+    3300010: PalmTree.007
+    3300012: PalmTree.008
+    3300014: PalmTree.009
+    3300016: PalmTree.010
+    3300018: PalmTree.011
+    3300020: PalmTree.012
+    4300000: PalmTree.012
+    4300002: PalmTree.011
+    4300004: PalmTree.010
+    4300006: PalmTree.009
+    4300008: PalmTree.008
+    4300010: PalmTree.007
+    4300012: PalmTree.006
+    4300014: PalmTree.005
+    4300016: PalmTree.004
+    4300018: PalmTree.003
+    4300020: PalmTree.002
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Diamond Material
-    second: {fileID: 2100000, guid: d451eeec1d4642042b77f247d612246d, type: 2}
+      name: Tree Material
+    second: {fileID: 2100000, guid: 731ea4341586438498815f78d63af7cf, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Rhino Diamond Texture
-    second: {fileID: 2800000, guid: fe9c7fa2663c7a24a939e71ee5d42590, type: 3}
+      name: PalmTree Texture
+    second: {fileID: 2800000, guid: 1ca57cb1675ba4f48abce0bbfbe0ebb1, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
