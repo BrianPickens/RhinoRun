@@ -99,6 +99,7 @@ public class SettingsUI : MonoBehaviour
 
     public void OpenSettings()
     {
+        PlayClickSound();
         gameObject.SetActive(true);
         myAnimator.SetTrigger("MoveIn");
         Time.timeScale = 0;
@@ -106,6 +107,7 @@ public class SettingsUI : MonoBehaviour
 
     public void ExitSettings()
     {
+        PlayClickSound();
         myAnimator.SetTrigger("MoveOut");
     }
 
@@ -117,6 +119,7 @@ public class SettingsUI : MonoBehaviour
 
     public void MusicPress()
     {
+        PlayClickSound();
         if (musicOn)
         {
             musicOn = false;
@@ -136,6 +139,7 @@ public class SettingsUI : MonoBehaviour
 
     public void SoundEffectsPress()
     {
+        PlayClickSound();
         if (soundEffectsOn)
         {
             soundEffectsOn = false;
@@ -156,16 +160,19 @@ public class SettingsUI : MonoBehaviour
 
     public void OpenCredits()
     {
+        PlayClickSound();
         creditsUI.SetActive(true);
     }
 
     public void CloseCredits()
     {
+        PlayClickSound();
         creditsUI.SetActive(false);
     }
 
     public void SwipeSensitivityChange(int _change)
     {
+        PlayClickSound();
         swipeSensitivity += _change;
         if (swipeSensitivity <= 0)
         {
@@ -185,6 +192,7 @@ public class SettingsUI : MonoBehaviour
 
     public void DoubleSwipeToggle()
     {
+        PlayClickSound();
         if (doubleSwipeOn)
         {
             doubleSwipeOn = false;
@@ -204,6 +212,7 @@ public class SettingsUI : MonoBehaviour
 
     public void DoubleSwipeSensitivtyChange(int _change)
     {
+        PlayClickSound();
         doubleSwipeSensitivity += _change;
         if (doubleSwipeSensitivity <= 0)
         {
@@ -223,9 +232,18 @@ public class SettingsUI : MonoBehaviour
 
     public void GameCenterPress()
     {
+        PlayClickSound();
         if (OnGameCenterPress != null)
         {
             OnGameCenterPress();
+        }
+    }
+
+    private void PlayClickSound()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayClickSound();
         }
     }
 }

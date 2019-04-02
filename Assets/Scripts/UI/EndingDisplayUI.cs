@@ -30,6 +30,9 @@ public class EndingDisplayUI : MonoBehaviour
     [SerializeField]
     private GameObject bestDisplay;
 
+    [SerializeField]
+    private AudioClip clappingSounds;
+
     private int finalPoints;
 
     private int finalDistance;
@@ -57,7 +60,7 @@ public class EndingDisplayUI : MonoBehaviour
 
     private IEnumerator EndingSequence()
     {
-
+        PlaySound(clappingSounds);
         yield return new WaitForSeconds(0.5f);
         float currentDistance = 0f;
         float t = 0f;
@@ -97,6 +100,14 @@ public class EndingDisplayUI : MonoBehaviour
 
         yield return new WaitForSeconds(0.25f);
         buttonsPanel.SetActive(true);
+    }
+
+    private void PlaySound(AudioClip _clip)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(_clip);
+        }
     }
 
 }

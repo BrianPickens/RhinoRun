@@ -82,6 +82,12 @@ public class Character : MonoBehaviour {
     [SerializeField]
     private Sprite chargeOffSprite;
 
+    [SerializeField]
+    private AudioClip hitFenceSound;
+
+    [SerializeField]
+    private AudioClip hitRockSound;
+
     private Vector3 touchOrigin = Vector3.zero;
     private Vector3 touchCurrent = Vector3.zero;
 
@@ -383,6 +389,7 @@ public class Character : MonoBehaviour {
         if (_obstacle.MyObstacleType == ObstacleType.Barrier)
         {
             screenShake.Shake();
+            PlaySound(hitRockSound);
             if (shieldActive)
             {
                 _obstacle.Destroyed();
@@ -399,10 +406,12 @@ public class Character : MonoBehaviour {
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
             screenShake.Shake();
+            PlaySound(hitFenceSound);
             _obstacle.Destroyed();
         }
         else
         {
+            PlaySound(hitRockSound);
             screenShake.Shake();
             if (shieldActive)
             {
@@ -434,6 +443,13 @@ public class Character : MonoBehaviour {
         allowDoubleMove = _status;
     }
 
+    private void PlaySound(AudioClip _clip)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(_clip);
+        }
+    }
 
     //debug options
     public void DoubleMove()

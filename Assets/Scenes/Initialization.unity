@@ -465,6 +465,7 @@ MonoBehaviour:
   backgroundMusicSource: {fileID: 1182434320}
   minPitch: 0.97
   maxPitch: 1.03
+  clickSound: {fileID: 8300000, guid: b7209254c242f054fa26b541b58a167e, type: 3}
 --- !u!4 &1182434319
 Transform:
   m_ObjectHideFlags: 0

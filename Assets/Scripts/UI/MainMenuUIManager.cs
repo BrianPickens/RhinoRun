@@ -65,6 +65,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void PlayPress()
     {
+        PlayClickSound();
         loadingScreen.ShowLoading();
         if (OnPlayPress != null)
         {
@@ -74,6 +75,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void UpgradesPress()
     {
+        PlayClickSound();
         loadingScreen.ShowLoading();
         if (OnUpgradesPress != null)
         {
@@ -152,9 +154,18 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void LeaderboardPress()
     {
+        PlayClickSound();
         if (OnLeaderBoardPress != null)
         {
             OnLeaderBoardPress();
+        }
+    }
+
+    private void PlayClickSound()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayClickSound();
         }
     }
 

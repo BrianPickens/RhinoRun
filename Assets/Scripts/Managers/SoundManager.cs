@@ -22,6 +22,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private float maxPitch;
 
+    [SerializeField]
+    private AudioClip clickSound;
+
     private bool musicOn;
     public bool MusicOn
     {
@@ -111,6 +114,11 @@ public class SoundManager : MonoBehaviour
             soundSource.Play();
             StartCoroutine(ResetSoundObject(soundObj, _clip.length));
         }
+    }
+
+    public void PlayClickSound()
+    {
+        PlaySoundEffect(clickSound);
     }
 
     public void FadeOutBackgroundMusic(float _fadeSpeed)

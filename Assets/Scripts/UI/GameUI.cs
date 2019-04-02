@@ -113,6 +113,7 @@ public class GameUI : MonoBehaviour
 
     public void MainMenuButton()
     {
+        PlayClickSound();
         loadingScreen.ShowLoading();
         if (OnMenuPress != null)
         {
@@ -122,6 +123,7 @@ public class GameUI : MonoBehaviour
 
     public void UpgradesButton()
     {
+        PlayClickSound();
         loadingScreen.ShowLoading();
         if (OnUpgradesPress != null)
         {
@@ -131,6 +133,7 @@ public class GameUI : MonoBehaviour
 
     public void ReplayButton()
     {
+        PlayClickSound();
         loadingScreen.ShowLoading();
         if (OnReplayPress != null)
         {
@@ -140,11 +143,13 @@ public class GameUI : MonoBehaviour
 
     public void MultiplyCoinsButton()
     {
+        PlayClickSound();
         rewardedAdPopup.OpenRewardedAdPopup();
     }
 
     public void MultiplyCoinsResponse(bool _confirm)
     {
+        PlayClickSound();
         if (_confirm)
         {
             if (OnRewardedAdConfirmation != null)
@@ -271,4 +276,11 @@ public class GameUI : MonoBehaviour
         }
     }
 
+    private void PlayClickSound()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayClickSound();
+        }
+    }
 }

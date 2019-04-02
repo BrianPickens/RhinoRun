@@ -20,7 +20,7 @@ using System;
 
 //POLISH
 //fonts!
-//put something in the disatance and on sides
+//put something in the disatance
 //make meters in 10s instead of singles?
 //ui animations
 //sounds

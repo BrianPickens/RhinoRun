@@ -52,6 +52,7 @@ public class UpgradesUIManager : MonoBehaviour
 
     public void MenuButtonPress()
     {
+        PlayClickSound();
         loadingScreen.ShowLoading();
         if (OnMenuPress != null)
         {
@@ -118,6 +119,7 @@ public class UpgradesUIManager : MonoBehaviour
 
     public void PurchasedConfirmed()
     {
+        PlayClickSound();
         purchaseConfirmPopUp.gameObject.SetActive(false);
         screenBlocker.gameObject.SetActive(false);
         if (OnPurchaseConfirm != null)
@@ -128,6 +130,7 @@ public class UpgradesUIManager : MonoBehaviour
 
     public void PurchaseDenied()
     {
+        PlayClickSound();
         purchaseConfirmPopUp.gameObject.SetActive(false);
         screenBlocker.gameObject.SetActive(false);
     }
@@ -140,12 +143,14 @@ public class UpgradesUIManager : MonoBehaviour
 
     public void ClosePurchaseFailure()
     {
+        PlayClickSound();
         purchaseFailPopUp.gameObject.SetActive(false);
         screenBlocker.gameObject.SetActive(false);
     }
 
     private void BuyUpgrade(Upgrades _upgradeType, int _price)
     {
+        PlayClickSound();
         if (OnUpgradePurchase != null)
         {
             OnUpgradePurchase(_upgradeType, _price);
@@ -156,5 +161,13 @@ public class UpgradesUIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _callback();
+    }
+
+    private void PlayClickSound()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayClickSound();
+        }
     }
 }
