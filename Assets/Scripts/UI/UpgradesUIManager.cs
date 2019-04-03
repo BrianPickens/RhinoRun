@@ -40,6 +40,9 @@ public class UpgradesUIManager : MonoBehaviour
     [SerializeField]
     private Text coinText;
 
+    [SerializeField]
+    private AudioClip upgradeSound;
+
     public Action OnMenuPress;
     public Action<Upgrades, int> OnUpgradePurchase;
     public Action OnPurchaseConfirm;
@@ -119,7 +122,7 @@ public class UpgradesUIManager : MonoBehaviour
 
     public void PurchasedConfirmed()
     {
-        PlayClickSound();
+        PlaySound(upgradeSound);
         purchaseConfirmPopUp.gameObject.SetActive(false);
         screenBlocker.gameObject.SetActive(false);
         if (OnPurchaseConfirm != null)
@@ -161,6 +164,14 @@ public class UpgradesUIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         _callback();
+    }
+
+    private void PlaySound(AudioClip _clip)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(_clip);
+        }
     }
 
     private void PlayClickSound()

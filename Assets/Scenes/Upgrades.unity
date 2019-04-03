@@ -561,6 +561,7 @@ MonoBehaviour:
   powerUpDropUpgradeUI: {fileID: 1853990620}
   coinUpgradeUI: {fileID: 1810458656}
   coinText: {fileID: 1515755765}
+  upgradeSound: {fileID: 8300000, guid: 7a87a58549de0be4597f7a75628c4f49, type: 3}
 --- !u!1 &127969578
 GameObject:
   m_ObjectHideFlags: 0

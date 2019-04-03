@@ -33,6 +33,9 @@ public class EndingDisplayUI : MonoBehaviour
     [SerializeField]
     private AudioClip clappingSounds;
 
+    [SerializeField]
+    private AudioClip popSound;
+
     private int finalPoints;
 
     private int finalDistance;
@@ -78,6 +81,7 @@ public class EndingDisplayUI : MonoBehaviour
 
         if (bestDistance)
         {
+            PlaySound(popSound);
             bestDisplay.SetActive(true);
         }
 
@@ -96,9 +100,11 @@ public class EndingDisplayUI : MonoBehaviour
 
         endingPointsText.text = "" + finalPoints;
 
+        PlaySound(popSound);
         multiplierButton.SetActive(true);
 
         yield return new WaitForSeconds(0.25f);
+        PlaySound(popSound);
         buttonsPanel.SetActive(true);
     }
 

@@ -1685,6 +1685,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 787352027}
+  entranceSound: {fileID: 8300000, guid: 20f6528366a0a384b9c75af9d964267c, type: 3}
+  exitSound: {fileID: 8300000, guid: 7ea86fffaf90d7e4bb06d9a066f34c00, type: 3}
 --- !u!114 &787352029
 MonoBehaviour:
   m_ObjectHideFlags: 0

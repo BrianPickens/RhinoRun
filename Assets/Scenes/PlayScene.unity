@@ -378,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoText: {fileID: 19760285}
   myAnimator: {fileID: 23056652}
+  rewardGivenSound: {fileID: 8300000, guid: 7a87a58549de0be4597f7a75628c4f49, type: 3}
 --- !u!95 &23056652
 Animator:
   serializedVersion: 3
@@ -3541,6 +3542,7 @@ MonoBehaviour:
   rewardedAdPopup: {fileID: 122215094}
   rewardedAdResult: {fileID: 23056651}
   loadingScreen: {fileID: 1528121301}
+  doubleCoinsSound: {fileID: 0}
 --- !u!114 &489646460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114008835019772742, guid: 9dd00c67d5fc689439960d5f3e513fc7,
@@ -10680,7 +10682,7 @@ MonoBehaviour:
   chargeButton: {fileID: 1984838011}
   chargeOnSprite: {fileID: 21300000, guid: e7acde246b90221438e5bec18e211376, type: 3}
   chargeOffSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  hitFenceSound: {fileID: 8300000, guid: 89d5012ffcc3f2d499805a46240427e9, type: 3}
+  hitFenceSound: {fileID: 8300000, guid: 6e49f0a1ea29ab64aa80b0c5eb364184, type: 3}
   hitRockSound: {fileID: 8300000, guid: 70c473d43969efc4c96e8a714fa57624, type: 3}
 --- !u!54 &987921828
 Rigidbody:
@@ -20165,6 +20167,7 @@ MonoBehaviour:
   buttonsPanel: {fileID: 374921052}
   bestDisplay: {fileID: 560940616}
   clappingSounds: {fileID: 8300000, guid: 0e2a1d25f311de947b81658eb0ca4600, type: 3}
+  popSound: {fileID: 8300000, guid: 429d9214835cf93459f368791ef5bca2, type: 3}
 --- !u!224 &1979823293
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20472,6 +20475,12 @@ MonoBehaviour:
   powerUpsManager: {fileID: 1124791689}
   gameUI: {fileID: 479450488}
   particleManager: {fileID: 1950957607}
+  coinCollectLowSound: {fileID: 8300000, guid: c8503f411a20d6948b89db2df343d23a, type: 3}
+  coinCollectMidSound: {fileID: 8300000, guid: a6f681b5909dde74abf69787339d26a2, type: 3}
+  coinCollectHighSound: {fileID: 8300000, guid: c6c09eda426af5c4094e8dab228b092a,
+    type: 3}
+  powerUpSound: {fileID: 8300000, guid: e53674430ed68d945a73a64fdf56d3b0, type: 3}
+  staminaSound: {fileID: 8300000, guid: 7a87a58549de0be4597f7a75628c4f49, type: 3}
 --- !u!4 &2001693233
 Transform:
   m_ObjectHideFlags: 0

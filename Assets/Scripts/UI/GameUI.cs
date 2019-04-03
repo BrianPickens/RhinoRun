@@ -45,6 +45,9 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     LoadingTransition loadingScreen;
 
+    [SerializeField]
+    private AudioClip doubleCoinsSound;
+
     public Action OnMenuPress;
     public Action OnUpgradesPress;
     public Action OnReplayPress;
@@ -54,6 +57,7 @@ public class GameUI : MonoBehaviour
     public Action<int> OnSwipeSensitivityChange;
     public Action<int> OnDoubleSwipeSensitivityChange;
     public Action OnRewardedAdConfirmation;
+    public Action OnGameCenterPress;
 
     public void Init()
     {
@@ -74,6 +78,9 @@ public class GameUI : MonoBehaviour
 
         settingsUI.OnDoubleSwipeChange = null;
         settingsUI.OnDoubleSwipeChange += DoubleSwipeChange;
+
+        settingsUI.OnGameCenterPress = null;
+        settingsUI.OnGameCenterPress += GameCenterPress;
 
         rewardedAdPopup.OnRewardedAdResponse = null;
         rewardedAdPopup.OnRewardedAdResponse += MultiplyCoinsResponse;
@@ -159,9 +166,9 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void DisplayRewardedAdResult(string _result)
+    public void DisplayRewardedAdResult(string _result, bool _rewardGiven)
     {
-        rewardedAdResult.SetInfo(_result);
+        rewardedAdResult.SetInfo(_result, _rewardGiven);
     }
 
     public void DisableMultiplierButton()
@@ -273,6 +280,22 @@ public class GameUI : MonoBehaviour
         if (OnDoubleSwipeChange != null)
         {
             OnDoubleSwipeChange(_change);
+        }
+    }
+
+    private void GameCenterPress()
+    {
+        if (OnGameCenterPress != null)
+        {
+            OnGameCenterPress();
+        }
+    }
+
+    private void PlaySound(AudioClip _clip)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(_clip);
         }
     }
 

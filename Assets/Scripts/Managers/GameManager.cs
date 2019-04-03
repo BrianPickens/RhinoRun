@@ -22,6 +22,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ParticleManager particleManager;
 
+    [SerializeField]
+    private AudioClip coinCollectLowSound;
+
+    [SerializeField]
+    private AudioClip coinCollectMidSound;
+
+    [SerializeField]
+    private AudioClip coinCollectHighSound;
+
+    [SerializeField]
+    private AudioClip powerUpSound;
+
+    [SerializeField]
+    private AudioClip staminaSound;
+
     private int currentCoinUpgradeLevel;
 
     private int currentMegaCoinUpgradeLevel;
@@ -31,6 +46,8 @@ public class GameManager : MonoBehaviour
     private int distance;
 
     private string currentLoadString;
+
+    private int coinSoundLevel;
 
     private void Start()
     {
@@ -75,6 +92,9 @@ public class GameManager : MonoBehaviour
 
         gameUI.OnRewardedAdConfirmation = null;
         gameUI.OnRewardedAdConfirmation += CheckForRewardedAd;
+
+        gameUI.OnGameCenterPress = null;
+        gameUI.OnGameCenterPress += InitializeGameCenter;
 
         levelGenerator.OnBlockPassed = null;
         levelGenerator.OnBlockPassed += BlockCompleted;
@@ -131,29 +151,47 @@ public class GameManager : MonoBehaviour
         switch (_collectableType)
         {
             case CollectableType.Gold:
+                if (coinSoundLevel == 0)
+                {
+                    PlaySound(coinCollectLowSound);
+                    coinSoundLevel++;
+                }
+                else if (coinSoundLevel == 1)
+                {
+                    PlaySound(coinCollectMidSound);
+                    coinSoundLevel++;
+                }
+                else if (coinSoundLevel == 2)
+                {
+                    PlaySound(coinCollectHighSound);
+                }
                 CoinCollected();
                 break;
 
             case CollectableType.Charge:
-                Debug.Log("got Charge");
+                // Debug.Log("got Charge");
+                PlaySound(powerUpSound);
                 particleManager.CreateParticles(ParticleType.UnlimitedCharge, character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.Shield:
-                Debug.Log("got shield");
+                // Debug.Log("got shield");
+                PlaySound(powerUpSound);
                 particleManager.CreateParticles(ParticleType.Shield, character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.MegaCoin:
-                Debug.Log("got mega coin");
+                // Debug.Log("got mega coin");
+                PlaySound(powerUpSound);
                 MegaCoinCollected();
                 particleManager.CreateParticles(ParticleType.Diamond, character.MyTransform.position);
                 break;
 
             case CollectableType.Stamina:
-                Debug.Log("got stamina");
+                // Debug.Log("got stamina");
+                PlaySound(staminaSound);
                 particleManager.CreateParticles(ParticleType.RhinoSnax, character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
@@ -232,6 +270,7 @@ public class GameManager : MonoBehaviour
     private void BlockCompleted()
     {
         distance++;
+        coinSoundLevel = 0;
     }
 
     private void OpenMainMenu()
@@ -282,7 +321,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gameUI.DisplayRewardedAdResult("No Ads Avaliable");
+            gameUI.DisplayRewardedAdResult("No Ads Avaliable", false);
         }
     }
 
@@ -317,13 +356,13 @@ public class GameManager : MonoBehaviour
                     SoundManager.Instance.FadeInBackgroundMusic(1f);
                     gameUI.DisableMultiplierButton();
                     string resultString = "You gained a bonus " + points + " coins!";
-                    gameUI.DisplayRewardedAdResult(resultString);
+                    gameUI.DisplayRewardedAdResult(resultString, true);
                     Debug.Log("rewarded ad completed");
                 }
                 else
                 {
                     SoundManager.Instance.FadeInBackgroundMusic(1f);
-                    gameUI.DisplayRewardedAdResult("Rewarded Ad Failed");
+                    gameUI.DisplayRewardedAdResult("Rewarded Ad Failed", false);
                     Debug.Log("rewarded ad failed or skipped");
                 }
 
@@ -391,4 +430,18 @@ public class GameManager : MonoBehaviour
             SaveManager.Instance.SetDoubleSwipe(_change);
         }
     }
+
+    private void InitializeGameCenter()
+    {
+        GameCenter.AuthenticateUser();
+    }
+
+    private void PlaySound(AudioClip _clip)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundEffect(_clip);
+        }
+    }
+
 }

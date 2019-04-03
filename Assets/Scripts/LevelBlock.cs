@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
-//iap or sound, whatever you are feeling
+//iap
+//figure out coin sound
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -23,9 +24,8 @@ using System;
 //put something in the disatance
 //make meters in 10s instead of singles?
 //ui animations
-//sounds
 //particles
-//music
+//music - get music from blake
 //power up animations
 //background variability / sides varaibility 
 //lighting
