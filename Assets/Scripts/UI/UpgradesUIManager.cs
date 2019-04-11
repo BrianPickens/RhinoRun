@@ -8,40 +8,46 @@ public class UpgradesUIManager : MonoBehaviour
 {
 
     [SerializeField]
-    private LoadingTransition loadingScreen;
+    private LoadingTransition loadingScreen = null;
 
     [SerializeField]
-    private GameObject screenBlocker;
+    private GameObject screenBlocker = null;
 
     [SerializeField]
-    private GameObject purchaseConfirmPopUp;
+    private GameObject upgradesStore = null;
 
     [SerializeField]
-    private GameObject purchaseFailPopUp;
+    private GameObject storeStore = null;
 
     [SerializeField]
-    private Upgrade chargeUpgradeUI;
+    private GameObject purchaseConfirmPopUp = null;
 
     [SerializeField]
-    private Upgrade shieldUpgradeUI;
+    private GameObject purchaseFailPopUp = null;
 
     [SerializeField]
-    private Upgrade megaCoinUpgradeUI;
+    private Upgrade chargeUpgradeUI = null;
 
     [SerializeField]
-    private Upgrade staminaUpgradeUI;
+    private Upgrade shieldUpgradeUI = null;
 
     [SerializeField]
-    private Upgrade powerUpDropUpgradeUI;
+    private Upgrade megaCoinUpgradeUI = null;
 
     [SerializeField]
-    private Upgrade coinUpgradeUI;
+    private Upgrade staminaUpgradeUI = null;
 
     [SerializeField]
-    private Text coinText;
+    private Upgrade powerUpDropUpgradeUI = null;
 
     [SerializeField]
-    private AudioClip upgradeSound;
+    private Upgrade coinUpgradeUI = null;
+
+    [SerializeField]
+    private Text coinText = null;
+
+    [SerializeField]
+    private AudioClip upgradeSound = null;
 
     public Action OnMenuPress;
     public Action<Upgrades, int> OnUpgradePurchase;
@@ -50,6 +56,7 @@ public class UpgradesUIManager : MonoBehaviour
     public void Init()
     {
         loadingScreen.StartWithLoading();
+        ShowUpgradesStore();
         loadingScreen.HideLoading();
     }
 
@@ -158,6 +165,18 @@ public class UpgradesUIManager : MonoBehaviour
         {
             OnUpgradePurchase(_upgradeType, _price);
         }
+    }
+
+    public void ShowUpgradesStore()
+    {
+        storeStore.SetActive(false);
+        upgradesStore.SetActive(true);
+    }
+
+    public void ShowStoreStore()
+    {
+        upgradesStore.SetActive(false);
+        storeStore.SetActive(true);
     }
 
     private IEnumerator SceneLoadDelay(Action _callback)

@@ -21,7 +21,6 @@ using System;
 
 //POLISH
 //fonts!
-//put something in the disatance
 //make meters in 10s instead of singles?
 //ui animations
 //particles
@@ -29,7 +28,6 @@ using System;
 //power up animations
 //background variability / sides varaibility 
 //lighting
-//maybe do some camera zoom in?
 //loading spinner
 
 //BALANCING AFTER PRODUCT IS READY

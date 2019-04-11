@@ -8,6 +8,12 @@ public class LevelBlockBase : MonoBehaviour
     [SerializeField]
     private List<GameObject> boulderEdges = new List<GameObject>();
 
+    [SerializeField]
+    private List<GameObject> innerTreeLocations = new List<GameObject>();
+
+    [SerializeField]
+    private List<GameObject> outterTreeLocations = new List<GameObject>();
+
     void Start()
     {
         int randomIndex = Random.Range(0, boulderEdges.Count);
