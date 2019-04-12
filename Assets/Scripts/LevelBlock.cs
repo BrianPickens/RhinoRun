@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 
 //For Tomorrow:
+//make sure ads are working so you can test the iap
 //iap
 //figure out coin sound
 
