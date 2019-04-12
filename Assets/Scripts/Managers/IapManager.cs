@@ -6,21 +6,24 @@ using UnityEngine.Purchasing;
 public class IapManager : MonoBehaviour
 {
 
-    public void OnPurchaseComplete(string _purchaseID)
+    public void OnPurchaseComplete(Product _product)
     {
-        switch (_purchaseID)
-        {
-            case "removeAds":
-                //remove ads
-                break;
+        //remember to save locally and to cloud, then make sure on load make sure that remove ads is always given no matter which save is better
 
-            default:
-                Debug.LogError("unknown purchase id from iap button");
-                break;
-        }
+        //switch (_purchaseID)
+        //{
+        //    case "removeAds":
+        //        //remove ads
+        //        break;
+
+        //    default:
+        //        Debug.LogError("unknown purchase id from iap button");
+        //        break;
+        //}
+
     }
 
-    public void OnPurchaseFailed(string _error)
+    public void OnPurchaseFailed(Product _product, PurchaseFailureReason _reason)
     {
         Debug.Log("Purchase failed");
     }
