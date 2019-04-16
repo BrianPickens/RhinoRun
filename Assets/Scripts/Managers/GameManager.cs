@@ -303,6 +303,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("Add didn't show");
                 LoadScene(currentLoadString);
             }
         }

@@ -20,10 +20,12 @@ public static class UnityAds
     {
         if (Advertisement.IsReady(adString))
         {
+            Debug.Log("Ad is ready");
             return true;
         }
         else
         {
+            Debug.Log("Ad is not ready");
             return false;
         }
     }
@@ -42,10 +44,12 @@ public static class UnityAds
     {
         if (Advertisement.IsReady(rewardedAdString))
         {
+            Debug.Log("rewarded ad is ready");
             return true;
         }
         else
         {
+            Debug.Log("rewarded ad is not ready");
             return false;
         }
     }
