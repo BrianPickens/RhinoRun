@@ -9,10 +9,16 @@ public class LevelBlockBase : MonoBehaviour
     private List<GameObject> boulderEdges = new List<GameObject>();
 
     [SerializeField]
-    private List<GameObject> innerTreeLocations = new List<GameObject>();
+    private List<GameObject> leftInnerTrees = new List<GameObject>();
 
     [SerializeField]
-    private List<GameObject> outterTreeLocations = new List<GameObject>();
+    private List<GameObject> leftOutterTrees = new List<GameObject>();
+
+    [SerializeField]
+    private List<GameObject> rightInnerTrees = new List<GameObject>();
+
+    [SerializeField]
+    private List<GameObject> rightOuterTrees = new List<GameObject>();
 
     void Start()
     {
@@ -22,5 +28,12 @@ public class LevelBlockBase : MonoBehaviour
         boulderEdge.transform.localPosition = new Vector3(0f, 0f, 0f);
     }
 
-
+    private void RandomizeTrees()
+    {
+        List<Transform> treeTransforms = new List<Transform>();
+        for (int i = 0; i < leftInnerTrees.Count; i++)
+        {
+            treeTransforms.Add(leftInnerTrees[i].transform);
+        }
+    }
 }
