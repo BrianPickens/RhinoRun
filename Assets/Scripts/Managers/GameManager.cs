@@ -293,8 +293,14 @@ public class GameManager : MonoBehaviour
 
     private void CheckForAd()
     {
+        bool hasRemoveAds = false;
+        if (SaveManager.Instance != null)
+        {
+            hasRemoveAds = SaveManager.Instance.GetHasRemoveAdsStatus();
+        }
+
         int numPlays = StaticInfo.GetNumberOfPlays();
-        if (numPlays > 0 && numPlays % 2 == 0)
+        if (numPlays > 0 && numPlays % 2 == 0 && !hasRemoveAds)
         {
             if (UnityAds.CheckForAd())
             {

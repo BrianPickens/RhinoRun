@@ -26,6 +26,15 @@ public class UpgradesUIManager : MonoBehaviour
     private GameObject purchaseFailPopUp = null;
 
     [SerializeField]
+    private GameObject storePurchaseSuccessPopUp = null;
+
+    [SerializeField]
+    private GameObject storePurchaseFailPopUp = null;
+
+    [SerializeField]
+    private Button removeAdsButton = null;
+
+    [SerializeField]
     private Upgrade chargeUpgradeUI = null;
 
     [SerializeField]
@@ -177,6 +186,35 @@ public class UpgradesUIManager : MonoBehaviour
     {
         upgradesStore.SetActive(false);
         storeStore.SetActive(true);
+    }
+
+    public void ShowCompletedStorePurchase()
+    {
+        screenBlocker.gameObject.SetActive(true);
+        storePurchaseSuccessPopUp.SetActive(true);
+    }
+
+    public void HideCompletedStorePurchase()
+    {
+        screenBlocker.gameObject.SetActive(false);
+        storePurchaseSuccessPopUp.SetActive(false);
+    }
+
+    public void ShowStorePurchaseFailed()
+    {
+        screenBlocker.gameObject.SetActive(true);
+        storePurchaseFailPopUp.SetActive(true);
+    }
+
+    public void HideStorePurchaseFailed()
+    {
+        screenBlocker.gameObject.SetActive(false);
+        storePurchaseFailPopUp.SetActive(false);
+    }
+
+    public void DisableRemoveAdsButton()
+    {
+        removeAdsButton.interactable = false;
     }
 
     private IEnumerator SceneLoadDelay(Action _callback)

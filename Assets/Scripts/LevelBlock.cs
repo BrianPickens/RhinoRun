@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//release reminders
+//need to adjust value of upgrades in save manager so that the valuation of local vs cloud is correct
+
 //For Tomorrow:
-//make sure ads are working so you can test the iap
+//Get iap figured out so i can test it test it
 //iap
 //figure out coin sound
 

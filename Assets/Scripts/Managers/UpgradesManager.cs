@@ -15,7 +15,10 @@ public class UpgradesManager : MonoBehaviour
 {
 
     [SerializeField]
-    private UpgradesUIManager upgradesUI;
+    private UpgradesUIManager upgradesUI = null;
+
+    [SerializeField]
+    private IapManager iapManager = null;
 
     private int currentChargeLevel;
     private int currentShieldLevel;
@@ -41,6 +44,12 @@ public class UpgradesManager : MonoBehaviour
 
         GetCurrentUpgradeLevels();
 
+        iapManager.OnPurchaseCompleted = null;
+        iapManager.OnPurchaseCompleted += CompletedStorePurchase;
+
+        iapManager.OnPurchasedFailed = null;
+        iapManager.OnPurchasedFailed += FailedStorePurchase;
+
         upgradesUI.Init();
 
         upgradesUI.OnMenuPress = null;
@@ -57,6 +66,8 @@ public class UpgradesManager : MonoBehaviour
 
         GetCurrentUpgradeLevels();
         SetCurrentUpgrades();
+
+        UpdateStoreButtons();
     }
 
     private void GetCurrentUpgradeLevels()
@@ -113,7 +124,29 @@ public class UpgradesManager : MonoBehaviour
         upgradesUI.UpdateCurrency(currentCoins);
 
     }
-    
+
+    private void UpdateStoreButtons()
+    {
+        if (SaveManager.Instance != null)
+        {
+            if (SaveManager.Instance.GetHasRemoveAdsStatus())
+            {
+                upgradesUI.DisableRemoveAdsButton();
+            }
+        }
+    }
+
+    private void CompletedStorePurchase()
+    {
+        UpdateStoreButtons();
+        upgradesUI.ShowCompletedStorePurchase();
+    }
+
+    private void FailedStorePurchase()
+    {
+        upgradesUI.ShowStorePurchaseFailed();
+    }
+
     //debug buttons
     //public void IncreaseCoinUpgrade()
     //{
