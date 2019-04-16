@@ -19,7 +19,7 @@ public class IapManager : MonoBehaviour
         //Debug.Log("product id is: " + productID);
         switch (productID)
         {
-            case "remove_ads":
+            case "remove_ads_0":
                 if (SaveManager.Instance != null)
                 {
                     SaveManager.Instance.SetHasRemoveAds(true);
