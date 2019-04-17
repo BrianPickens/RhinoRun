@@ -7,9 +7,11 @@ using System;
 //need to adjust value of upgrades in save manager so that the valuation of local vs cloud is correct
 
 //For Tomorrow:
-//Get iap figured out so i can test it test it
+//Get iap figured out so i can test it test it - need to submit to test flight to see if that will make iap work
 //iap
 //figure out coin sound
+//fix diamond size
+//fix palm trees
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -18,6 +20,7 @@ using System;
 //UI locations
 //character animations once i get the character
 //cover up the sides with something
+//UI Art
 
 //POST COMPLETION SYSTEMS
 //optimization - batching
