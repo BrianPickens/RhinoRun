@@ -12,6 +12,7 @@ using System;
 //figure out coin sound
 //fix diamond size
 //fix palm trees
+//continue adding ui arts
 
 //REQUIRED FOR RELEASE
 //tutorial :(

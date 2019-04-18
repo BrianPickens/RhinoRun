@@ -8,35 +8,35 @@ public class SettingsUI : MonoBehaviour
 {
 
     [SerializeField]
-    private Image musicImage;
+    private Image musicImage = null;
     [SerializeField]
-    private Sprite musicOnSprite;
+    private Sprite musicOnSprite = null;
     [SerializeField]
-    private Sprite musicOffSprite;
+    private Sprite musicOffSprite = null;
 
     [SerializeField]
-    private Image soundEffectsImage;
+    private Image soundEffectsImage = null;
     [SerializeField]
-    private Sprite soundEffectsOnSprite;
+    private Sprite soundEffectsOnSprite = null;
     [SerializeField]
-    private Sprite soundEffectsOffSprite;
+    private Sprite soundEffectsOffSprite = null;
 
     [SerializeField]
-    private Text swipeSensitivityText;
+    private Text swipeSensitivityText = null;
     [SerializeField]
-    private Text doubleSwipeSensitivityText;
+    private Text doubleSwipeSensitivityText = null;
     [SerializeField]
-    private Image doubleSwipeImage;
+    private Text doubleSwipeStateText = null;
     [SerializeField]
-    private Sprite doubleSwipeOnSprite;
+    private Sprite doubleSwipeOnSprite = null;
     [SerializeField]
-    private Sprite doubleSwipeOffSprite;
+    private Sprite doubleSwipeOffSprite = null;
 
     [SerializeField]
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     [SerializeField]
-    private GameObject creditsUI;
+    private GameObject creditsUI = null;
 
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
@@ -89,11 +89,11 @@ public class SettingsUI : MonoBehaviour
         doubleSwipeOn = _doubleSwipeOn;
         if (doubleSwipeOn)
         {
-            doubleSwipeImage.sprite = doubleSwipeOnSprite;
+            doubleSwipeStateText.text = "ON";
         }
         else
         {
-            doubleSwipeImage.sprite = doubleSwipeOffSprite;
+            doubleSwipeStateText.text = "OFF";
         }
     }
 
@@ -196,12 +196,12 @@ public class SettingsUI : MonoBehaviour
         if (doubleSwipeOn)
         {
             doubleSwipeOn = false;
-            doubleSwipeImage.sprite = doubleSwipeOffSprite;
+            doubleSwipeStateText.text = "OFF";
         }
         else
         {
             doubleSwipeOn = true;
-            doubleSwipeImage.sprite = doubleSwipeOnSprite;
+            doubleSwipeStateText.text = "ON";
         }
 
         if (OnDoubleSwipeChange != null)

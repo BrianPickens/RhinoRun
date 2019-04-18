@@ -147,35 +147,5 @@ public class UpgradesManager : MonoBehaviour
         upgradesUI.ShowStorePurchaseFailed();
     }
 
-    //debug buttons
-    //public void IncreaseCoinUpgrade()
-    //{
-    //    SaveManager.Instance.UpgradePurchased(Upgrades.CoinsUpgrade);
-    //}
-
-    //public void IncreaseStaminaUpgrade()
-    //{
-    //    SaveManager.Instance.UpgradePurchased(Upgrades.StaminaUpgrade);
-    //}
-
-    //public void IncreaseChargeUpgrade()
-    //{
-    //    SaveManager.Instance.UpgradePurchased(Upgrades.ChargeUpgrade);
-    //}
-
-    //public void IncreaseShieldUpgrade()
-    //{
-    //    SaveManager.Instance.UpgradePurchased(Upgrades.ShieldUpgrade);
-    //}
-
-    //public void IncreaseMegaCoinUpgrade()
-    //{
-    //    SaveManager.Instance.UpgradePurchased(Upgrades.MegaCoinUpgrade);
-    //}
-
-    //public void IncreaseDropsUpgrade()
-    //{
-    //    SaveManager.Instance.UpgradePurchased(Upgrades.PowerUpDropUpgrade);
-    //}
-    //end debug buttons
+   
 }
