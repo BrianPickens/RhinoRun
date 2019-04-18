@@ -94,7 +94,7 @@ public class Upgrade : MonoBehaviour
         else
         {
             currentPrice = 0;
-            priceText.text = "";
+            priceText.text = " --";
         }
     }
 

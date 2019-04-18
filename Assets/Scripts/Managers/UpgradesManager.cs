@@ -106,7 +106,7 @@ public class UpgradesManager : MonoBehaviour
 
         if (_price < currentCoins)
         {
-            upgradesUI.ShowPurchaseConfirmation();
+            upgradesUI.ShowPurchaseConfirmation(_upgradeType, _price);
         }
         else
         {

@@ -11,7 +11,7 @@ public class UpgradesUIManager : MonoBehaviour
     private LoadingTransition loadingScreen = null;
 
     [SerializeField]
-    private GameObject screenBlocker = null;
+    private PopUpBase screenBlocker = null;
 
     [SerializeField]
     private GameObject upgradesStore = null;
@@ -20,16 +20,16 @@ public class UpgradesUIManager : MonoBehaviour
     private GameObject storeStore = null;
 
     [SerializeField]
-    private GameObject purchaseConfirmPopUp = null;
+    private UpgradePurchasePopUp purchaseConfirmPopUp = null;
 
     [SerializeField]
-    private GameObject purchaseFailPopUp = null;
+    private PopUpBase purchaseFailPopUp = null;
 
     [SerializeField]
-    private GameObject storePurchaseSuccessPopUp = null;
+    private PopUpBase storePurchaseSuccessPopUp = null;
 
     [SerializeField]
-    private GameObject storePurchaseFailPopUp = null;
+    private PopUpBase storePurchaseFailPopUp = null;
 
     [SerializeField]
     private Button removeAdsButton = null;
@@ -130,17 +130,17 @@ public class UpgradesUIManager : MonoBehaviour
         coinText.text = "" + _amount;
     }
 
-    public void ShowPurchaseConfirmation()
+    public void ShowPurchaseConfirmation(Upgrades _upgradeType, int _price)
     {
-        screenBlocker.gameObject.SetActive(true);
-        purchaseConfirmPopUp.gameObject.SetActive(true);
+        screenBlocker.OpenPopUp();
+        purchaseConfirmPopUp.OpenPurchasePopUp(_upgradeType, _price);
     }
 
     public void PurchasedConfirmed()
     {
         PlaySound(upgradeSound);
-        purchaseConfirmPopUp.gameObject.SetActive(false);
-        screenBlocker.gameObject.SetActive(false);
+        purchaseConfirmPopUp.ExitPopUp();
+        screenBlocker.ExitPopUp();
         if (OnPurchaseConfirm != null)
         {
             OnPurchaseConfirm();
@@ -150,21 +150,21 @@ public class UpgradesUIManager : MonoBehaviour
     public void PurchaseDenied()
     {
         PlayClickSound();
-        purchaseConfirmPopUp.gameObject.SetActive(false);
-        screenBlocker.gameObject.SetActive(false);
+        purchaseConfirmPopUp.ExitPopUp();
+        screenBlocker.ExitPopUp();
     }
 
     public void ShowPurchaseFailure()
     {
-        screenBlocker.gameObject.SetActive(false);
-        purchaseFailPopUp.gameObject.SetActive(true);
+        screenBlocker.ExitPopUp();
+        purchaseFailPopUp.OpenPopUp();
     }
 
     public void ClosePurchaseFailure()
     {
         PlayClickSound();
-        purchaseFailPopUp.gameObject.SetActive(false);
-        screenBlocker.gameObject.SetActive(false);
+        purchaseFailPopUp.ExitPopUp();
+        screenBlocker.ExitPopUp();
     }
 
     private void BuyUpgrade(Upgrades _upgradeType, int _price)
@@ -178,38 +178,42 @@ public class UpgradesUIManager : MonoBehaviour
 
     public void ShowUpgradesStore()
     {
+        PlayClickSound();
         storeStore.SetActive(false);
         upgradesStore.SetActive(true);
     }
 
     public void ShowStoreStore()
     {
+        PlayClickSound();
         upgradesStore.SetActive(false);
         storeStore.SetActive(true);
     }
 
     public void ShowCompletedStorePurchase()
     {
-        screenBlocker.gameObject.SetActive(true);
-        storePurchaseSuccessPopUp.SetActive(true);
+        screenBlocker.OpenPopUp();
+        storePurchaseSuccessPopUp.OpenPopUp();
     }
 
     public void HideCompletedStorePurchase()
     {
-        screenBlocker.gameObject.SetActive(false);
-        storePurchaseSuccessPopUp.SetActive(false);
+        PlayClickSound();
+        screenBlocker.ExitPopUp();
+        storePurchaseSuccessPopUp.ExitPopUp();
     }
 
     public void ShowStorePurchaseFailed()
     {
-        screenBlocker.gameObject.SetActive(true);
-        storePurchaseFailPopUp.SetActive(true);
+        screenBlocker.OpenPopUp();
+        storePurchaseFailPopUp.OpenPopUp();
     }
 
     public void HideStorePurchaseFailed()
     {
-        screenBlocker.gameObject.SetActive(false);
-        storePurchaseFailPopUp.SetActive(false);
+        PlayClickSound();
+        screenBlocker.ExitPopUp();
+        storePurchaseFailPopUp.ExitPopUp();
     }
 
     public void DisableRemoveAdsButton()

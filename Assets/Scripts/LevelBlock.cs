@@ -13,6 +13,8 @@ using System;
 //fix diamond size
 //fix palm trees
 //continue adding ui arts
+//make sure all numbers are displayed with ,'s soo 100,000 instead of 100000
+//add outlines to all text
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -30,13 +32,14 @@ using System;
 //POLISH
 //fonts!
 //make meters in 10s instead of singles?
-//ui animations
+//ui animations (specifically pop ups and in game ui)
 //particles
 //music - get music from blake
 //power up animations
 //background variability / sides varaibility 
 //lighting
 //loading spinner
+//make screen blocker fade in in upgrades and anything else
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop

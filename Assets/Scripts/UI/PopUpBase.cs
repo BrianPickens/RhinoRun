@@ -11,18 +11,19 @@ public class PopUpBase : MonoBehaviour
     [SerializeField]
     private Animator myAnimator = null;
 
-    public void OpenPopUp()
+    public virtual void OpenPopUp()
     {
         gameObject.SetActive(true);
     }
 
-    public void ClosePopUp()
+    public virtual void ClosePopUp()
     {
         gameObject.SetActive(false);
     }
 
-    public void ExitPopUp()
+    public virtual void ExitPopUp()
     {
+        //make sure to add the activate event animation event in the animation
         if (myAnimator != null)
         {
             myAnimator.SetTrigger("Exit");
@@ -33,7 +34,7 @@ public class PopUpBase : MonoBehaviour
         }
     }
 
-    public void ActivateEvent()
+    public virtual void ActivateEvent()
     {
         myEvent.Invoke();
     }
