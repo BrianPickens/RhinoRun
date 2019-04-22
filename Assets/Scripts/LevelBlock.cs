@@ -13,6 +13,7 @@ using System;
 //continue adding ui arts
 //make sure all numbers are displayed with ,'s soo 100,000 instead of 100000
 //add outlines to all text
+//just need intro screen and loading screen art
 
 //REQUIRED FOR RELEASE
 //tutorial :(
@@ -20,7 +21,6 @@ using System;
 //basic animations
 //UI locations
 //character animations once i get the character
-//UI Art
 
 //POST COMPLETION SYSTEMS
 //optimization - batching - the coins have a bathcing issue

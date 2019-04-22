@@ -11,10 +11,10 @@ public class Character : MonoBehaviour {
     private CameraFollow cameraFollow = null;
 
     [SerializeField]
-    private ScreenShake screenShake;
+    private ScreenShake screenShake= null;
 
     [SerializeField]
-    private RhinoDetector rhinoDetection;
+    private RhinoDetector rhinoDetection = null;
 
     private Transform myTransform;
     public Transform MyTransform
@@ -24,34 +24,34 @@ public class Character : MonoBehaviour {
     private Renderer myRenderer;
 
     [SerializeField]
-    private Image chargeMeter;
+    private Image chargeMeter = null;
 
     [SerializeField]
-    private GameObject shield;
+    private GameObject shield = null;
 
     [SerializeField]
-    private Material normalMat;
+    private Material normalMat = null;
 
     [SerializeField]
-    private Material ChargeMat;
+    private Material ChargeMat = null;
 
     [SerializeField]
-    private Material redMat;
+    private Material redMat = null;
 
     [SerializeField]
-    private float laneSize;
+    private float laneSize = 0f;
 
     [SerializeField]
-    private float moveSpeed;
+    private float moveSpeed = 0f;
 
     [SerializeField]
-    private float swipeSensitivity;
+    private float swipeSensitivity = 0f;
 
     [SerializeField]
-    private float doubleSwipeSensitivity;
+    private float doubleSwipeSensitivity = 0f;
 
     [SerializeField]
-    private float tapSensitivity;
+    private float tapSensitivity = 0f;
 
     private bool canSwipe;
     private bool canDoubleSwipe;
@@ -65,31 +65,31 @@ public class Character : MonoBehaviour {
     private float chargePower;
 
     [SerializeField]
-    private float drainSpeed;
+    private float drainSpeed = 0f;
 
     [SerializeField]
-    private float restoreSpeed;
+    private float restoreSpeed = 0f;
 
     [SerializeField]
-    private Camera mainCamera;
+    private Camera mainCamera = null;
 
     [SerializeField]
-    private Image chargeButton;
+    private Image chargeButton = null;
 
     [SerializeField]
-    private Sprite chargeOnSprite;
+    private Sprite chargeOnSprite = null;
 
     [SerializeField]
-    private Sprite chargeOffSprite;
+    private Sprite chargeOffSprite = null;
 
     [SerializeField]
     private Sprite noChargeSprite = null;
 
     [SerializeField]
-    private AudioClip hitFenceSound;
+    private AudioClip hitFenceSound = null;
 
     [SerializeField]
-    private AudioClip hitRockSound;
+    private AudioClip hitRockSound = null;
 
     private Vector3 touchOrigin = Vector3.zero;
     private Vector3 touchCurrent = Vector3.zero;
@@ -104,7 +104,6 @@ public class Character : MonoBehaviour {
 
     public Action OnShieldBreak;
 
-    // debug options
     private bool allowDoubleMove = true;
 
     public void Initialize(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
@@ -249,6 +248,7 @@ public class Character : MonoBehaviour {
     {
         restoreChargePower = true;
         float restoreLevel = chargePower + _amount;
+
         if (restoreLevel > 100f)
         {
             restoreLevel = 100f;
@@ -285,10 +285,17 @@ public class Character : MonoBehaviour {
 
     private IEnumerator RestoreChargePowerRoutine(float _restoreLevel)
     {
+
+        if (chargePower <= Mathf.Epsilon)
+        {
+            chargeButton.sprite = chargeOffSprite;
+        }
+
         while (chargePower < _restoreLevel - Mathf.Epsilon)
         {
             chargePower = Mathf.MoveTowards(chargePower, _restoreLevel, Time.deltaTime * restoreSpeed);
             chargeMeter.fillAmount = chargePower / 100;
+
             if (_restoreLevel - chargePower <= Mathf.Epsilon)
             {
                 restoreChargePower = false;
@@ -366,7 +373,14 @@ public class Character : MonoBehaviour {
     {
         if (!unlimitedChargePower)
         {
-            chargeButton.sprite = chargeOffSprite;
+            if (chargePower <= Mathf.Epsilon)
+            {
+                chargeButton.sprite = noChargeSprite;
+            }
+            else
+            {
+                chargeButton.sprite = chargeOffSprite;
+            }
             myCharacterState = CharacterState.Running;
             myRenderer.material = normalMat;
             drainChargePower = false;
@@ -451,19 +465,6 @@ public class Character : MonoBehaviour {
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.PlaySoundEffect(_clip);
-        }
-    }
-
-    //debug options
-    public void DoubleMove()
-    {
-        if (allowDoubleMove)
-        {
-            allowDoubleMove = false;
-        }
-        else
-        {
-            allowDoubleMove = true;
         }
     }
 }
