@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4201947717822728951
 Transform:
   m_ObjectHideFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7973861191462636679}
+  - {fileID: 7600524635601645698}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80,7 +80,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &3157705375784822685
+--- !u!1001 &3170754235452988312
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -149,9 +149,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb1ee1d047aaed4997b6e3a6b1ca1a0, type: 3}
---- !u!4 &7973861191462636679 stripped
+--- !u!4 &7600524635601645698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 7eb1ee1d047aaed4997b6e3a6b1ca1a0,
     type: 3}
-  m_PrefabInstance: {fileID: 3157705375784822685}
+  m_PrefabInstance: {fileID: 3170754235452988312}
   m_PrefabAsset: {fileID: 0}

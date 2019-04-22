@@ -8,7 +8,7 @@ public enum CharacterState { Idle, Running, Charging, Dead }
 public class Character : MonoBehaviour {
 
     [SerializeField]
-    private CameraFollow cameraFollow;
+    private CameraFollow cameraFollow = null;
 
     [SerializeField]
     private ScreenShake screenShake;
@@ -81,6 +81,9 @@ public class Character : MonoBehaviour {
 
     [SerializeField]
     private Sprite chargeOffSprite;
+
+    [SerializeField]
+    private Sprite noChargeSprite = null;
 
     [SerializeField]
     private AudioClip hitFenceSound;

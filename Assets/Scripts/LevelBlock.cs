@@ -10,8 +10,6 @@ using System;
 //Get iap figured out so i can test it test it - need to submit to test flight to see if that will make iap work
 //iap
 //figure out coin sound
-//fix diamond size
-//fix palm trees
 //continue adding ui arts
 //make sure all numbers are displayed with ,'s soo 100,000 instead of 100000
 //add outlines to all text
@@ -22,11 +20,11 @@ using System;
 //basic animations
 //UI locations
 //character animations once i get the character
-//cover up the sides with something
 //UI Art
 
 //POST COMPLETION SYSTEMS
-//optimization - batching
+//optimization - batching - the coins have a bathcing issue
+//might be able to get shadows back in?
 //remove ads iap
 
 //POLISH
@@ -40,6 +38,7 @@ using System;
 //lighting
 //loading spinner
 //make screen blocker fade in in upgrades and anything else
+//add some shrugs to break up the sides a little bit
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop
