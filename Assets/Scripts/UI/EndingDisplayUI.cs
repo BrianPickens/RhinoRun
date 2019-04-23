@@ -73,11 +73,14 @@ public class EndingDisplayUI : MonoBehaviour
         {
             currentDistance = Mathf.Lerp(0, finalDistance, t);
             currentDistance = Mathf.Round(currentDistance);
-            endingDistanceText.text = "" + currentDistance;
+            string currentDistanceString = currentDistance.ToString("#,#");
+            endingDistanceText.text = currentDistanceString;
             t += Time.deltaTime * 0.8f;
             yield return null;
         }
-        endingDistanceText.text = "" + finalDistance;
+
+        string finalDistanceString = finalDistance.ToString("#,#");
+        endingDistanceText.text = finalDistanceString;
 
         if (bestDistance)
         {
@@ -93,12 +96,13 @@ public class EndingDisplayUI : MonoBehaviour
         {
             currentPoints = Mathf.Lerp(0, finalPoints, t);
             currentPoints = Mathf.Round(currentPoints);
-            endingPointsText.text = "" + currentPoints;
+            string currentPointsString = currentPoints.ToString("#,#");
+            endingPointsText.text = currentPointsString;
             t += Time.deltaTime * 0.8f;
             yield return null;
         }
-
-        endingPointsText.text = "" + finalPoints;
+        string endingPointsString = finalPoints.ToString("#,#");
+        endingPointsText.text = endingPointsString;
 
         PlaySound(popSound);
         multiplierButton.SetActive(true);

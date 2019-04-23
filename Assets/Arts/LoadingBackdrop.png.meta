@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: d4f5209e0b785e94fba8273d2775ecb3
+guid: 14249df6d1a53854b999f98c0e4ccd8e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -2006076242091543244
-    second: SettingsBubble_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -43,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,32 +93,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SettingsBubble_0
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 7
-        width: 498
-        height: 498
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8c074069c0a34ff4e8602e85fe9c6069
-      internalID: -2006076242091543244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: babf7aeaaf2e46240bced48500d4765b
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 

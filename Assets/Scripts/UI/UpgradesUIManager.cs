@@ -127,7 +127,10 @@ public class UpgradesUIManager : MonoBehaviour
 
     public void UpdateCurrency(int _amount)
     {
-        coinText.text = "" + _amount;
+
+        string coinString = _amount.ToString("#,#");
+
+        coinText.text = coinString;
     }
 
     public void ShowPurchaseConfirmation(Upgrades _upgradeType, int _price)

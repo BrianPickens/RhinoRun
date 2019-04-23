@@ -45,7 +45,9 @@ public class UpgradePurchasePopUp : PopUpBase
                 break;
         }
 
-        upgradePriceText.text = "" + _price;
+        string priceString = _price.ToString("#,#");
+
+        upgradePriceText.text = priceString;
 
         OpenPopUp();
     }

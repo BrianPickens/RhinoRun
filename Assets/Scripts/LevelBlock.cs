@@ -10,16 +10,12 @@ using System;
 //Get iap figured out so i can test it test it - need to submit to test flight to see if that will make iap work
 //iap
 //figure out coin sound
-//continue adding ui arts
-//make sure all numbers are displayed with ,'s soo 100,000 instead of 100000
-//add outlines to all text
-//just need intro screen and loading screen art
+//Title Scene Art
+//NAME GAME
 
 //REQUIRED FOR RELEASE
 //tutorial :(
 //all models
-//basic animations
-//UI locations
 //character animations once i get the character
 
 //POST COMPLETION SYSTEMS
@@ -28,17 +24,11 @@ using System;
 //remove ads iap
 
 //POLISH
-//fonts!
-//make meters in 10s instead of singles?
-//ui animations (specifically pop ups and in game ui)
 //particles
 //music - get music from blake
 //power up animations
-//background variability / sides varaibility 
 //lighting
-//loading spinner
-//make screen blocker fade in in upgrades and anything else
-//add some shrugs to break up the sides a little bit
+//add some shrubs to break up the sides a little bit
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop

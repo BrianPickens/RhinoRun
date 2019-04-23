@@ -8,34 +8,34 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField]
-    private Character character;
+    private Character character = null;
 
     [SerializeField]
-    private LevelGenerator levelGenerator;
+    private LevelGenerator levelGenerator = null;
 
     [SerializeField]
-    private PowerUpsManager powerUpsManager;
+    private PowerUpsManager powerUpsManager = null;
 
     [SerializeField]
-    private GameUI gameUI;
+    private GameUI gameUI = null;
 
     [SerializeField]
-    private ParticleManager particleManager;
+    private ParticleManager particleManager = null;
 
     [SerializeField]
-    private AudioClip coinCollectLowSound;
+    private AudioClip coinCollectLowSound = null;
 
     [SerializeField]
-    private AudioClip coinCollectMidSound;
+    private AudioClip coinCollectMidSound = null;
 
     [SerializeField]
-    private AudioClip coinCollectHighSound;
+    private AudioClip coinCollectHighSound = null;
 
     [SerializeField]
-    private AudioClip powerUpSound;
+    private AudioClip powerUpSound = null;
 
     [SerializeField]
-    private AudioClip staminaSound;
+    private AudioClip staminaSound = null;
 
     private int currentCoinUpgradeLevel;
 
@@ -362,7 +362,8 @@ public class GameManager : MonoBehaviour
                     }
                     SoundManager.Instance.FadeInBackgroundMusic(1f);
                     gameUI.DisableMultiplierButton();
-                    string resultString = "You gained a bonus " + points + " coins!";
+                    string pointsString = points.ToString("#,#");
+                    string resultString = "You gained a bonus " + pointsString + " coins!";
                     gameUI.DisplayRewardedAdResult(resultString, true);
                     Debug.Log("rewarded ad completed");
                 }

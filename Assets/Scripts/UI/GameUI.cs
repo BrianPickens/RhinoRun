@@ -7,46 +7,43 @@ using System;
 public class GameUI : MonoBehaviour
 {
     [SerializeField]
-    private EndingDisplayUI endingDisplay;
+    private EndingDisplayUI endingDisplay = null;
 
     [SerializeField]
-    private SettingsUI settingsUI;
+    private SettingsUI settingsUI = null;
 
     [SerializeField]
-    private Text pointsDisplay;
+    private Text pointsDisplay = null;
 
     [SerializeField]
-    private GameObject coinsHolder;
+    private GameObject coinsHolder = null;
 
     [SerializeField]
-    private PowerUpTimer shieldTimer;
+    private PowerUpTimer shieldTimer = null;
 
     [SerializeField]
-    private PowerUpTimer unlimitedChargeTimer;
+    private PowerUpTimer unlimitedChargeTimer = null;
 
     [SerializeField]
-    private GameObject unlimitedChargeMeter;
+    private GameObject unlimitedChargeMeter = null;
 
     [SerializeField]
-    private GameObject chargeMeter;
+    private GameObject chargeMeter = null;
 
     [SerializeField]
-    private GameObject settingsButton;
+    private GameObject settingsButton = null;
 
     [SerializeField]
-    private GameObject chargeButton;
+    private GameObject chargeButton = null;
 
     [SerializeField]
-    private RewardedAdPopup rewardedAdPopup;
+    private RewardedAdPopup rewardedAdPopup = null;
 
     [SerializeField]
-    private RewardedAdResult rewardedAdResult;
+    private RewardedAdResult rewardedAdResult = null;
 
     [SerializeField]
-    LoadingTransition loadingScreen;
-
-    [SerializeField]
-    private AudioClip doubleCoinsSound;
+    LoadingTransition loadingScreen = null;
 
     public Action OnMenuPress;
     public Action OnUpgradesPress;
@@ -99,7 +96,16 @@ public class GameUI : MonoBehaviour
 
     public void DisplayPoints(int _points)
     {
-        pointsDisplay.text = "" + _points;
+        if (_points == 0)
+        {
+            pointsDisplay.text = "" + _points;
+        }
+        else
+        {
+            string pointsString = _points.ToString("#,#");
+
+            pointsDisplay.text = pointsString;
+        }
     }
 
     public void DisplayEnding(int _points, int _distance, bool _isHighscore)

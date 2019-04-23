@@ -89,7 +89,9 @@ public class Upgrade : MonoBehaviour
         if (_currentLevel < maxLevels)
         {
             currentPrice = upgradePrices[_currentLevel];
-            priceText.text = "" + currentPrice;
+
+            string currentPriceString = currentPrice.ToString("#,#");
+            priceText.text = currentPriceString;
         }
         else
         {

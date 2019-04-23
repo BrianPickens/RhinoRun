@@ -96,12 +96,30 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void UpdateCoinsDisplay(int _coins)
     {
-        coinsText.text = "" + _coins;
+        if (_coins == 0)
+        {
+            coinsText.text = "" + _coins;
+        }
+        else
+        {
+            string coinString = _coins.ToString("#,#");
+
+            coinsText.text = coinString;
+        }
     }
 
     public void UpdateScoreDisplay(int _score)
     {
-        scoreText.text = _score + " Meters!";
+        if (_score == 0)
+        {
+            scoreText.text = "" + _score + " Meters!";
+        }
+        else
+        {
+            string scoreString = _score.ToString("#,#");
+
+            scoreText.text = scoreString + " Meters!";
+        }
     }
 
     private void MusicChange(bool _musicOn)
