@@ -27,10 +27,6 @@ public class SettingsUI : MonoBehaviour
     private Text doubleSwipeSensitivityText = null;
     [SerializeField]
     private Text doubleSwipeStateText = null;
-    [SerializeField]
-    private Sprite doubleSwipeOnSprite = null;
-    [SerializeField]
-    private Sprite doubleSwipeOffSprite = null;
 
     [SerializeField]
     private Animator myAnimator = null;

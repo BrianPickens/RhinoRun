@@ -5,7 +5,7 @@ using UnityEngine;
 public class LoadingTransition : MonoBehaviour {
 
     [SerializeField]
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     public void ShowLoading()
     {

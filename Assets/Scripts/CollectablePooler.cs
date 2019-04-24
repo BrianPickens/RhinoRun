@@ -12,19 +12,19 @@ public class CollectablePooler : MonoBehaviour
     }
 
     [SerializeField]
-    private CollectablePool goldCoins;
+    private CollectablePool goldCoins = null;
 
     [SerializeField]
-    private CollectablePool staminaBars;
+    private CollectablePool staminaBars = null;
 
     [SerializeField]
-    private CollectablePool charges;
+    private CollectablePool charges = null;
 
     [SerializeField]
-    private CollectablePool shields;
+    private CollectablePool shields = null;
 
     [SerializeField]
-    private CollectablePool megaCoins;
+    private CollectablePool megaCoins = null;
 
     private void Awake()
     {

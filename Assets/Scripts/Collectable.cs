@@ -7,14 +7,14 @@ public enum CollectableType { None, Gold, Stamina, Charge, Shield, MegaCoin }
 public class Collectable : MonoBehaviour
 {
     [SerializeField]
-    private CollectableType myCollectableType;
+    private CollectableType myCollectableType = CollectableType.None;
     public CollectableType MyCollectableType
     {
         get { return myCollectableType; }
     }
 
     [SerializeField]
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     private Transform poolTransform;
 

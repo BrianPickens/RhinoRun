@@ -7,13 +7,13 @@ public class RewardedAdResult : MonoBehaviour
 {
 
     [SerializeField]
-    private Text infoText;
+    private Text infoText = null;
 
     [SerializeField]
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     [SerializeField]
-    private AudioClip rewardGivenSound;
+    private AudioClip rewardGivenSound= null;
 
     private bool rewardGiven;
 

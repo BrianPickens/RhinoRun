@@ -7,34 +7,34 @@ public class EndingDisplayUI : MonoBehaviour
 {
 
     [SerializeField]
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     [SerializeField]
-    private Text endingPointsText;
+    private Text endingPointsText = null;
 
     [SerializeField]
-    private Text endingDistanceText;
+    private Text endingDistanceText = null;
 
     [SerializeField]
-    private GameObject metersDisplay;
+    private GameObject metersDisplay = null;
 
     [SerializeField]
-    private GameObject coinsDisplay;
+    private GameObject coinsDisplay = null;
 
     [SerializeField]
-    private GameObject multiplierButton;
+    private GameObject multiplierButton = null;
 
     [SerializeField]
-    private GameObject buttonsPanel;
+    private GameObject buttonsPanel = null;
 
     [SerializeField]
-    private GameObject bestDisplay;
+    private GameObject bestDisplay = null;
 
     [SerializeField]
-    private AudioClip clappingSounds;
+    private AudioClip clappingSounds = null;
 
     [SerializeField]
-    private AudioClip popSound;
+    private AudioClip popSound = null;
 
     private int finalPoints;
 

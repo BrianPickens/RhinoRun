@@ -5,10 +5,10 @@ using UnityEngine;
 public class PowerUpsManager : MonoBehaviour
 {
     [SerializeField]
-    private Character character;
+    private Character character = null;
 
     [SerializeField]
-    private GameUI gameUI;
+    private GameUI gameUI = null;
 
     private int currentChargeLevel;
     private int currentShieldLevel;

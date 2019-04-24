@@ -50,9 +50,6 @@ public class Character : MonoBehaviour {
     [SerializeField]
     private float doubleSwipeSensitivity = 0f;
 
-    [SerializeField]
-    private float tapSensitivity = 0f;
-
     private bool canSwipe;
     private bool canDoubleSwipe;
 

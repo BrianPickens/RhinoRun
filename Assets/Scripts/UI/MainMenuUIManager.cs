@@ -8,16 +8,16 @@ public class MainMenuUIManager : MonoBehaviour
 {
 
     [SerializeField]
-    private SettingsUI settingsUI;
+    private SettingsUI settingsUI = null;
 
     [SerializeField]
-    private Text coinsText;
+    private Text coinsText = null;
 
     [SerializeField]
-    private Text scoreText;
+    private Text scoreText = null;
 
     [SerializeField]
-    private LoadingTransition loadingScreen;
+    private LoadingTransition loadingScreen = null;
 
     public Action OnPlayPress;
     public Action OnUpgradesPress;

@@ -6,28 +6,28 @@ public enum BlockDifficulty { None, Easy, Medium, Hard, MegaCoin, Stamina, Shiel
 public class LevelBlockPooler : MonoBehaviour {
 
     [SerializeField]
-    private List<LevelBlock> EmptyBlocks;
+    private List<LevelBlock> EmptyBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private List<LevelBlock> EasyBlocks;
+    private List<LevelBlock> EasyBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private List<LevelBlock> MediumBlocks;
+    private List<LevelBlock> MediumBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private List<LevelBlock> HardBlocks;
+    private List<LevelBlock> HardBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private List<LevelBlock> MegaCoinBlocks;
+    private List<LevelBlock> MegaCoinBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private List<LevelBlock> ShieldBlocks;
+    private List<LevelBlock> ShieldBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private List<LevelBlock> UnlimitedChargeBlocks;
+    private List<LevelBlock> UnlimitedChargeBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private List<LevelBlock> StaminaBlocks;
+    private List<LevelBlock> StaminaBlocks = new List<LevelBlock>();
 
     public void Start()
     {

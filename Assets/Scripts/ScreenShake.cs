@@ -6,7 +6,7 @@ public class ScreenShake : MonoBehaviour
 {
 
     [SerializeField]
-    private Transform shakeAxis;
+    private Transform shakeAxis = null;
 
     private int shakeCount;
 

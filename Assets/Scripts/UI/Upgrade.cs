@@ -7,28 +7,28 @@ using System;
 public class Upgrade : MonoBehaviour
 {
     [SerializeField]
-    private Upgrades upgradeType;
+    private Upgrades upgradeType = Upgrades.ChargeUpgrade;
 
     [SerializeField]
-    private string upgradeName;
+    private string upgradeName = "";
 
     [SerializeField]
-    private int maxLevels;
+    private int maxLevels = 0;
 
     [SerializeField]
-    private Text upgradeNameText;
+    private Text upgradeNameText = null;
 
     [SerializeField]
-    private Text currentLevelInfo;
+    private Text currentLevelInfo = null;
 
     [SerializeField]
-    private Text nextLevelInfo;
+    private Text nextLevelInfo = null;
 
     [SerializeField]
-    private Text priceText;
+    private Text priceText = null;
 
     [SerializeField]
-    private Sprite unlockedBackground;
+    private Sprite unlockedBackground = null;
 
     [SerializeField]
     private List<int> upgradePrices = new List<int>();

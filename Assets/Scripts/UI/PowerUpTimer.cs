@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PowerUpTimer : MonoBehaviour
 {
     [SerializeField]
-    private Image meter;
+    private Image meter = null;
 
     public void DisplayTimer()
     {

@@ -7,19 +7,19 @@ public enum GameDifficulty { Simple, Easy, Medium, Difficult, Hard }
 public class LevelGenerator : MonoBehaviour {
 
     [SerializeField]
-    private LevelBlockRecycler levelBlockRecycler;
+    private LevelBlockRecycler levelBlockRecycler = null;
 
     [SerializeField]
-    private List<LevelBlock> levelBlocks;
+    private List<LevelBlock> levelBlocks = new List<LevelBlock>();
 
     [SerializeField]
-    private LevelBlockPooler levelBlockPooler;
+    private LevelBlockPooler levelBlockPooler = null;
 
     [SerializeField]
-    private RhinoDetector rhinoDetection;
+    private RhinoDetector rhinoDetection = null;
 
     [SerializeField]
-    private int levelBlockSize;
+    private int levelBlockSize = 0;
 
     [SerializeField]
     private float startingBlockSpeed = 20f;

@@ -11,19 +11,19 @@ public class SoundManager : MonoBehaviour
     }
 
     [SerializeField]
-    private ObjectPooler soundObjectPooler;
+    private ObjectPooler soundObjectPooler = null;
 
     [SerializeField]
-    private AudioSource backgroundMusicSource;
+    private AudioSource backgroundMusicSource = null;
 
     [SerializeField]
-    private float minPitch;
+    private float minPitch = 0f;
 
     [SerializeField]
-    private float maxPitch;
+    private float maxPitch = 0f;
 
     [SerializeField]
-    private AudioClip clickSound;
+    private AudioClip clickSound = null;
 
     private bool musicOn;
     public bool MusicOn

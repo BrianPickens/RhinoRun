@@ -11,16 +11,16 @@ public class InitializationManager : MonoBehaviour
     }
 
     [SerializeField]
-    private SoundManager soundManager;
+    private SoundManager soundManager = null;
 
     [SerializeField]
-    private SceneLoadingManager sceneLoadingManager;
+    private SceneLoadingManager sceneLoadingManager = null;
 
     [SerializeField]
-    private SaveManager saveManager;
+    private SaveManager saveManager = null;
 
     [SerializeField]
-    private LoadingTransition loadingScreen;
+    private LoadingTransition loadingScreen = null;
 
     private void Start()
     {

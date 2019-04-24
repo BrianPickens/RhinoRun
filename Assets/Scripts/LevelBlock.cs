@@ -7,25 +7,24 @@ using System;
 //need to adjust value of upgrades in save manager so that the valuation of local vs cloud is correct
 
 //For Tomorrow:
-//Get iap figured out so i can test it test it - need to submit to test flight to see if that will make iap work
+//Get iap figured out so i can test it - need to submit to test flight to see if that will make iap work
 //iap
+
 //figure out coin sound
 //Title Scene Art
-//NAME GAME
 
 //REQUIRED FOR RELEASE
 //tutorial :(
 //rhino
 //character animations
+//set up app store
 
 //POST COMPLETION SYSTEMS
 //optimization - batching - the coins have a bathcing issue - turn off shadows on things if they dont need it
-//might be able to get shadows back in?
 
 //POLISH
 //music - get music from blake
 //power up animations
-//add some shrubs to break up the sides a little bit
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop
@@ -54,32 +53,32 @@ public class LevelBlock : MonoBehaviour
     private LevelBlock myLevelBlockScript;
 
     [SerializeField]
-    private GameObject levelBlockBase;
+    private GameObject levelBlockBase = null;
 
     [SerializeField]
-    private BlockDifficulty myBlockDifficulty;
+    private BlockDifficulty myBlockDifficulty = BlockDifficulty.None;
 
     private List<ObstacleBlock> myObstacles = new List<ObstacleBlock>();
 
     [SerializeField]
-    private List<Transform> ObstacleLocations;
+    private List<Transform> ObstacleLocations = new List<Transform>();
 
     [SerializeField]
-    private List<ObstacleType> obstacles;
+    private List<ObstacleType> obstacles = new List<ObstacleType>();
 
     private List<Collectable> myCollectables = new List<Collectable>();
 
     [SerializeField]
-    private List<Transform> collectableLocations;
+    private List<Transform> collectableLocations = new List<Transform>();
 
     [SerializeField]
-    private List<CollectableType> collectables;
+    private List<CollectableType> collectables = new List<CollectableType>();
 
     [SerializeField]
-    private UnityEngine.UI.Text distanceText;
+    private UnityEngine.UI.Text distanceText = null;
 
     [SerializeField]
-    private float blockSpeed;
+    private float blockSpeed = 0f;
 
     public Action<BlockDifficulty,LevelBlock> BlockRecycled;
 

@@ -12,10 +12,10 @@ public class ObstaclePooler : MonoBehaviour
     }
 
     [SerializeField]
-    private ObstaclePool breakableWalls;
+    private ObstaclePool breakableWalls = null;
 
     [SerializeField]
-    private ObstaclePool barrierWalls;
+    private ObstaclePool barrierWalls = null;
 
     private void Awake()
     {

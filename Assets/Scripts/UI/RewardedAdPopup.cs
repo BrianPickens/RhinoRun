@@ -7,7 +7,7 @@ public class RewardedAdPopup : MonoBehaviour
 {
 
     [SerializeField]
-    private Animator myAnimator;
+    private Animator myAnimator = null;
 
     public Action<bool> OnRewardedAdResponse;
 

@@ -6,16 +6,16 @@ public class Coin : Collectable
 {
 
     [SerializeField]
-    private Renderer myRenderer;
+    private Renderer myRenderer= null;
 
     [SerializeField]
-    private Texture goldTexture;
+    private Texture goldTexture = null;
 
     [SerializeField]
-    private Texture silverTexture;
+    private Texture silverTexture = null;
 
     [SerializeField]
-    private Texture bronzeTexture;
+    private Texture bronzeTexture = null;
 
     public override void UpdateTexture(int _level)
     {

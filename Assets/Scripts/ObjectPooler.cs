@@ -6,12 +6,12 @@ public class ObjectPooler : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject pooledObject;
+    private GameObject pooledObject = null;
 
     List<GameObject> pooledObjects = new List<GameObject>();
 
     [SerializeField]
-    private int startAmount;
+    private int startAmount = 0;
 
     private void Start()
     {

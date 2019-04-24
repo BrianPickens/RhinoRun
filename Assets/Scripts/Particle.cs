@@ -6,7 +6,7 @@ public class Particle : MonoBehaviour
 {
 
     [SerializeField]
-    private float duration;
+    private float duration = 0;
 
     private void OnEnable()
     {

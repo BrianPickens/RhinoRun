@@ -6,20 +6,20 @@ public enum ObstacleType { None, Barrier, Breakable };
 public class ObstacleBlock : MonoBehaviour {
 
     [SerializeField]
-    private Transform myTransform;
+    private Transform myTransform = null;
     [SerializeField]
-    private ObstacleType myObstacleType;
+    private ObstacleType myObstacleType = ObstacleType.None;
     public ObstacleType MyObstacleType
     {
         get { return myObstacleType; }
     }
     [SerializeField]
-    private Collider myCollider;
+    private Collider myCollider = null;
 
     [SerializeField]
-    private GameObject brokenObject;
+    private GameObject brokenObject = null;
     [SerializeField]
-    private GameObject fixedObject;
+    private GameObject fixedObject = null;
 
     private Transform poolTransform;
 

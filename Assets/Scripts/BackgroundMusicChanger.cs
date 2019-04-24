@@ -6,7 +6,7 @@ public class BackgroundMusicChanger : MonoBehaviour
 {
 
     [SerializeField]
-    private AudioClip backgroundMusicClip;
+    private AudioClip backgroundMusicClip = null;
 
     private void Start()
     {

@@ -13,28 +13,28 @@ public class ParticleManager : MonoBehaviour
     }
 
     [SerializeField]
-    private ObjectPooler goldParticles;
+    private ObjectPooler goldParticles = null;
 
     [SerializeField]
-    private ObjectPooler silverParticles;
+    private ObjectPooler silverParticles = null;
 
     [SerializeField]
-    private ObjectPooler bronzeParticles;
+    private ObjectPooler bronzeParticles = null;
 
     [SerializeField]
-    private ObjectPooler diamondParticles;
+    private ObjectPooler diamondParticles = null;
 
     [SerializeField]
-    private ObjectPooler hurdleParticles;
+    private ObjectPooler hurdleParticles = null;
 
     [SerializeField]
-    private ObjectPooler shieldParticles;
+    private ObjectPooler shieldParticles = null;
 
     [SerializeField]
-    private ObjectPooler rhinoSnaxParticles;
+    private ObjectPooler rhinoSnaxParticles = null;
 
     [SerializeField]
-    private ObjectPooler chargeParticles;
+    private ObjectPooler chargeParticles = null;
 
     private void Awake()
     {

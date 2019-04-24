@@ -6,12 +6,12 @@ public class CollectablePool : MonoBehaviour
 {
 
     [SerializeField]
-    private Collectable pooledCollectable;
+    private Collectable pooledCollectable = null;
 
     protected List<Collectable> pooledCollectables = new List<Collectable>();
 
     [SerializeField]
-    private int startAmount;
+    private int startAmount = 0;
 
     protected virtual void Start()
     {

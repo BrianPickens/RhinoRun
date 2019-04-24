@@ -5,12 +5,12 @@ using UnityEngine;
 public class ObstaclePool : MonoBehaviour {
     
     [SerializeField]
-    private ObstacleBlock pooledObstacle;
+    private ObstacleBlock pooledObstacle = null;
 
     List<ObstacleBlock> pooledObstacles = new List<ObstacleBlock>();
 
     [SerializeField]
-    private int startAmount;
+    private int startAmount = 0;
 
     private void Start()
     {

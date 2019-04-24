@@ -5,16 +5,16 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
 
     [SerializeField]
-    private Transform leftEdge;
+    private Transform leftEdge = null;
 
     [SerializeField]
-    private Transform rightEdge;
+    private Transform rightEdge = null;
 
     [SerializeField]
-    private Transform middle;
+    private Transform middle = null;
 
     [SerializeField]
-    private float moveSpeed;
+    private float moveSpeed = 0f;
 
     private Vector3 targetVector;
 
