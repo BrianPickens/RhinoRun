@@ -15,19 +15,16 @@ using System;
 
 //REQUIRED FOR RELEASE
 //tutorial :(
-//all models
-//character animations once i get the character
+//rhino
+//character animations
 
 //POST COMPLETION SYSTEMS
-//optimization - batching - the coins have a bathcing issue
+//optimization - batching - the coins have a bathcing issue - turn off shadows on things if they dont need it
 //might be able to get shadows back in?
-//remove ads iap
 
 //POLISH
-//particles
 //music - get music from blake
 //power up animations
-//lighting
 //add some shrubs to break up the sides a little bit
 
 //BALANCING AFTER PRODUCT IS READY

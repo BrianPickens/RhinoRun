@@ -423,6 +423,10 @@ public class Character : MonoBehaviour {
         else if (_obstacle.MyObstacleType == ObstacleType.Breakable && myCharacterState == CharacterState.Charging)
         {
             screenShake.Shake();
+            if (ParticleManager.Instance != null)
+            {
+            ParticleManager.Instance.CreateParticles(ParticleType.Hurdle, myTransform.position);
+            }
             PlaySound(hitFenceSound);
             _obstacle.Destroyed();
         }
@@ -432,6 +436,10 @@ public class Character : MonoBehaviour {
             screenShake.Shake();
             if (shieldActive)
             {
+                if (ParticleManager.Instance != null)
+                {
+                    ParticleManager.Instance.CreateParticles(ParticleType.Hurdle, myTransform.position + Vector3.up);
+                }
                 _obstacle.Destroyed();
                 if (OnShieldBreak != null)
                 {
