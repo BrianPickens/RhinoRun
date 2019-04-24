@@ -6,6 +6,33 @@ using System;
 
 public class GameUI : MonoBehaviour
 {
+    //
+    [SerializeField]
+    private GameObject oldControls = null;
+
+    [SerializeField]
+    private GameObject newControls = null;
+
+    private bool newControlsOn = false;
+
+    public void ChangeControls()
+    {
+        if (newControlsOn)
+        {
+            oldControls.SetActive(true);
+            newControls.SetActive(false);
+            newControlsOn = false;
+        }
+        else
+        {
+            newControls.SetActive(true);
+            oldControls.SetActive(false);
+            newControlsOn = true;
+        }
+    }
+
+    //
+
     [SerializeField]
     private EndingDisplayUI endingDisplay = null;
 

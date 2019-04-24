@@ -222,6 +222,16 @@ public class Character : MonoBehaviour {
         //end keyboard controls
     }
 
+    public void GoLeft()
+    {
+        ChangeLanes(-1);
+    }
+
+    public void GoRight()
+    {
+        ChangeLanes(1);
+    }
+
     private void MoveCharacter()
     {
         myTransform.position = Vector3.MoveTowards(myTransform.position, laneDestination, Time.deltaTime * moveSpeed);
