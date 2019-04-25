@@ -23,7 +23,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -35,7 +35,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -101,10 +101,10 @@ TextureImporter:
       name: ChargeButtonPressed_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 125
-        width: 502
-        height: 251
+        x: 122
+        y: 105
+        width: 268
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c6ef4b9f73ce804683bb03b3fb7a8e6
+      spriteID: 12b59e8ac66e54e45b2ca85dc3b61179
       internalID: -2416644966873787294
       vertices: []
       indices: 
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 54bb6dfb17aa34a43b439e711589c29e
+    spriteID: a37b1d42209445a46b27e23c86dc4c7e
     internalID: 0
     vertices: []
     indices: 

@@ -101,10 +101,10 @@ TextureImporter:
       name: ChargeButton_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 125
-        width: 502
-        height: 251
+        x: 122
+        y: 105
+        width: 268
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ba517ad249b6b647b2b68ff0226c034
+      spriteID: 70caf0339b5503348b09f35f68ee6024
       internalID: 2674584508260733115
       vertices: []
       indices: 
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 699cbe81f22f4e7449ff77da61ec7604
+    spriteID: 5ae0a6e8c423d244eb5d2a6c97ddef6d
     internalID: 0
     vertices: []
     indices: 

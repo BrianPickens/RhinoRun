@@ -6,32 +6,6 @@ using System;
 
 public class GameUI : MonoBehaviour
 {
-    //
-    [SerializeField]
-    private GameObject oldControls = null;
-
-    [SerializeField]
-    private GameObject newControls = null;
-
-    private bool newControlsOn = false;
-
-    public void ChangeControls()
-    {
-        if (newControlsOn)
-        {
-            oldControls.SetActive(true);
-            newControls.SetActive(false);
-            newControlsOn = false;
-        }
-        else
-        {
-            newControls.SetActive(true);
-            oldControls.SetActive(false);
-            newControlsOn = true;
-        }
-    }
-
-    //
 
     [SerializeField]
     private EndingDisplayUI endingDisplay = null;
@@ -62,6 +36,18 @@ public class GameUI : MonoBehaviour
 
     [SerializeField]
     private GameObject chargeButton = null;
+
+    [SerializeField]
+    private GameObject leftButton = null;
+
+    [SerializeField]
+    private GameObject rightButton = null;
+
+    [SerializeField]
+    private GameObject doubleLeftButton = null;
+
+    [SerializeField]
+    private GameObject doubleRigthButton = null;
 
     [SerializeField]
     private RewardedAdPopup rewardedAdPopup = null;
@@ -139,7 +125,7 @@ public class GameUI : MonoBehaviour
     {
         HideSettingsButton();
         HideCoins();
-        HideChargeButton();
+        HideControls();
         HideChargeMeter();
         HideUnlimitedChargeTimer();
         HideShieldTimer();
@@ -249,9 +235,13 @@ public class GameUI : MonoBehaviour
         unlimitedChargeMeter.SetActive(false);
     }
 
-    public void HideChargeButton()
+    public void HideControls()
     {
         chargeButton.gameObject.SetActive(false);
+        leftButton.gameObject.SetActive(false);
+        rightButton.gameObject.SetActive(false);
+        doubleLeftButton.gameObject.SetActive(false);
+        doubleRigthButton.gameObject.SetActive(false);
     }
 
     public void HideChargeMeter()

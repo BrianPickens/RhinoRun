@@ -232,6 +232,16 @@ public class Character : MonoBehaviour {
         ChangeLanes(1);
     }
 
+    public void GoAllLeft()
+    {
+        ChangeLanes(-2);
+    }
+
+    public void GoAllRight()
+    {
+        ChangeLanes(2);
+    }
+
     private void MoveCharacter()
     {
         myTransform.position = Vector3.MoveTowards(myTransform.position, laneDestination, Time.deltaTime * moveSpeed);

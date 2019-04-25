@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 98d1d0718d7b10e42bfdc0fcff7792d7
+guid: 4e53a97cc25f73548879ad2cc6286a02
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5157689081589796890
-    second: ChargeButtonOverlay_0
+      213: 8830745461517644737
+    second: LeftButton_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChargeButtonOverlay_0
+      name: LeftButton_0
       rect:
         serializedVersion: 2
-        x: 122
-        y: 105
-        width: 268
-        height: 291
+        x: 118
+        y: 135
+        width: 276
+        height: 230
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fe57e032077e684c92a6ef8d5c5845f
-      internalID: -5157689081589796890
+      spriteID: 75d8903c9a81987429a347b40a979ca5
+      internalID: 8830745461517644737
       vertices: []
       indices: 
       edges: []
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ac7c59dc3d8acac4ebb35834d776043d
+    spriteID: 5edf2c26f525e784483dd82cf5124ac3
     internalID: 0
     vertices: []
     indices: 

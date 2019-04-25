@@ -24,7 +24,6 @@ using System;
 
 //POLISH
 //music - get music from blake
-//power up animations
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop
