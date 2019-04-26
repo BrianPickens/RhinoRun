@@ -104,7 +104,6 @@ public class PowerUpsManager : MonoBehaviour
 
             case CollectableType.Stamina:
                 StaminaCollected();
-                character.RestoreChargePower(10f);
                 break;
 
             default:
@@ -119,7 +118,7 @@ public class PowerUpsManager : MonoBehaviour
         switch (currentStaminaLevel)
         {
             case 0:
-                character.RestoreChargePower(0f);
+                character.RestoreChargePower(5f);
                 break;
 
             case 1:

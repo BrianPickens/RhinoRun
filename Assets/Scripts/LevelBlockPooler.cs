@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BlockDifficulty { None, Easy, Medium, Hard, MegaCoin, Stamina, Shield, Charge }
+public enum BlockDifficulty { None, Easy, Medium, Hard, MegaCoin, Stamina, Shield, Charge, Tutorial }
 public class LevelBlockPooler : MonoBehaviour {
 
     [SerializeField]
@@ -28,6 +28,9 @@ public class LevelBlockPooler : MonoBehaviour {
 
     [SerializeField]
     private List<LevelBlock> StaminaBlocks = new List<LevelBlock>();
+
+    [SerializeField]
+    private List<LevelBlock> TutorialBlocks = new List<LevelBlock>();
 
     public void Start()
     {
@@ -77,6 +80,12 @@ public class LevelBlockPooler : MonoBehaviour {
         {
             StaminaBlocks[i].BlockRecycled -= AddBlockToList;
             StaminaBlocks[i].BlockRecycled += AddBlockToList;
+        }
+
+        for (int i = 0; i < TutorialBlocks.Count; i++)
+        {
+            TutorialBlocks[i].BlockRecycled -= AddBlockToList;
+            TutorialBlocks[i].BlockRecycled += AddBlockToList;
         }
     }
 
@@ -132,6 +141,11 @@ public class LevelBlockPooler : MonoBehaviour {
                 _randomIndex = Random.Range(0, StaminaBlocks.Count);
                 _newBlock = StaminaBlocks[_randomIndex];
                 StaminaBlocks.Remove(_newBlock);
+                break;
+
+            case BlockDifficulty.Tutorial:
+                _newBlock = TutorialBlocks[0];
+                TutorialBlocks.RemoveAt(0);
                 break;
 
             default:
@@ -252,6 +266,9 @@ public class LevelBlockPooler : MonoBehaviour {
                 StaminaBlocks.Add(_levelBlock);
                 break;
 
+            case BlockDifficulty.Tutorial:
+                TutorialBlocks.Add(_levelBlock);
+                break;
             default:
                 Debug.LogError("Unknown Block Difficulty");
                 break;

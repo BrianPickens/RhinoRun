@@ -19,7 +19,7 @@ public static class GameCenter
     public static void AuthenticateUser(Action<bool> _callback = null)
     {
         initialLogInAttempted = true;
-        Debug.Log("Attempting Authentication");
+        //Debug.Log("Attempting Authentication");
         if (!loggedIn)
         {
             OnAuthenticationComplete = null;
@@ -29,14 +29,14 @@ public static class GameCenter
         }
         else
         {
-            Debug.Log("already logged in, showing leader board");
+            //Debug.Log("already logged in, showing leader board");
             ShowLeaderBoard();
         }
     }
 
     private static void AuthenticationComplete(bool _success)
     {
-        Debug.Log("game center success: " + _success);
+        //Debug.Log("game center success: " + _success);
         loggedIn = _success;
         if (OnAuthenticationComplete != null)
         {
@@ -46,29 +46,29 @@ public static class GameCenter
 
     public static void PostScoreToLeaderBoard(int _score)
     {
-        Debug.Log("attempted post to leaderboard");
+       // Debug.Log("attempted post to leaderboard");
         if (loggedIn)
         {
-            Debug.Log("Posting to leaderboard");
+            //Debug.Log("Posting to leaderboard");
             Social.ReportScore(_score, leaderboardId, ScorePostComplete);
         }
     }
 
     private static void ScorePostComplete(bool _success)
     {
-        Debug.Log("Score post: " + _success);
+       // Debug.Log("Score post: " + _success);
     }
 
     public static void ShowLeaderBoard()
     {
         if (loggedIn)
         {
-            Debug.Log("Showing leaderboard");
+           // Debug.Log("Showing leaderboard");
             Social.ShowLeaderboardUI();
         }
         else
         {
-            Debug.Log("not logged in, attempting to authenticate");
+           // Debug.Log("not logged in, attempting to authenticate");
             AuthenticateUser();
         }
     }

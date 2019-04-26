@@ -22,13 +22,6 @@ public class SettingsUI : MonoBehaviour
     private Sprite soundEffectsOffSprite = null;
 
     [SerializeField]
-    private Text swipeSensitivityText = null;
-    [SerializeField]
-    private Text doubleSwipeSensitivityText = null;
-    [SerializeField]
-    private Text doubleSwipeStateText = null;
-
-    [SerializeField]
     private Animator myAnimator = null;
 
     [SerializeField]
@@ -36,16 +29,10 @@ public class SettingsUI : MonoBehaviour
 
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
-    public Action<bool> OnDoubleSwipeChange;
-    public Action<int> OnSwipeSensitivityChange;
-    public Action<int> OnDoubleSwipeSensitivityChange;
     public Action OnGameCenterPress;
 
     private bool musicOn;
     private bool soundEffectsOn;
-    private int swipeSensitivity;
-    private int doubleSwipeSensitivity;
-    private bool doubleSwipeOn;
 
     private void Start()
     {
@@ -74,23 +61,6 @@ public class SettingsUI : MonoBehaviour
             soundEffectsImage.sprite = soundEffectsOffSprite;
         }
 
-    }
-
-    public void InitializeControlPreference(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
-    {
-        swipeSensitivity = Mathf.RoundToInt(_swipeSensitivity * 10f);
-        swipeSensitivityText.text = "" + swipeSensitivity;
-        doubleSwipeSensitivity = Mathf.RoundToInt((_doubleSwipeSensitivity - 2.5f)*10f);
-        doubleSwipeSensitivityText.text = "" + doubleSwipeSensitivity;
-        doubleSwipeOn = _doubleSwipeOn;
-        if (doubleSwipeOn)
-        {
-            doubleSwipeStateText.text = "ON";
-        }
-        else
-        {
-            doubleSwipeStateText.text = "OFF";
-        }
     }
 
     public void OpenSettings()
@@ -164,66 +134,6 @@ public class SettingsUI : MonoBehaviour
     {
         PlayClickSound();
         creditsUI.SetActive(false);
-    }
-
-    public void SwipeSensitivityChange(int _change)
-    {
-        PlayClickSound();
-        swipeSensitivity += _change;
-        if (swipeSensitivity <= 0)
-        {
-            swipeSensitivity = 1;
-        }
-        else if (swipeSensitivity > 10)
-        {
-            swipeSensitivity = 10;
-        }
-        swipeSensitivityText.text = "" + swipeSensitivity;
-
-        if (OnSwipeSensitivityChange != null)
-        {
-            OnSwipeSensitivityChange(swipeSensitivity);
-        }
-    }
-
-    public void DoubleSwipeToggle()
-    {
-        PlayClickSound();
-        if (doubleSwipeOn)
-        {
-            doubleSwipeOn = false;
-            doubleSwipeStateText.text = "OFF";
-        }
-        else
-        {
-            doubleSwipeOn = true;
-            doubleSwipeStateText.text = "ON";
-        }
-
-        if (OnDoubleSwipeChange != null)
-        {
-            OnDoubleSwipeChange(doubleSwipeOn);
-        }
-    }
-
-    public void DoubleSwipeSensitivtyChange(int _change)
-    {
-        PlayClickSound();
-        doubleSwipeSensitivity += _change;
-        if (doubleSwipeSensitivity <= 0)
-        {
-            doubleSwipeSensitivity = 1;
-        }
-        else if (doubleSwipeSensitivity > 10)
-        {
-            doubleSwipeSensitivity = 10;
-        }
-        doubleSwipeSensitivityText.text = "" + doubleSwipeSensitivity;
-
-        if (OnDoubleSwipeSensitivityChange != null)
-        {
-            OnDoubleSwipeSensitivityChange(doubleSwipeSensitivity);
-        }
     }
 
     public void GameCenterPress()

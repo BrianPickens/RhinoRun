@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     private int coinSoundLevel;
 
+    private bool tutorialCompleted;
+
     private void Start()
     {
         Init();
@@ -60,6 +62,11 @@ public class GameManager : MonoBehaviour
         if (InitializationManager.Instance == null)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Initialization");
+        }
+
+        if (SaveManager.Instance != null)
+        {
+            tutorialCompleted = SaveManager.Instance.GetTutorialStatus();
         }
 
         character.OnGameOver += GameOver;
@@ -81,15 +88,6 @@ public class GameManager : MonoBehaviour
         gameUI.OnSoundEffectsChange = null;
         gameUI.OnSoundEffectsChange += UpdateSoundEffectsPreference;
 
-        gameUI.OnSwipeSensitivityChange = null;
-        gameUI.OnSwipeSensitivityChange += UpdateSwipeSensitivity;
-
-        gameUI.OnDoubleSwipeSensitivityChange = null;
-        gameUI.OnDoubleSwipeSensitivityChange += UpdateDoubleSwipeSensitivity;
-
-        gameUI.OnDoubleSwipeChange = null;
-        gameUI.OnDoubleSwipeChange += UpdateDoubleSwipeToggle;
-
         gameUI.OnRewardedAdConfirmation = null;
         gameUI.OnRewardedAdConfirmation += CheckForRewardedAd;
 
@@ -101,23 +99,12 @@ public class GameManager : MonoBehaviour
 
         powerUpsManager.Initialize();
 
-        levelGenerator.Initialize(CollectableGained, powerUpsManager.GetAvaliablePowerUps());
+        levelGenerator.Initialize(CollectableGained, powerUpsManager.GetAvaliablePowerUps(), tutorialCompleted);
 
         gameUI.Init();
 
         currentCoinUpgradeLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.CoinsUpgrade);
         currentMegaCoinUpgradeLevel = SaveManager.Instance.GetUpgradeLevel(Upgrades.MegaCoinUpgrade);
-
-        float tempSwipeSensitivity = 0.2f;
-        float tempDoubleSwipeSensitivity = 3f;
-        bool tempDoubleSwipeOn = true;
-        if (SaveManager.Instance != null)
-        {
-            tempSwipeSensitivity = SaveManager.Instance.GetSwipeSensitivity();
-            tempDoubleSwipeSensitivity = SaveManager.Instance.GetDoubleSwipeSensitivity();
-            tempDoubleSwipeOn = SaveManager.Instance.GetDoubleSwipeStatus();
-        }
-        gameUI.InitializeControlPreferences(tempSwipeSensitivity, tempDoubleSwipeSensitivity, tempDoubleSwipeOn);
 
         bool musicOn = true;
         bool soundEffectsOn = true;
@@ -128,7 +115,12 @@ public class GameManager : MonoBehaviour
         }
         gameUI.InitializeSoundPreferences(musicOn, soundEffectsOn);
 
-        character.Initialize(tempSwipeSensitivity, tempDoubleSwipeSensitivity, tempDoubleSwipeOn);
+        if (!tutorialCompleted)
+        {
+            gameUI.HideControls();
+        }
+
+        character.Initialize();
 
         StaticInfo.AddPlay();
     }
@@ -407,35 +399,6 @@ public class GameManager : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.UpdateSoundEffectPreference(_soundEffectsOn);
-        }
-    }
-
-    private void UpdateSwipeSensitivity(int _change)
-    {
-        if (SaveManager.Instance != null)
-        {
-            float _newSensitivity = _change / 10f;
-            character.SetSwipeSensitivity(_newSensitivity);
-            SaveManager.Instance.SetSwipeSensitivity(_newSensitivity);
-        }
-    }
-
-    private void UpdateDoubleSwipeSensitivity(int _change)
-    {
-        if (SaveManager.Instance != null)
-        {
-            float _newSensitivity = (_change / 10f) + 2.5f;
-            character.SetDoubleSwipeSensitivity(_newSensitivity);
-            SaveManager.Instance.SetDoubleSwipeSensitivity(_newSensitivity);
-        }
-    }
-
-    private void UpdateDoubleSwipeToggle(bool _change)
-    {
-        if (SaveManager.Instance != null)
-        {
-            character.SetDoubleSwipeStatus(_change);
-            SaveManager.Instance.SetDoubleSwipe(_change);
         }
     }
 

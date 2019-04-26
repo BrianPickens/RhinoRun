@@ -63,9 +63,6 @@ public class GameUI : MonoBehaviour
     public Action OnReplayPress;
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
-    public Action<bool> OnDoubleSwipeChange;
-    public Action<int> OnSwipeSensitivityChange;
-    public Action<int> OnDoubleSwipeSensitivityChange;
     public Action OnRewardedAdConfirmation;
     public Action OnGameCenterPress;
 
@@ -80,15 +77,6 @@ public class GameUI : MonoBehaviour
         settingsUI.OnSoundEffectsChange = null;
         settingsUI.OnSoundEffectsChange += SoundEffectsChange;
 
-        settingsUI.OnSwipeSensitivityChange = null;
-        settingsUI.OnSwipeSensitivityChange += SwipeSensivityChange;
-
-        settingsUI.OnDoubleSwipeSensitivityChange = null;
-        settingsUI.OnDoubleSwipeSensitivityChange += DoubleSwipeSensitivityChange;
-
-        settingsUI.OnDoubleSwipeChange = null;
-        settingsUI.OnDoubleSwipeChange += DoubleSwipeChange;
-
         settingsUI.OnGameCenterPress = null;
         settingsUI.OnGameCenterPress += GameCenterPress;
 
@@ -100,11 +88,6 @@ public class GameUI : MonoBehaviour
     public void InitializeSoundPreferences(bool _musicOn, bool _soundEffectsOn)
     {
         settingsUI.InitializeSoundPreferences(_musicOn, _soundEffectsOn);
-    }
-
-    public void InitializeControlPreferences(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
-    {
-        settingsUI.InitializeControlPreference(_swipeSensitivity, _doubleSwipeSensitivity, _doubleSwipeOn);
     }
 
     public void DisplayPoints(int _points)
@@ -244,6 +227,23 @@ public class GameUI : MonoBehaviour
         doubleRigthButton.gameObject.SetActive(false);
     }
 
+    public void ShowArrows()
+    {
+        leftButton.gameObject.SetActive(true);
+        rightButton.gameObject.SetActive(true);
+    }
+
+    public void ShowDoubleArrows()
+    {
+        doubleLeftButton.gameObject.SetActive(true);
+        doubleRigthButton.gameObject.SetActive(true);
+    }
+
+    public void ShowCharge()
+    {
+        chargeButton.gameObject.SetActive(true);
+    }
+
     public void HideChargeMeter()
     {
         chargeMeter.gameObject.SetActive(false);
@@ -279,30 +279,6 @@ public class GameUI : MonoBehaviour
         if (OnSoundEffectsChange != null)
         {
             OnSoundEffectsChange(_soundEffectsOn);
-        }
-    }
-
-    private void SwipeSensivityChange(int _change)
-    {
-        if (OnSwipeSensitivityChange != null)
-        {
-            OnSwipeSensitivityChange(_change);
-        }
-    }
-
-    private void DoubleSwipeSensitivityChange(int _change)
-    {
-        if (OnDoubleSwipeSensitivityChange != null)
-        {
-            OnDoubleSwipeSensitivityChange(_change);
-        }
-    }
-
-    private void DoubleSwipeChange(bool _change)
-    {
-        if (OnDoubleSwipeChange != null)
-        {
-            OnDoubleSwipeChange(_change);
         }
     }
 

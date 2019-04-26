@@ -9,12 +9,16 @@ using System;
 //For Tomorrow:
 //Get iap figured out so i can test it - need to submit to test flight to see if that will make iap work
 //iap
-
+//make stamina gauge pop when you get rhino snax
 //figure out coin sound
 //Title Scene Art
+//revist loading screen
+//remove the preview packages i dont need
+
+//BUGS
+//if you grab a stamina bar with full stamina it gives you unlimited stamina
 
 //REQUIRED FOR RELEASE
-//tutorial :(
 //rhino
 //character animations
 //set up app store

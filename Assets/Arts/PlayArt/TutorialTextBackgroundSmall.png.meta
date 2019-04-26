@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 025435eae5c67db4da4b999bf0b43ef9
+guid: bec8f89686a874e49b5aeefe316d35ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 412443834718461920
-    second: ShieldUpgradeImage_0
+      213: 1826372759465605438
+    second: TutorialTextBackgroundSmall_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShieldUpgradeImage_0
+      name: TutorialTextBackgroundSmall_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 10
-        width: 414
-        height: 482
+        x: 5
+        y: 181
+        width: 502
+        height: 141
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88d87519017181043882cecacc2c2a30
-      internalID: 412443834718461920
+      spriteID: 5c9b3412deba9bd47b0a573004b1acc2
+      internalID: 1826372759465605438
       vertices: []
       indices: 
       edges: []
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3b576eb74f83b9847b1a992d8a68e88d
+    spriteID: 0f9c9f679da7e054fa8722beb1878728
     internalID: 0
     vertices: []
     indices: 

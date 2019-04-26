@@ -124,26 +124,18 @@ public class SaveManager : MonoBehaviour
 
     private bool dataLoaded = false;
 
-    private float swipeSensitivity;
+    private bool tutorialCompleted = false;
 
-    private float doubleSwipeSensitivity;
-
-    private bool doubleSwipeOn;
+    private const string tutorialCompleteString = "tutorialCompleted";
 
     private bool hasRemoveAds;
 
-    private const string swipeSensitivityString = "swipeSensitivity";
-
-    private const string doubleSwipeSensitivityString = "doubleSwipeSensitivity";
-
-    private const string doubleSwipeString = "doubleSwipe";
-
     private const string hasRemoveAdsString = "hasRemoveAds";
 
-    private int levelOneCost = 100;
-    private int levelTwoCost = 200;
-    private int levelThreeCost = 300;
-    private int levelFourCost = 400;
+    private int levelOneCost = 1000;
+    private int levelTwoCost = 10000;
+    private int levelThreeCost = 25000;
+    private int levelFourCost = 50000;
 
     private bool initialized;
     public bool Initialized
@@ -221,11 +213,8 @@ public class SaveManager : MonoBehaviour
 
         localSave.ConvertDataFromString(localSaveData);
 
-
         //only saved local
-        swipeSensitivity = LocalSaving.GetLocalFloat(swipeSensitivityString, 0.2f);
-        doubleSwipeSensitivity = LocalSaving.GetLocalFloat(doubleSwipeSensitivityString, 3f);
-        doubleSwipeOn = LocalSaving.GetLocalBool(doubleSwipeString, 1);
+        tutorialCompleted = LocalSaving.GetLocalBool(tutorialCompleteString, 0);
         hasRemoveAds = LocalSaving.GetLocalBool(hasRemoveAdsString, 0);
         //end only saved local
 
@@ -443,34 +432,6 @@ public class SaveManager : MonoBehaviour
         return upgradeLevel;
     }
 
-    public void SetSwipeSensitivity(float _sensitivity)
-    {
-        swipeSensitivity = _sensitivity;
-        //PlayerPrefs.SetFloat(swipeSensitivityString, _sensitivity);
-        LocalSaving.SaveLocalFloat(swipeSensitivity, swipeSensitivityString);
-    }
-
-    public void SetDoubleSwipeSensitivity(float _sensitivity)
-    {
-        doubleSwipeSensitivity = _sensitivity;
-        //PlayerPrefs.SetFloat(doubleSwipeSensitivityString, _sensitivity);
-        LocalSaving.SaveLocalFloat(doubleSwipeSensitivity, doubleSwipeSensitivityString);
-    }
-
-    public void SetDoubleSwipe(bool _isOn)
-    {
-        doubleSwipeOn = _isOn;
-       // PlayerPrefs.SetInt(doubleSwipeString, _isOn ? 1 : 0);
-        if (doubleSwipeOn)
-        {
-            LocalSaving.SaveLocalBool(true, doubleSwipeString);
-        }
-        else
-        {
-            LocalSaving.SaveLocalBool(false, doubleSwipeString);
-        }
-    }
-
     public void SetHasRemoveAds(bool _hasRemoveAds)
     {
         hasRemoveAds = _hasRemoveAds;
@@ -484,24 +445,20 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public float GetSwipeSensitivity()
-    {
-        return swipeSensitivity;
-    }
-
-    public float GetDoubleSwipeSensitivity()
-    {
-        return doubleSwipeSensitivity;
-    }
-
-    public bool GetDoubleSwipeStatus()
-    {
-        return doubleSwipeOn;
-    }
-
     public bool GetHasRemoveAdsStatus()
     {
         return hasRemoveAds;
+    }
+
+    public void SetTutorialCompleted()
+    {
+        tutorialCompleted = true;
+        LocalSaving.SaveLocalBool(true, tutorialCompleteString);
+    }
+
+    public bool GetTutorialStatus()
+    {
+        return tutorialCompleted;
     }
 
     public bool CheckIfHighscoore(int _score)
@@ -534,7 +491,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
         playerSave = new PlayerSave();
         SaveData();
-        SceneLoadingManager.Instance.LoadScene("Initialization");
+        SceneLoadingManager.Instance.LoadScene("MainMenu");
     }
 
 

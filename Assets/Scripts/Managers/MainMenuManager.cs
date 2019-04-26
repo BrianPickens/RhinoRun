@@ -32,15 +32,6 @@ public class MainMenuManager : MonoBehaviour
         mainUI.OnSoundEffectsChange = null;
         mainUI.OnSoundEffectsChange += UpdateSoundEffectsPreference;
 
-        mainUI.OnSwipeSensitivityChange = null;
-        mainUI.OnSwipeSensitivityChange += UpdateSwipeSensitivity;
-
-        mainUI.OnDoubleSwipeSensitivityChange = null;
-        mainUI.OnDoubleSwipeSensitivityChange += UpdateDoubleSwipeSensitivity;
-
-        mainUI.OnDoubleSwipeChange = null;
-        mainUI.OnDoubleSwipeChange += UpdateDoubleSwipeToggle;
-
         mainUI.OnGameCenterPress = null;
         mainUI.OnGameCenterPress += InitializeGameCenter;
 
@@ -62,19 +53,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void InitializeUI()
     {
-
-        float tempSwipeSensitivity = 0.2f;
-        float tempDoubleSwipeSensitivity = 3f;
-        bool tempDoubleSwipeOn = true;
         if (SaveManager.Instance != null)
         {
             mainUI.UpdateCoinsDisplay(SaveManager.Instance.GetCurrentCoins());
             mainUI.UpdateScoreDisplay(SaveManager.Instance.GetCurrentHighscore());
-            tempSwipeSensitivity = SaveManager.Instance.GetSwipeSensitivity();
-            tempDoubleSwipeSensitivity = SaveManager.Instance.GetDoubleSwipeSensitivity();
-            tempDoubleSwipeOn = SaveManager.Instance.GetDoubleSwipeStatus();
         }
-        mainUI.InitializeControlPreferences(tempSwipeSensitivity, tempDoubleSwipeSensitivity, tempDoubleSwipeOn);
 
         bool musicOn = true;
         bool soundEffectsOn = true;
@@ -129,32 +112,6 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void UpdateSwipeSensitivity(int _change)
-    {
-        if (SaveManager.Instance != null)
-        {
-            float _newSensitivity = _change / 10f;
-            SaveManager.Instance.SetSwipeSensitivity(_newSensitivity);
-        }
-    }
-
-    private void UpdateDoubleSwipeSensitivity(int _change)
-    {
-        if (SaveManager.Instance != null)
-        {
-            float _newSensitivity = (_change / 10f) + 2.5f;
-            SaveManager.Instance.SetDoubleSwipeSensitivity(_newSensitivity);
-        }
-    }
-
-    private void UpdateDoubleSwipeToggle(bool _change)
-    {
-        if (SaveManager.Instance != null)
-        {
-            SaveManager.Instance.SetDoubleSwipe(_change);
-        }
-    }
-
     //debug options
     public void ResetMoney()
     {
@@ -170,7 +127,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void AddMoney()
     {
-        SaveManager.Instance.UpdateCoins(500);
+        SaveManager.Instance.UpdateCoins(100000);
         mainUI.UpdateCoinsDisplay(SaveManager.Instance.GetCurrentCoins());
     }
 

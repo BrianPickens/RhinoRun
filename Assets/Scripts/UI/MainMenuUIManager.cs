@@ -23,9 +23,6 @@ public class MainMenuUIManager : MonoBehaviour
     public Action OnUpgradesPress;
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
-    public Action<bool> OnDoubleSwipeChange;
-    public Action<int> OnSwipeSensitivityChange;
-    public Action<int> OnDoubleSwipeSensitivityChange;
     public Action OnGameCenterPress;
     public Action OnLeaderBoardPress;
 
@@ -40,15 +37,6 @@ public class MainMenuUIManager : MonoBehaviour
         settingsUI.OnSoundEffectsChange = null;
         settingsUI.OnSoundEffectsChange += SoundEffectsChange;
 
-        settingsUI.OnSwipeSensitivityChange = null;
-        settingsUI.OnSwipeSensitivityChange += SwipeSensivityChange;
-
-        settingsUI.OnDoubleSwipeSensitivityChange = null;
-        settingsUI.OnDoubleSwipeSensitivityChange += DoubleSwipeSensitivityChange;
-
-        settingsUI.OnDoubleSwipeChange = null;
-        settingsUI.OnDoubleSwipeChange += DoubleSwipeChange;
-
         settingsUI.OnGameCenterPress = null;
         settingsUI.OnGameCenterPress += GameCenterPress;
     }
@@ -56,11 +44,6 @@ public class MainMenuUIManager : MonoBehaviour
     public void InitializeSoundPreferences(bool _musicOn, bool _soundEffectsOn)
     {
         settingsUI.InitializeSoundPreferences(_musicOn, _soundEffectsOn);
-    }
-
-    public void InitializeControlPreferences(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
-    {
-        settingsUI.InitializeControlPreference(_swipeSensitivity, _doubleSwipeSensitivity, _doubleSwipeOn);
     }
 
     public void PlayPress()
@@ -135,30 +118,6 @@ public class MainMenuUIManager : MonoBehaviour
         if (OnSoundEffectsChange != null)
         {
             OnSoundEffectsChange(_soundEffectsOn);
-        }
-    }
-
-    private void SwipeSensivityChange(int _change)
-    {
-        if (OnSwipeSensitivityChange != null)
-        {
-            OnSwipeSensitivityChange(_change);
-        }
-    }
-
-    private void DoubleSwipeSensitivityChange(int _change)
-    {
-        if (OnDoubleSwipeSensitivityChange != null)
-        {
-            OnDoubleSwipeSensitivityChange(_change);
-        }
-    }
-
-    private void DoubleSwipeChange(bool _change)
-    {
-        if (OnDoubleSwipeChange != null)
-        {
-            OnDoubleSwipeChange(_change);
         }
     }
 

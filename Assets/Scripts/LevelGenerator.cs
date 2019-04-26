@@ -7,6 +7,9 @@ public enum GameDifficulty { Simple, Easy, Medium, Difficult, Hard }
 public class LevelGenerator : MonoBehaviour {
 
     [SerializeField]
+    private TutorialManager tutorialManager = null;
+
+    [SerializeField]
     private LevelBlockRecycler levelBlockRecycler = null;
 
     [SerializeField]
@@ -82,13 +85,15 @@ public class LevelGenerator : MonoBehaviour {
 
     private float coinSpinTime;
 
-    //private bool gameOver;
+    private bool tutorialCompleted;
+
+    private int tutorialCount;
 
     private Action<CollectableType> CollectableCallback;
 
     public Action OnBlockPassed;
 
-    public void Initialize(Action<CollectableType> _collectableCallback, List<Upgrades> _avaliableUpgrades)
+    public void Initialize(Action<CollectableType> _collectableCallback, List<Upgrades> _avaliableUpgrades, bool _tutorialCompleted)
     {
 
         avaliableUpgrades = _avaliableUpgrades;
@@ -97,6 +102,8 @@ public class LevelGenerator : MonoBehaviour {
         levelBlockRecycler.RecycleBlock += GetNewBlock;
 
         CollectableCallback = _collectableCallback;
+
+        tutorialCompleted = _tutorialCompleted;
 
         currentDifficulty = GameDifficulty.Simple;
 
@@ -108,7 +115,15 @@ public class LevelGenerator : MonoBehaviour {
         currentPowerUpSpawn = GeneratePowerUpSpawnNumber();
 
         currentBlockSpeed = startingBlockSpeed;
-        GenerateLevel();
+
+        if (!tutorialCompleted)
+        {
+            GenerateTutorialLevel();
+        }
+        else
+        {
+            GenerateLevel();
+        }
     }
 
     private void Update()
@@ -120,12 +135,48 @@ public class LevelGenerator : MonoBehaviour {
         }
     }
 
+    public void GenerateTutorialLevel()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            LevelBlock _newBlock = null;
+            if (i < 3)
+            {
+                _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.None);
+            }
+            else
+            {
+                _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.Tutorial);
+            }
+            levelBlocks.Add(_newBlock);
+            if (i == 0)
+            {
+                _newBlock.gameObject.SetActive(true);
+                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated, coinSpinTime);
+                _newBlock.SetPosition(Vector3.zero);
+                _newBlock.SetSpeed(currentBlockSpeed);
+                numBlocksGenerated++;
+
+            }
+            else
+            {
+                _newBlock.gameObject.SetActive(true);
+                _newBlock.InitializeBlock(CollectableCallback, numBlocksGenerated, coinSpinTime);
+                _newBlock.SetPosition(levelBlocks[i - 1].GetPosition() + (Vector3.forward * levelBlockSize));
+                _newBlock.SetSpeed(currentBlockSpeed);
+                numBlocksGenerated++;
+            }
+        }
+
+        rhinoDetection.SetSpeed(currentBlockSpeed);
+    }
+
     public void GenerateLevel()
     {
         for (int i = 0; i < 10; i++)
         {
             LevelBlock _newBlock = null;
-            if (i < 5)
+            if (i < 3)
             {
                 _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.None);
             }
@@ -159,6 +210,34 @@ public class LevelGenerator : MonoBehaviour {
 
     private void GetNewBlock()
     {
+
+        if (!tutorialCompleted)
+        {
+            tutorialCount++;
+
+            if (tutorialCount == 1)
+            {
+                tutorialManager.DisplayArrowTutorial();
+            }
+            else if (tutorialCount == 4)
+            {
+                tutorialManager.DisplayDoubleArrowTutorial();
+            }
+            else if (tutorialCount == 6)
+            {
+                tutorialManager.DisplayChargeTutorial();
+            }
+            else if (tutorialCount == 8)
+            {
+                tutorialManager.DisplayStaminaTutorial();
+            }
+            else if (tutorialCount == 10)
+            {
+                tutorialManager.SetTutorialCompleted();
+                tutorialCompleted = true;
+            }
+        }
+
         LevelBlock _newBlock = null;
         if (staminaSpawnCounter >= currentStaminaSpawn)
         {
@@ -213,7 +292,7 @@ public class LevelGenerator : MonoBehaviour {
         switch (_currentDifficulty)
         {
             case GameDifficulty.Simple:
-                gate1 = 70;
+                gate1 = 100;
                 gate2 = 100;
                 break;
 

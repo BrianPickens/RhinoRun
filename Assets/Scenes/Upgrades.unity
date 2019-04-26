@@ -597,22 +597,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[0]
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[1]
-      value: 200
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[2]
-      value: 300
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[3]
-      value: 400
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -622,22 +622,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[1]
-      value: Level 1 upgrade
+      value: Collected Diamonds are worth 25 Rhino Coins!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[2]
-      value: Level 2 upgrade
+      value: Collected Diamonds are worth 50 Rhino Coins!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[3]
-      value: Level 3 upgrade
+      value: Collected Diamonds are worth 75 Rhino Coins!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[4]
-      value: Level 4 upgrade
+      value: Collected Diamonds are worth 100 Rhino Coins!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -1753,47 +1753,47 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[0]
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[1]
-      value: 200
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[2]
-      value: 300
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[3]
-      value: 400
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[0]
-      value: None
+      value: Restores 5% of your Stamina!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[1]
-      value: Level 1 upgrade
+      value: Restores 10% of your Stamina!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[2]
-      value: Level 2 upgrade
+      value: Restores 15% of your Stamina!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[3]
-      value: Level 3 upgrade
+      value: Restores 20% of your Stamina!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[4]
-      value: Level 4 upgrade
+      value: Restores 25% of your Stamina!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -4557,22 +4557,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[0]
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[1]
-      value: 200
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[2]
-      value: 300
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[3]
-      value: 400
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -4582,22 +4582,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[1]
-      value: Level 1 upgrade
+      value: Protects from 1 crash for 5 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[2]
-      value: Level 2 upgrade
+      value: Protects from 1 crash for 6 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[3]
-      value: Level 3 upgrade
+      value: Protects from 1 crash for 7 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[4]
-      value: Level 4 upgrade
+      value: Protects from 1 crash for 8 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -5133,22 +5133,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[0]
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[1]
-      value: 200
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[2]
-      value: 300
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[3]
-      value: 400
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -5158,22 +5158,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[1]
-      value: Level 1 upgrade
+      value: Unlimited Charging for 5 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[2]
-      value: Level 2 upgrade
+      value: Unlimited Charging for 6 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[3]
-      value: Level 3 upgrade
+      value: Unlimited Charging for 7 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[4]
-      value: Level 4 upgrade
+      value: Unlimited Charging for 8 seconds!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -6490,22 +6490,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[0]
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[1]
-      value: 200
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[2]
-      value: 300
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[3]
-      value: 400
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -6515,22 +6515,22 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[1]
-      value: Level 1 upgrade
+      value: Power Up rate increased a little!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[2]
-      value: Level 2 upgrade
+      value: Power Up rate increased a little more!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[3]
-      value: Level 3 upgrade
+      value: Power Up rate increased a lot!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[4]
-      value: Level 4 upgrade
+      value: Power Up rate increased a ton!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -7691,12 +7691,12 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[0]
-      value: 100
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradePrices.Array.data[1]
-      value: 200
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
@@ -7711,17 +7711,17 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[0]
-      value: None
+      value: Collected Rhino Coins are worth 10 each!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[1]
-      value: Level 1 upgrade
+      value: Collected Rhino Coins are worth 15 each!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[2]
-      value: Level 2 upgrade
+      value: Collected Rhino Coins are worth 20 each!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}

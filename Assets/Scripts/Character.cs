@@ -44,15 +44,6 @@ public class Character : MonoBehaviour {
     [SerializeField]
     private float moveSpeed = 0f;
 
-    [SerializeField]
-    private float swipeSensitivity = 0f;
-
-    [SerializeField]
-    private float doubleSwipeSensitivity = 0f;
-
-    private bool canSwipe;
-    private bool canDoubleSwipe;
-
     private bool drainChargePower;
     private bool restoreChargePower;
     private bool unlimitedChargePower;
@@ -66,9 +57,6 @@ public class Character : MonoBehaviour {
 
     [SerializeField]
     private float restoreSpeed = 0f;
-
-    [SerializeField]
-    private Camera mainCamera = null;
 
     [SerializeField]
     private Image chargeButton = null;
@@ -88,9 +76,6 @@ public class Character : MonoBehaviour {
     [SerializeField]
     private AudioClip hitRockSound = null;
 
-    private Vector3 touchOrigin = Vector3.zero;
-    private Vector3 touchCurrent = Vector3.zero;
-
     private CharacterState myCharacterState;
 
     private Vector3 laneDestination;
@@ -101,19 +86,12 @@ public class Character : MonoBehaviour {
 
     public Action OnShieldBreak;
 
-    private bool allowDoubleMove = true;
-
-    public void Initialize(float _swipeSensitivity, float _doubleSwipeSensitivity, bool _doubleSwipeOn)
+    public void Initialize()
     {
         myTransform = GetComponent<Transform>();
         myRenderer = GetComponent<Renderer>();
 
-        SetSwipeSensitivity(_swipeSensitivity);
-        SetDoubleSwipeSensitivity(_doubleSwipeSensitivity);
-        SetDoubleSwipeStatus(_doubleSwipeOn);
-
         chargePower = 100f;
-        canSwipe = true;
         laneNumber = 1;
         laneDestination = myTransform.position;
         myCharacterState = CharacterState.Running;
@@ -126,7 +104,9 @@ public class Character : MonoBehaviour {
         {
             if (myCharacterState == CharacterState.Running || myCharacterState == CharacterState.Charging)
             {
+                //keyboard controls
                 CheckForInput();
+                //end keyboard controls
                 MoveCharacter();
             }
 
@@ -142,62 +122,6 @@ public class Character : MonoBehaviour {
 
     private void CheckForInput()
     {
-        //mobile controls
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.touches[0];
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                Vector2 rawTouchOrigin = touch.position;
-                touchOrigin = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchOrigin.x, rawTouchOrigin.y, -mainCamera.transform.position.z));
-            }
-            else if (touch.phase == TouchPhase.Moved)
-            {
-                Vector2 rawTouchCurrent = touch.position;
-                touchCurrent = mainCamera.ScreenToWorldPoint(new Vector3(rawTouchCurrent.x, rawTouchCurrent.y, -mainCamera.transform.position.z));
-
-                float swipeDistance = Vector3.Distance(touchOrigin, touchCurrent);
-
-                if (swipeDistance > swipeSensitivity && canSwipe)
-                {
-                    canSwipe = false;
-                    if (touchCurrent.x > touchOrigin.x)
-                    {
-                        ChangeLanes(1);
-                    }
-                    else
-                    {
-                        ChangeLanes(-1);
-                    }
-
-                    if (myCharacterState == CharacterState.Charging)
-                    {
-                        ChargeEnd();
-                    }
-                }
-
-                if (swipeDistance > doubleSwipeSensitivity && canDoubleSwipe && allowDoubleMove)
-                {
-                    canDoubleSwipe = false;
-                    if (touchCurrent.x > touchOrigin.x)
-                    {
-                        ChangeLanes(1);
-                    }
-                    else
-                    {
-                        ChangeLanes(-1);
-                    }
-                }
-            }
-            else if (touch.phase == TouchPhase.Ended)
-            {
-                canSwipe = true;
-                canDoubleSwipe = true;
-            }
-
-        }
-        //end mobile controls
 
         //keyboard controls
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -468,21 +392,6 @@ public class Character : MonoBehaviour {
                 GameOver();
             }
         }
-    }
-
-    public void SetSwipeSensitivity(float _sensitivity)
-    {
-        swipeSensitivity = _sensitivity;
-    }
-
-    public void SetDoubleSwipeSensitivity(float _sensitivity)
-    {
-        doubleSwipeSensitivity = _sensitivity;
-    }
-
-    public void SetDoubleSwipeStatus(bool _status)
-    {
-        allowDoubleMove = _status;
     }
 
     private void PlaySound(AudioClip _clip)
