@@ -13,10 +13,11 @@ using System;
 //figure out coin sound
 //Title Scene Art
 //revist loading screen
-//remove the preview packages i dont need
+//update track number font
 
 //BUGS
 //if you grab a stamina bar with full stamina it gives you unlimited stamina
+//can unpause tutorial by presssing settings
 
 //REQUIRED FOR RELEASE
 //rhino
