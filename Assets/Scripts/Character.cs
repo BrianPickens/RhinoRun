@@ -27,16 +27,10 @@ public class Character : MonoBehaviour {
     private Image chargeMeter = null;
 
     [SerializeField]
+    private Animator chargeMeterAnimator = null;
+
+    [SerializeField]
     private GameObject shield = null;
-
-    [SerializeField]
-    private Material normalMat = null;
-
-    [SerializeField]
-    private Material ChargeMat = null;
-
-    [SerializeField]
-    private Material redMat = null;
 
     [SerializeField]
     private float laneSize = 0f;
@@ -194,6 +188,8 @@ public class Character : MonoBehaviour {
         {
             restoreLevel = 100f;
         }
+        chargeMeterAnimator.SetTrigger("Collected");
+
         StartCoroutine(RestoreChargePowerRoutine(restoreLevel));
     }
 
@@ -244,7 +240,8 @@ public class Character : MonoBehaviour {
             }
             yield return null;
         }
-        
+
+        restoreChargePower = false;
     }
 
     private void ChangeLanes(int _direction)
@@ -285,7 +282,7 @@ public class Character : MonoBehaviour {
     private void GameOver()
     {
         myCharacterState = CharacterState.Dead;
-        myRenderer.material = redMat;
+        //myRenderer.material = redMat;
         if (OnGameOver != null)
         {
             OnGameOver();
@@ -305,7 +302,7 @@ public class Character : MonoBehaviour {
         {
             chargeButton.sprite = chargeOnSprite;
             myCharacterState = CharacterState.Charging;
-            myRenderer.material = ChargeMat;
+           // myRenderer.material = ChargeMat;
             drainChargePower = true;
         }
     }
@@ -323,7 +320,7 @@ public class Character : MonoBehaviour {
                 chargeButton.sprite = chargeOffSprite;
             }
             myCharacterState = CharacterState.Running;
-            myRenderer.material = normalMat;
+            //myRenderer.material = normalMat;
             drainChargePower = false;
         }
         chargeButtonHeld = false;

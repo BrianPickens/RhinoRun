@@ -9,26 +9,22 @@ using System;
 //For Tomorrow:
 //Get iap figured out so i can test it - need to submit to test flight to see if that will make iap work
 //iap
-//make stamina gauge pop when you get rhino snax
 //figure out coin sound
 //Title Scene Art
+//icon art
 //revist loading screen
-//update track number font
 
 //BUGS
-//if you grab a stamina bar with full stamina it gives you unlimited stamina
 //can unpause tutorial by presssing settings
 
 //REQUIRED FOR RELEASE
 //rhino
 //character animations
 //set up app store
+//music - get music from blake
 
 //POST COMPLETION SYSTEMS
 //optimization - batching - the coins have a bathcing issue - turn off shadows on things if they dont need it
-
-//POLISH
-//music - get music from blake
 
 //BALANCING AFTER PRODUCT IS READY
 //how often power ups drop
