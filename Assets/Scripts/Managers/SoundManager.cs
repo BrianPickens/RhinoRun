@@ -116,6 +116,20 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlaySoundNoPitchShift(AudioClip _clip, float _volume = 1)
+    {
+        if (soundEffectsOn)
+        {
+            GameObject soundObj = soundObjectPooler.GetPooledObject();
+            AudioSource soundSource = soundObj.GetComponent<AudioSource>();
+            soundSource.clip = _clip;
+            soundSource.volume = _volume;
+            soundObj.SetActive(true);
+            soundSource.Play();
+            StartCoroutine(ResetSoundObject(soundObj, _clip.length));
+        }
+    }
+
     public void PlayClickSound()
     {
         PlaySoundEffect(clickSound);

@@ -145,17 +145,17 @@ public class GameManager : MonoBehaviour
             case CollectableType.Gold:
                 if (coinSoundLevel == 0)
                 {
-                    PlaySound(coinCollectLowSound);
+                    PlayCoinSound(coinCollectLowSound);
                     coinSoundLevel++;
                 }
                 else if (coinSoundLevel == 1)
                 {
-                    PlaySound(coinCollectMidSound);
+                    PlayCoinSound(coinCollectMidSound);
                     coinSoundLevel++;
                 }
                 else if (coinSoundLevel == 2)
                 {
-                    PlaySound(coinCollectHighSound);
+                    PlayCoinSound(coinCollectHighSound);
                 }
                 CoinCollected();
                 break;
@@ -412,6 +412,14 @@ public class GameManager : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.PlaySoundEffect(_clip);
+        }
+    }
+
+    private void PlayCoinSound(AudioClip _clip)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySoundNoPitchShift(_clip, 0.25f);
         }
     }
 

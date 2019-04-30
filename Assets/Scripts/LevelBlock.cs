@@ -9,7 +9,6 @@ using System;
 //For Tomorrow:
 //Get iap figured out so i can test it - need to submit to test flight to see if that will make iap work
 //iap
-//figure out coin sound
 //Title Scene Art
 //icon art
 //revist loading screen
