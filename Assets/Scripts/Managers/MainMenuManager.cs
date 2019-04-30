@@ -20,6 +20,14 @@ public class MainMenuManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("Initialization");
         }
 
+        if (SaveManager.Instance != null)
+        {
+            if (!SaveManager.Instance.GetTOSStatus())
+            {
+                mainUI.ShowTOS();
+            }
+        }
+
         mainUI.OnPlayPress = null;
         mainUI.OnPlayPress += PlayGame;
 

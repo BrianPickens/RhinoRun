@@ -27,6 +27,9 @@ public class SettingsUI : MonoBehaviour
     [SerializeField]
     private GameObject creditsUI = null;
 
+    [SerializeField]
+    private GameObject tosUI = null;
+
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
     public Action OnGameCenterPress;
@@ -122,6 +125,23 @@ public class SettingsUI : MonoBehaviour
             OnSoundEffectsChange(soundEffectsOn);
         }
 
+    }
+
+    public void OpenPrivacyPolicy()
+    {
+        Application.OpenURL("http://brianpickensgames.com/PrivacyPolicy.html");
+    }
+
+    public void OpenTOS()
+    {
+        PlayClickSound();
+        tosUI.SetActive(true);
+    }
+
+    public void CloseTOS()
+    {
+        PlayClickSound();
+        tosUI.SetActive(false);
     }
 
     public void OpenCredits()

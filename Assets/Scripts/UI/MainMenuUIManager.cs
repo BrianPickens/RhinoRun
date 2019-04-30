@@ -19,6 +19,12 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField]
     private LoadingTransition loadingScreen = null;
 
+    [SerializeField]
+    private GameObject tosUI = null;
+
+    [SerializeField]
+    private GameObject screenBrick = null;
+
     public Action OnPlayPress;
     public Action OnUpgradesPress;
     public Action<bool> OnMusicChange;
@@ -103,6 +109,32 @@ public class MainMenuUIManager : MonoBehaviour
 
             scoreText.text = scoreString + " Meters!";
         }
+    }
+
+    public void ShowTOS()
+    {
+        tosUI.SetActive(true);
+    }
+
+    public void CloseTOS(bool _response)
+    {
+        if (_response)
+        {
+            tosUI.SetActive(false);
+            if (SaveManager.Instance != null)
+            {
+                SaveManager.Instance.SetTOSCompleted();
+            }
+        }
+        else
+        {
+            screenBrick.SetActive(true);
+        }
+    }
+
+    public void OpenPrivacyPolicy()
+    {
+        Application.OpenURL("http://brianpickensgames.com/PrivacyPolicy.html");
     }
 
     private void MusicChange(bool _musicOn)

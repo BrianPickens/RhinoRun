@@ -132,6 +132,10 @@ public class SaveManager : MonoBehaviour
 
     private const string hasRemoveAdsString = "hasRemoveAds";
 
+    private bool acceptedTOS;
+
+    private const string acceptedTOSString = "TOS";
+
     private int levelOneCost = 1000;
     private int levelTwoCost = 10000;
     private int levelThreeCost = 25000;
@@ -216,6 +220,7 @@ public class SaveManager : MonoBehaviour
         //only saved local
         tutorialCompleted = LocalSaving.GetLocalBool(tutorialCompleteString, 0);
         hasRemoveAds = LocalSaving.GetLocalBool(hasRemoveAdsString, 0);
+        acceptedTOS = LocalSaving.GetLocalBool(acceptedTOSString, 0);
         //end only saved local
 
         // Debug.Log("local data loaded");
@@ -459,6 +464,17 @@ public class SaveManager : MonoBehaviour
     public bool GetTutorialStatus()
     {
         return tutorialCompleted;
+    }
+
+    public void SetTOSCompleted()
+    {
+        acceptedTOS = true;
+        LocalSaving.SaveLocalBool(true, acceptedTOSString);
+    }
+
+    public bool GetTOSStatus()
+    {
+        return acceptedTOS;
     }
 
     public bool CheckIfHighscoore(int _score)
