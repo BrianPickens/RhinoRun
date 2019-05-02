@@ -101,10 +101,10 @@ TextureImporter:
       name: RightButtonPushed_0
       rect:
         serializedVersion: 2
-        x: 118
-        y: 135
-        width: 276
-        height: 230
+        x: 122
+        y: 105
+        width: 268
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 083ad1dbc5ebd344da7095737a6f24e3
+      spriteID: 92f3f5ce7af6aed4dac8a50c70a2e1a8
       internalID: 8826768347863949094
       vertices: []
       indices: 
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7e841d96f7914a244b562b4d113a4fd8
+    spriteID: 5cd01100db3a99549aeb0275b43ca818
     internalID: 0
     vertices: []
     indices: 

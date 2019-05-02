@@ -13,12 +13,6 @@ public class ChargeTutorial : PopUpBase
     private GameObject right = null;
 
     [SerializeField]
-    private GameObject doubleLeft = null;
-
-    [SerializeField]
-    private GameObject doubleRight = null;
-
-    [SerializeField]
     private GameObject text = null;
 
     [SerializeField]
@@ -36,10 +30,9 @@ public class ChargeTutorial : PopUpBase
     {
         left.SetActive(false);
         right.SetActive(false);
-        doubleLeft.SetActive(false);
-        doubleRight.SetActive(false);
         text.SetActive(false);
         charge.sprite = chargeOnSprite;
+        chargeAnimator.Rebind();
         chargeAnimator.speed = 0;
         SectionCompleted();
     }

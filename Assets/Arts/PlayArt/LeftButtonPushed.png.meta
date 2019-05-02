@@ -101,10 +101,10 @@ TextureImporter:
       name: LeftButtonPushed_0
       rect:
         serializedVersion: 2
-        x: 118
-        y: 135
-        width: 276
-        height: 230
+        x: 122
+        y: 105
+        width: 268
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7775765d5ea3da14c81db44919f71125
+      spriteID: 03daad3257d93074b8fc8b064311ff2d
       internalID: -6122895477695314824
       vertices: []
       indices: 
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2716cda8eec801742bb603cecaa96503
+    spriteID: a545c0f26c99f514c91f8e33b2bded51
     internalID: 0
     vertices: []
     indices: 

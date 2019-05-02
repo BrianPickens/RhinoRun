@@ -215,15 +215,11 @@ public class LevelGenerator : MonoBehaviour {
         {
             tutorialCount++;
 
-            if (tutorialCount == 1)
+            if (tutorialCount == 2)
             {
                 tutorialManager.DisplayArrowTutorial();
             }
-            else if (tutorialCount == 4)
-            {
-                tutorialManager.DisplayDoubleArrowTutorial();
-            }
-            else if (tutorialCount == 6)
+            else if (tutorialCount == 7)
             {
                 tutorialManager.DisplayChargeTutorial();
             }

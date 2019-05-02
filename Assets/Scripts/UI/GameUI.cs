@@ -44,12 +44,6 @@ public class GameUI : MonoBehaviour
     private GameObject rightButton = null;
 
     [SerializeField]
-    private GameObject doubleLeftButton = null;
-
-    [SerializeField]
-    private GameObject doubleRigthButton = null;
-
-    [SerializeField]
     private RewardedAdPopup rewardedAdPopup = null;
 
     [SerializeField]
@@ -223,20 +217,12 @@ public class GameUI : MonoBehaviour
         chargeButton.gameObject.SetActive(false);
         leftButton.gameObject.SetActive(false);
         rightButton.gameObject.SetActive(false);
-        doubleLeftButton.gameObject.SetActive(false);
-        doubleRigthButton.gameObject.SetActive(false);
     }
 
     public void ShowArrows()
     {
         leftButton.gameObject.SetActive(true);
         rightButton.gameObject.SetActive(true);
-    }
-
-    public void ShowDoubleArrows()
-    {
-        doubleLeftButton.gameObject.SetActive(true);
-        doubleRigthButton.gameObject.SetActive(true);
     }
 
     public void ShowCharge()

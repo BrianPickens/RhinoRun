@@ -13,9 +13,6 @@ public class TutorialManager : MonoBehaviour
     private ArrowTutorial arrowTutorial = null;
 
     [SerializeField]
-    private DoubleArrowTutorial doubleArrowTutorial = null;
-
-    [SerializeField]
     private ChargeTutorial chargeTutorial = null;
 
     [SerializeField]
@@ -25,9 +22,6 @@ public class TutorialManager : MonoBehaviour
     {
         arrowTutorial.OnSectionCompleted = null;
         arrowTutorial.OnSectionCompleted += ArrowTutorialCompleted;
-
-        doubleArrowTutorial.OnSectionCompleted = null;
-        doubleArrowTutorial.OnSectionCompleted += DoubleArrowTutorialCompleted;
 
         chargeTutorial.OnSectionCompleted = null;
         chargeTutorial.OnSectionCompleted += ChargeTutorialCompleted;
@@ -39,12 +33,6 @@ public class TutorialManager : MonoBehaviour
     public void DisplayArrowTutorial()
     {
         arrowTutorial.OpenPopUp();
-        PauseTime();
-    }
-
-    public void DisplayDoubleArrowTutorial()
-    {
-        doubleArrowTutorial.OpenPopUp();
         PauseTime();
     }
 
@@ -71,12 +59,6 @@ public class TutorialManager : MonoBehaviour
     public void ArrowTutorialCompleted()
     {
         gameUI.ShowArrows();
-        UnpauseTime();
-    }
-
-    public void DoubleArrowTutorialCompleted()
-    {
-        gameUI.ShowDoubleArrows();
         UnpauseTime();
     }
 

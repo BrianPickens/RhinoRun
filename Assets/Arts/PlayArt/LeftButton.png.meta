@@ -101,10 +101,10 @@ TextureImporter:
       name: LeftButton_0
       rect:
         serializedVersion: 2
-        x: 118
-        y: 135
-        width: 276
-        height: 230
+        x: 122
+        y: 105
+        width: 268
+        height: 290
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75d8903c9a81987429a347b40a979ca5
+      spriteID: 34c47fe68e5f83d4d86c9027a60f4bba
       internalID: 8830745461517644737
       vertices: []
       indices: 
@@ -121,7 +121,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5edf2c26f525e784483dd82cf5124ac3
+    spriteID: 117a24ff25878994c91f73660f05528a
     internalID: 0
     vertices: []
     indices: 
