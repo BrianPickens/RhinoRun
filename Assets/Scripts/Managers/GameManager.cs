@@ -381,7 +381,7 @@ public class GameManager : MonoBehaviour
     {
         if (SceneLoadingManager.Instance != null)
         {
-            SceneLoadingManager.Instance.LoadScene(_scene);
+            SceneLoadingManager.Instance.LoadSceneAsync(_scene);
         }
     }
 

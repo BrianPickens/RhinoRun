@@ -34,4 +34,18 @@ public class SceneLoadingManager : MonoBehaviour {
     {
         SceneManager.LoadScene(_sceneName);
     }
+
+    public void LoadSceneAsync(string _sceneName)
+    {
+        StartCoroutine(StartAsyncLoad(_sceneName));
+    }
+
+    private IEnumerator StartAsyncLoad(string _sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_sceneName);
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
 }

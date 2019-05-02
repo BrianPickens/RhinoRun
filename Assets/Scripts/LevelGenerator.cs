@@ -288,7 +288,7 @@ public class LevelGenerator : MonoBehaviour {
         switch (_currentDifficulty)
         {
             case GameDifficulty.Simple:
-                gate1 = 100;
+                gate1 = 80;
                 gate2 = 100;
                 break;
 

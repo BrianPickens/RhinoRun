@@ -94,7 +94,7 @@ public class UpgradesManager : MonoBehaviour
     {
         if (SceneLoadingManager.Instance != null)
         {
-            SceneLoadingManager.Instance.LoadScene("MainMenu");
+            SceneLoadingManager.Instance.LoadSceneAsync("MainMenu");
         }
     }
 

@@ -54,7 +54,7 @@ public class InitializationManager : MonoBehaviour
         Debug.Log("Managers Initialized");
         loadingScreen.ShowLoading();
         yield return new WaitForSeconds(1f);
-        sceneLoadingManager.LoadScene("MainMenu");
+        sceneLoadingManager.LoadSceneAsync("MainMenu");
     }
 
 

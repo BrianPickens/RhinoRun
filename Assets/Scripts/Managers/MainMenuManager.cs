@@ -92,7 +92,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (SceneLoadingManager.Instance != null)
         {
-            SceneLoadingManager.Instance.LoadScene("PlayScene");
+            SceneLoadingManager.Instance.LoadSceneAsync("PlayScene");
         }
     }
 
@@ -100,7 +100,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (SceneLoadingManager.Instance != null)
         {
-            SceneLoadingManager.Instance.LoadScene("Upgrades");
+            SceneLoadingManager.Instance.LoadSceneAsync("Upgrades");
         }
     }
 
