@@ -7,8 +7,6 @@ using System;
 //need to adjust value of upgrades in save manager so that the valuation of local vs cloud is correct
 
 //For Tomorrow:
-//Get iap figured out so i can test it - need to submit to test flight to see if that will make iap work
-//iap
 //Title Scene Art
 //icon art
 //revist loading screen
@@ -19,7 +17,6 @@ using System;
 //REQUIRED FOR RELEASE
 //rhino
 //character animations
-//set up app store
 //music - get music from blake
 
 //POST COMPLETION SYSTEMS

@@ -230,6 +230,11 @@ public class UpgradesUIManager : MonoBehaviour
         removeAdsButton.interactable = false;
     }
 
+    public void EnableRemoveAdsButton()
+    {
+        removeAdsButton.interactable = true;
+    }
+
     private IEnumerator SceneLoadDelay(Action _callback)
     {
         yield return new WaitForSeconds(1f);

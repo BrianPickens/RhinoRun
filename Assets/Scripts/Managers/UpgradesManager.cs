@@ -133,6 +133,10 @@ public class UpgradesManager : MonoBehaviour
             {
                 upgradesUI.DisableRemoveAdsButton();
             }
+            else
+            {
+                upgradesUI.EnableRemoveAdsButton();
+            }
         }
     }
 
@@ -144,6 +148,7 @@ public class UpgradesManager : MonoBehaviour
 
     private void FailedStorePurchase()
     {
+        UpdateStoreButtons();
         upgradesUI.ShowStorePurchaseFailed();
     }
 
