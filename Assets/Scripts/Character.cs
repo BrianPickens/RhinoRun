@@ -24,6 +24,9 @@ public class Character : MonoBehaviour {
     private Renderer myRenderer;
 
     [SerializeField]
+    private Animator myAnimator = null;
+
+    [SerializeField]
     private Image chargeMeter = null;
 
     [SerializeField]
@@ -272,7 +275,7 @@ public class Character : MonoBehaviour {
     private void GameOver()
     {
         myCharacterState = CharacterState.Dead;
-        //myRenderer.material = redMat;
+        myAnimator.SetTrigger("Splat");
         if (OnGameOver != null)
         {
             OnGameOver();
@@ -292,7 +295,7 @@ public class Character : MonoBehaviour {
         {
             chargeButton.sprite = chargeOnSprite;
             myCharacterState = CharacterState.Charging;
-           // myRenderer.material = ChargeMat;
+            myAnimator.SetBool("isCharging", true);
             drainChargePower = true;
         }
     }
@@ -310,7 +313,7 @@ public class Character : MonoBehaviour {
                 chargeButton.sprite = chargeOffSprite;
             }
             myCharacterState = CharacterState.Running;
-            //myRenderer.material = normalMat;
+            myAnimator.SetBool("isCharging", false);
             drainChargePower = false;
         }
         chargeButtonHeld = false;
@@ -356,6 +359,10 @@ public class Character : MonoBehaviour {
             ParticleManager.Instance.CreateParticles(ParticleType.Hurdle, myTransform.position);
             }
             PlaySound(hitFenceSound);
+            if (unlimitedChargePower)
+            {
+                myAnimator.SetTrigger("Ram");
+            }
             _obstacle.Destroyed();
         }
         else
