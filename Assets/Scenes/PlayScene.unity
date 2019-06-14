@@ -5899,7 +5899,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hold Charge to Break Through Fences!
+  m_Text: <color=orange>Hold Charge</color> to Break Through Fences!
 --- !u!222 &516470591
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13472,7 +13472,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Collect Rhino Snax to restore Stamina!
+  m_Text: Collect <color=orange>Rhino Snax</color> to restore Stamina!
 --- !u!222 &885238591
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20193,7 +20193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Move Left and Right
+  m_Text: 'Move <color=orange>Left and Right</color>
 
     To Avoid Rocks!'
 --- !u!222 &1827986869
@@ -27575,7 +27575,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Holding Charge Drains your Stamina!
+  m_Text: Holding Charge Drains your <color=orange>Stamina!</color>
 --- !u!222 &2085401609
 CanvasRenderer:
   m_ObjectHideFlags: 0
