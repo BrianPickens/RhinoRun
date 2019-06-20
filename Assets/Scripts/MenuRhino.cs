@@ -30,7 +30,7 @@ public class MenuRhino : MonoBehaviour
 
     private void PlayRandomAnimation()
     {
-        int animation = Random.Range(0, 3);
+        int animation = Random.Range(0, 4);
 
         switch (animation)
         {
@@ -44,6 +44,10 @@ public class MenuRhino : MonoBehaviour
 
             case 2:
                 myAnimator.SetTrigger("Flex");
+                break;
+
+            case 3:
+                myAnimator.SetTrigger("Buck");
                 break;
 
             default:

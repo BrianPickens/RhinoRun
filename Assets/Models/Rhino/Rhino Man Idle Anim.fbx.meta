@@ -7,6 +7,9 @@ ModelImporter:
       74: 885944232402757753
     second: Armature|Action
   - first:
+      74: 8862585205714046950
+    second: Armature|Buck
+  - first:
       74: -2388614776409655368
     second: Armature|Flexion!
   - first:
@@ -15,9 +18,6 @@ ModelImporter:
   - first:
       74: -8945691123924629249
     second: Armature|Idle
-  - first:
-      74: 4106399916549189888
-    second: Armature|Idle.001
   - first:
       74: -5168636213254998072
     second: Armature|Thumbs Up
@@ -55,6 +55,35 @@ ModelImporter:
       internalID: 885944232402757753
       firstFrame: 0
       lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Buck
+      takeName: Armature|Buck
+      internalID: 8862585205714046950
+      firstFrame: 0
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -142,35 +171,6 @@ ModelImporter:
       internalID: -8945691123924629249
       firstFrame: 0
       lastFrame: 80
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|Idle.001
-      takeName: Armature|Idle.001
-      internalID: 4106399916549189888
-      firstFrame: 0
-      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
