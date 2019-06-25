@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rhino Man Idle Anim
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8d583ba5b00d1d54c840470dce2e6e1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 8d583ba5b00d1d54c840470dce2e6e1b,
         type: 3}
       propertyPath: m_Controller
@@ -479,6 +484,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1692284759956942, guid: a59b92a38e7cff54d9e41979c95805d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4957168066066442, guid: a59b92a38e7cff54d9e41979c95805d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13499,7 +13508,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2403506470815670002}
-  - component: {fileID: 7779217625187029559}
   m_Layer: 0
   m_Name: BlockBase
   m_TagString: Untagged
@@ -15695,61 +15703,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3318303916380943998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7254810543511188429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a98f18a4f957e2b4eb29607ca55ccdce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boulderEdges:
-  - {fileID: 6760858584292181237, guid: efa0646414788f3419eb0d18a0e4e316, type: 3}
-  - {fileID: 8224763957160203977, guid: acfbb602b3e848d49bf3488804cdee3c, type: 3}
-  leftInnerTrees:
-  - {fileID: 5065937690794557709}
-  - {fileID: 5734285884295867691}
-  - {fileID: 3987653572875110389}
-  - {fileID: 4742253380593613836}
-  leftOutterTrees:
-  - {fileID: 3380057690966122872}
-  - {fileID: 331037675712097576}
-  - {fileID: 1091019081761432368}
-  - {fileID: 7495332036586681828}
-  rightInnerTrees:
-  - {fileID: 3452334773998689184}
-  - {fileID: 8964558311359973795}
-  - {fileID: 638025911293291598}
-  - {fileID: 4292818343882942750}
-  rightOuterTrees:
-  - {fileID: 6762708681824901652}
-  - {fileID: 1391017493964933393}
-  - {fileID: 4447952630211156192}
-  - {fileID: 477598342811520764}
-  leftInnerLocations:
-  - {fileID: 2398572631915291518}
-  - {fileID: 8477272890574385807}
-  - {fileID: 3935986355868020864}
-  - {fileID: 1287980182206498254}
-  leftOutterLocations:
-  - {fileID: 6781186221639330459}
-  - {fileID: 392280205420904983}
-  - {fileID: 140755271216883186}
-  - {fileID: 1692490846886373732}
-  rightInnerLocations:
-  - {fileID: 6713776758154999351}
-  - {fileID: 8898247935250800852}
-  - {fileID: 8681813353613023719}
-  - {fileID: 1226053643048225443}
-  rightOurterLocations:
-  - {fileID: 2997241781303490362}
-  - {fileID: 489165747591975929}
-  - {fileID: 2109512060105871289}
-  - {fileID: 6712292734388628916}
 --- !u!33 &3318983661078206958
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24167,7 +24120,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7251734953611066043}
-  - component: {fileID: 3318303916380943998}
   m_Layer: 0
   m_Name: BlockBase
   m_TagString: Untagged
@@ -28431,61 +28383,6 @@ Transform:
   m_Father: {fileID: 8413152445654659583}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7779217625187029559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2402649656873539460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a98f18a4f957e2b4eb29607ca55ccdce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boulderEdges:
-  - {fileID: 6760858584292181237, guid: efa0646414788f3419eb0d18a0e4e316, type: 3}
-  - {fileID: 8224763957160203977, guid: acfbb602b3e848d49bf3488804cdee3c, type: 3}
-  leftInnerTrees:
-  - {fileID: 266976400731661636}
-  - {fileID: 751512088088316258}
-  - {fileID: 8263915300187972540}
-  - {fileID: 303553928295487557}
-  leftOutterTrees:
-  - {fileID: 7715174607384970545}
-  - {fileID: 4711253261976357217}
-  - {fileID: 5394673474797520761}
-  - {fileID: 3313921603687797165}
-  rightInnerTrees:
-  - {fileID: 7642756786750816233}
-  - {fileID: 4148145848224869866}
-  - {fileID: 5558312538153076743}
-  - {fileID: 9109244277748862295}
-  rightOuterTrees:
-  - {fileID: 1738487678854823517}
-  - {fileID: 6247704242152615256}
-  - {fileID: 8666020503218519209}
-  - {fileID: 4853028597043030709}
-  leftInnerLocations:
-  - {fileID: 7255545272151803703}
-  - {fileID: 3484937451576448710}
-  - {fileID: 8315545275659408585}
-  - {fileID: 6063672231974543751}
-  leftOutterLocations:
-  - {fileID: 2009223439931576018}
-  - {fileID: 4649973378819597918}
-  - {fileID: 4903785361755472315}
-  - {fileID: 5946231000770301229}
-  rightInnerLocations:
-  - {fileID: 1789493113934140030}
-  - {fileID: 4505081461366146205}
-  - {fileID: 4432194994246237614}
-  - {fileID: 6123347005686279914}
-  rightOurterLocations:
-  - {fileID: 7809797451150971763}
-  - {fileID: 4841496342408034224}
-  - {fileID: 6395059693879045104}
-  - {fileID: 1792279062702197245}
 --- !u!33 &7779626324128382375
 MeshFilter:
   m_ObjectHideFlags: 0

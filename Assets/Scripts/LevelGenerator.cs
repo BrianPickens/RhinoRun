@@ -137,10 +137,10 @@ public class LevelGenerator : MonoBehaviour {
 
     public void GenerateTutorialLevel()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
             LevelBlock _newBlock = null;
-            if (i < 3)
+            if (i < 2)
             {
                 _newBlock = levelBlockPooler.GetLevelBlock(BlockDifficulty.None);
             }
@@ -173,7 +173,7 @@ public class LevelGenerator : MonoBehaviour {
 
     public void GenerateLevel()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
             LevelBlock _newBlock = null;
             if (i < 3)
@@ -219,15 +219,15 @@ public class LevelGenerator : MonoBehaviour {
             {
                 tutorialManager.DisplayArrowTutorial();
             }
-            else if (tutorialCount == 7)
+            else if (tutorialCount == 6)
             {
                 tutorialManager.DisplayChargeTutorial();
             }
-            else if (tutorialCount == 8)
+            else if (tutorialCount == 7)
             {
                 tutorialManager.DisplayStaminaTutorial();
             }
-            else if (tutorialCount == 10)
+            else if (tutorialCount == 9)
             {
                 tutorialManager.SetTutorialCompleted();
                 tutorialCompleted = true;
