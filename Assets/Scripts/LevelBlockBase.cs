@@ -34,8 +34,8 @@ public class LevelBlockBase : MonoBehaviour
 
     void Start()
     {
-        //SetRocks();
-        //RandomizeTrees();
+        SetRocks();
+        RandomizeTrees();
     }
 
     private void SetRocks()

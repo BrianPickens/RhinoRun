@@ -2709,7 +2709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: d637dd9358d3cc34c967af41c775b54a,
     type: 3}
-  startAmount: 0
+  startAmount: 2
 --- !u!1 &186095079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,7 +2755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: 88d2243a77ff4734e9a1e1935a7af3b8,
     type: 3}
-  startAmount: 0
+  startAmount: 2
 --- !u!114 &191972630 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114873791854989310, guid: 6ec7c395a41dead4d8d77db9cb427bbf,
@@ -3851,7 +3851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: bd53666150f78db43853b1f20d4bc1ac,
     type: 3}
-  startAmount: 0
+  startAmount: 2
 --- !u!4 &305721961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4625473314478958, guid: 11dfba7e515898e4ebfc7875279deaef,
@@ -12820,7 +12820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: c5f27d5149b870d4ab8210f7f410eaa3,
     type: 3}
-  startAmount: 0
+  startAmount: 5
 --- !u!4 &828681611
 Transform:
   m_ObjectHideFlags: 0
@@ -12935,7 +12935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: db5442d2c52c9a14a919bc77c970bd7f,
     type: 3}
-  startAmount: 0
+  startAmount: 5
 --- !u!1001 &861613851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13052,7 +13052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: 71e1c92476965014cb6c7ff5c3308b55,
     type: 3}
-  startAmount: 0
+  startAmount: 3
 --- !u!4 &884634016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4690679279193288, guid: 4654ca8b8509f64488b7923e16ec6ba1,
@@ -19276,7 +19276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: 42df7f63e5cf7194892a5eafd64b2f26,
     type: 3}
-  startAmount: 0
+  startAmount: 2
 --- !u!1 &1793208408
 GameObject:
   m_ObjectHideFlags: 0
@@ -26752,7 +26752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 1915955574679572, guid: 8022717a530bb15438e13cbb18b1ccab,
     type: 3}
-  startAmount: 0
+  startAmount: 5
 --- !u!1001 &2081012964
 PrefabInstance:
   m_ObjectHideFlags: 0

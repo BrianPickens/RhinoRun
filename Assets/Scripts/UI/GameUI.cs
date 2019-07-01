@@ -57,6 +57,7 @@ public class GameUI : MonoBehaviour
     public Action OnReplayPress;
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
+    public Action<bool> OnTutorialChange;
     public Action OnRewardedAdConfirmation;
     public Action OnGameCenterPress;
 
@@ -73,6 +74,9 @@ public class GameUI : MonoBehaviour
 
         settingsUI.OnGameCenterPress = null;
         settingsUI.OnGameCenterPress += GameCenterPress;
+
+        settingsUI.OnTutorialChange = null;
+        settingsUI.OnTutorialChange += TutorialChange;
 
         rewardedAdPopup.OnRewardedAdResponse = null;
         rewardedAdPopup.OnRewardedAdResponse += MultiplyCoinsResponse;
@@ -96,6 +100,11 @@ public class GameUI : MonoBehaviour
 
             pointsDisplay.text = pointsString;
         }
+    }
+
+    public void InitializeTutorialStatus(bool _tutorialCompleted)
+    {
+        settingsUI.SetTutorialStatus(_tutorialCompleted);
     }
 
     public void DisplayEnding(int _points, int _distance, bool _isHighscore)
@@ -265,6 +274,14 @@ public class GameUI : MonoBehaviour
         if (OnSoundEffectsChange != null)
         {
             OnSoundEffectsChange(_soundEffectsOn);
+        }
+    }
+
+    private void TutorialChange(bool _tutorialOn)
+    {
+        if (OnTutorialChange != null)
+        {
+            OnTutorialChange(_tutorialOn);
         }
     }
 

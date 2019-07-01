@@ -455,10 +455,10 @@ public class SaveManager : MonoBehaviour
         return hasRemoveAds;
     }
 
-    public void SetTutorialCompleted()
+    public void SetTutorialStatus(bool _tutorialCompleted)
     {
-        tutorialCompleted = true;
-        LocalSaving.SaveLocalBool(true, tutorialCompleteString);
+        tutorialCompleted = _tutorialCompleted;
+        LocalSaving.SaveLocalBool(_tutorialCompleted, tutorialCompleteString);
     }
 
     public bool GetTutorialStatus()

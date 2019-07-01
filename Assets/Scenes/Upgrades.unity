@@ -6526,27 +6526,27 @@ PrefabInstance:
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[1]
-      value: Power Up rate increased a little!
+      value: Power Up drop rate increased a little!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[2]
-      value: Power Up rate increased a little more!
+      value: Power Up drop rate increased a little more!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[3]
-      value: Power Up rate increased a lot!
+      value: Power Up drop rate increased a lot!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: levelInfo.Array.data[4]
-      value: Power Up rate increased a ton!
+      value: Power Up drop rate increased a ton!
       objectReference: {fileID: 0}
     - target: {fileID: 7634324417924862827, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}
       propertyPath: upgradeName
-      value: Rate Upgrade
+      value: Drop Rate Upgrade
       objectReference: {fileID: 0}
     - target: {fileID: 7634324419627731305, guid: 4844f32614deb1e4898a6bdbcfc19ff7,
         type: 3}

@@ -46,6 +46,9 @@ public class MainMenuManager : MonoBehaviour
         mainUI.OnLeaderBoardPress = null;
         mainUI.OnLeaderBoardPress += ShowLeaderBoard;
 
+        mainUI.OnTutorialChange = null;
+        mainUI.OnTutorialChange += UpdateTutorialStatus;
+
         mainUI.Init();
 
         InitializeUI();
@@ -75,6 +78,15 @@ public class MainMenuManager : MonoBehaviour
             soundEffectsOn = SoundManager.Instance.SoundEffectsOn;
         }
         mainUI.InitializeSoundPreferences(musicOn, soundEffectsOn);
+
+
+        bool tutorialCompleted = false;
+        if (SaveManager.Instance != null)
+        {
+            tutorialCompleted = SaveManager.Instance.GetTutorialStatus();
+        }
+
+        mainUI.InitializeTutorialStatus(tutorialCompleted);
 
     }
 
@@ -117,6 +129,14 @@ public class MainMenuManager : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.UpdateSoundEffectPreference(_soundEffectsOn);
+        }
+    }
+
+    private void UpdateTutorialStatus(bool _tutorialCompleted)
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SetTutorialStatus(_tutorialCompleted);
         }
     }
 

@@ -356,7 +356,7 @@ public class Character : MonoBehaviour {
             screenShake.Shake();
             if (ParticleManager.Instance != null)
             {
-                //ParticleManager.Instance.CreateParticles(ParticleType.Hurdle, myTransform.position);
+                ParticleManager.Instance.CreateParticles(ParticleType.Hurdle, myTransform.position);
             }
             PlaySound(hitFenceSound);
             if (unlimitedChargePower)
@@ -373,7 +373,7 @@ public class Character : MonoBehaviour {
             {
                 if (ParticleManager.Instance != null)
                 {
-                    //ParticleManager.Instance.CreateParticles(ParticleType.Hurdle, myTransform.position + Vector3.up);
+                    ParticleManager.Instance.CreateParticles(ParticleType.Hurdle, myTransform.position + Vector3.up);
                 }
                 _obstacle.Destroyed();
                 if (OnShieldBreak != null)

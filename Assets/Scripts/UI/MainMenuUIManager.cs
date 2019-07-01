@@ -29,6 +29,7 @@ public class MainMenuUIManager : MonoBehaviour
     public Action OnUpgradesPress;
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
+    public Action<bool> OnTutorialChange;
     public Action OnGameCenterPress;
     public Action OnLeaderBoardPress;
 
@@ -45,11 +46,19 @@ public class MainMenuUIManager : MonoBehaviour
 
         settingsUI.OnGameCenterPress = null;
         settingsUI.OnGameCenterPress += GameCenterPress;
+
+        settingsUI.OnTutorialChange = null;
+        settingsUI.OnTutorialChange += TutorialChange;
     }
 
     public void InitializeSoundPreferences(bool _musicOn, bool _soundEffectsOn)
     {
         settingsUI.InitializeSoundPreferences(_musicOn, _soundEffectsOn);
+    }
+
+    public void InitializeTutorialStatus(bool _tutorialCompleted)
+    {
+        settingsUI.SetTutorialStatus(_tutorialCompleted);
     }
 
     public void PlayPress()
@@ -150,6 +159,14 @@ public class MainMenuUIManager : MonoBehaviour
         if (OnSoundEffectsChange != null)
         {
             OnSoundEffectsChange(_soundEffectsOn);
+        }
+    }
+
+    private void TutorialChange(bool _tutorialOn)
+    {
+        if (OnTutorialChange != null)
+        {
+            OnTutorialChange(_tutorialOn);
         }
     }
 

@@ -52,7 +52,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (SaveManager.Instance != null)
         {
-            SaveManager.Instance.SetTutorialCompleted();
+            SaveManager.Instance.SetTutorialStatus(true);
         }
     }
 

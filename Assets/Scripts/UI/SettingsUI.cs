@@ -30,12 +30,17 @@ public class SettingsUI : MonoBehaviour
     [SerializeField]
     private GameObject tosUI = null;
 
+    [SerializeField]
+    private Text tutorialText = null;
+
     public Action<bool> OnMusicChange;
     public Action<bool> OnSoundEffectsChange;
     public Action OnGameCenterPress;
+    public Action<bool> OnTutorialChange;
 
     private bool musicOn;
     private bool soundEffectsOn;
+    private bool tutorialCompleted;
 
     private void Start()
     {
@@ -64,6 +69,19 @@ public class SettingsUI : MonoBehaviour
             soundEffectsImage.sprite = soundEffectsOffSprite;
         }
 
+    }
+
+    public void SetTutorialStatus(bool _tutorialCompleted)
+    {
+        tutorialCompleted = _tutorialCompleted;
+        if (tutorialCompleted)
+        {
+            tutorialText.text = "Tutorial: OFF";
+        }
+        else
+        {
+            tutorialText.text = "Tutorial: ON";
+        }
     }
 
     public void OpenSettings()
@@ -154,6 +172,27 @@ public class SettingsUI : MonoBehaviour
     {
         PlayClickSound();
         creditsUI.SetActive(false);
+    }
+
+    public void TutorialChange()
+    {
+        PlayClickSound();
+        if (tutorialCompleted)
+        {
+            tutorialCompleted = false;
+            tutorialText.text = "Tutorial: ON";
+        }
+        else
+        {
+            tutorialCompleted = true;
+            tutorialText.text = "Tutorial: Off";
+        }
+
+        if (OnTutorialChange != null)
+        {
+            OnTutorialChange(tutorialCompleted);
+        }
+
     }
 
     public void GameCenterPress()
