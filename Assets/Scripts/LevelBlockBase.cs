@@ -34,12 +34,16 @@ public class LevelBlockBase : MonoBehaviour
 
     void Start()
     {
+        //SetRocks();
+        //RandomizeTrees();
+    }
+
+    private void SetRocks()
+    {
         int randomIndex = Random.Range(0, boulderEdges.Count);
         GameObject boulderEdge = Instantiate(boulderEdges[randomIndex]);
         boulderEdge.transform.parent = this.gameObject.transform;
         boulderEdge.transform.localPosition = new Vector3(0f, 0f, 0f);
-
-        RandomizeTrees();
     }
 
     private void RandomizeTrees()

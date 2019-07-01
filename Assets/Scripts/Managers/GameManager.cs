@@ -163,14 +163,14 @@ public class GameManager : MonoBehaviour
             case CollectableType.Charge:
                 // Debug.Log("got Charge");
                 PlaySound(powerUpSound);
-                particleManager.CreateParticles(ParticleType.UnlimitedCharge, character.MyTransform.position);
+                //particleManager.CreateParticles(ParticleType.UnlimitedCharge, character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
             case CollectableType.Shield:
                 // Debug.Log("got shield");
                 PlaySound(powerUpSound);
-                particleManager.CreateParticles(ParticleType.Shield, character.MyTransform.position);
+                //particleManager.CreateParticles(ParticleType.Shield, character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
@@ -178,13 +178,13 @@ public class GameManager : MonoBehaviour
                 // Debug.Log("got mega coin");
                 PlaySound(powerUpSound);
                 MegaCoinCollected();
-                particleManager.CreateParticles(ParticleType.Diamond, character.MyTransform.position);
+               // particleManager.CreateParticles(ParticleType.Diamond, character.MyTransform.position);
                 break;
 
             case CollectableType.Stamina:
                 // Debug.Log("got stamina");
                 PlaySound(staminaSound);
-                particleManager.CreateParticles(ParticleType.RhinoSnax, character.MyTransform.position);
+                //particleManager.CreateParticles(ParticleType.RhinoSnax, character.MyTransform.position);
                 powerUpsManager.ActivatePowerUp(_collectableType);
                 break;
 
@@ -202,17 +202,17 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 tempPoints = 10;
-                particleManager.CreateParticles(ParticleType.Bronze, character.MyTransform.position);
+                //particleManager.CreateParticles(ParticleType.Bronze, character.MyTransform.position);
                 break;
 
             case 1:
                 tempPoints = 15;
-                particleManager.CreateParticles(ParticleType.Silver, character.MyTransform.position);
+               // particleManager.CreateParticles(ParticleType.Silver, character.MyTransform.position);
                 break;
 
             case 2:
                 tempPoints = 20;
-                particleManager.CreateParticles(ParticleType.Gold, character.MyTransform.position);
+               // particleManager.CreateParticles(ParticleType.Gold, character.MyTransform.position);
                 break;
 
             default:
