@@ -12,6 +12,9 @@ public class UpgradePurchasePopUp : PopUpBase
     [SerializeField]
     private Text upgradePriceText = null;
 
+    [SerializeField]
+    private Button yesButton;
+
     public void OpenPurchasePopUp(Upgrades _upgradeType, int _price)
     {
         switch (_upgradeType)
@@ -49,7 +52,15 @@ public class UpgradePurchasePopUp : PopUpBase
 
         upgradePriceText.text = priceString;
 
+        yesButton.interactable = true;
+
         OpenPopUp();
+    }
+
+    public override void ExitPopUp()
+    {
+        yesButton.interactable = false;
+        base.ExitPopUp();
     }
 
 }

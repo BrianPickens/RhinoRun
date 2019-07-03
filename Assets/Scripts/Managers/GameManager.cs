@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     private int distance;
 
+    private bool watchedRewardedAd;
+
     private string currentLoadString;
 
     private int coinSoundLevel;
@@ -298,7 +300,7 @@ public class GameManager : MonoBehaviour
         }
 
         int numPlays = StaticInfo.GetNumberOfPlays();
-        if (numPlays > 0 && numPlays % 2 == 0 && !hasRemoveAds)
+        if (numPlays > 0 && numPlays % 3 == 0 && !hasRemoveAds && !watchedRewardedAd)
         {
             if (UnityAds.CheckForAd())
             {
@@ -307,7 +309,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Add didn't show");
+               // Debug.Log("Add didn't show");
                 LoadScene(currentLoadString);
             }
         }
@@ -338,12 +340,12 @@ public class GameManager : MonoBehaviour
                 if (_completed)
                 {
                     SoundManager.Instance.FadeInBackgroundMusic(1f);
-                    Debug.Log("normal ad completed");
+                  //  Debug.Log("normal ad completed");
                 }
                 else
                 {
                     SoundManager.Instance.FadeInBackgroundMusic(1f);
-                    Debug.Log("normal ad failed");
+                   // Debug.Log("normal ad failed");
                 }
 
                 LoadScene(currentLoadString);
@@ -363,13 +365,14 @@ public class GameManager : MonoBehaviour
                     string pointsString = points.ToString("#,#");
                     string resultString = "You gained a bonus " + pointsString + " coins!";
                     gameUI.DisplayRewardedAdResult(resultString, true);
-                    Debug.Log("rewarded ad completed");
+                   // Debug.Log("rewarded ad completed");
+                    watchedRewardedAd = true;
                 }
                 else
                 {
                     SoundManager.Instance.FadeInBackgroundMusic(1f);
                     gameUI.DisplayRewardedAdResult("Rewarded Ad Failed", false);
-                    Debug.Log("rewarded ad failed or skipped");
+                   // Debug.Log("rewarded ad failed or skipped");
                 }
 
                 break;

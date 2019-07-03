@@ -2248,8 +2248,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: -75}
-  m_SizeDelta: {x: 505, y: 175}
+  m_AnchoredPosition: {x: 25, y: -89}
+  m_SizeDelta: {x: 376.3, y: 130.4}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &611909140
 MonoBehaviour:
@@ -3822,6 +3822,7 @@ MonoBehaviour:
   myAnimator: {fileID: 1005999421}
   upgradeText: {fileID: 855506221}
   upgradePriceText: {fileID: 1623730760}
+  yesButton: {fileID: 1968948145}
 --- !u!222 &1005999419
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4944,8 +4945,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 74.97, y: 4.1}
-  m_SizeDelta: {x: 301.12, y: 134.74}
+  m_AnchoredPosition: {x: 42.32, y: 5.8626}
+  m_SizeDelta: {x: 235.82, y: 131.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1515755765
 MonoBehaviour:
@@ -4980,7 +4981,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100000
+  m_Text: 8,000
 --- !u!222 &1515755766
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6320,8 +6321,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -171.3, y: 4.3}
-  m_SizeDelta: {x: 178.91, y: 178.91}
+  m_AnchoredPosition: {x: -139.44, y: 4.1}
+  m_SizeDelta: {x: 127.7, y: 127.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827995911
 MonoBehaviour:
