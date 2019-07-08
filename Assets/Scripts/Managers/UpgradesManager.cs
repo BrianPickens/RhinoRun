@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Purchasing;
 
 //upgrade types
 //increase coin amount
@@ -146,10 +147,49 @@ public class UpgradesManager : MonoBehaviour
         upgradesUI.ShowCompletedStorePurchase();
     }
 
-    private void FailedStorePurchase()
+    private void FailedStorePurchase(PurchaseFailureReason _reason)
     {
         UpdateStoreButtons();
-        upgradesUI.ShowStorePurchaseFailed();
+        string reason = "";
+        switch (_reason)
+        {
+            case PurchaseFailureReason.PurchasingUnavailable:
+                reason = "Purchasing is Currently Unavaliable";
+                break;
+
+            case PurchaseFailureReason.ExistingPurchasePending:
+                reason = "Existing Purchase is Pending";
+                break;
+
+            case PurchaseFailureReason.ProductUnavailable:
+                reason = "Product is Currently Unavaliable";
+                break;
+
+            case PurchaseFailureReason.SignatureInvalid:
+                reason = "Signature Invalid";
+                break;
+
+            case PurchaseFailureReason.UserCancelled:
+                reason = "User Cancelled";
+                break;
+
+            case PurchaseFailureReason.PaymentDeclined:
+                reason = "Payment was Declined";
+                break;
+
+            case PurchaseFailureReason.DuplicateTransaction:
+                reason = "Duplicate Transaction";
+                break;
+
+            case PurchaseFailureReason.Unknown:
+                reason = "Please Check your Internet Connection and Try Again";
+                break;
+
+            default:
+                reason = "Please Check your Internet Connection and try again";
+                break;
+        }
+        upgradesUI.ShowStorePurchaseFailed(reason);
     }
 
    

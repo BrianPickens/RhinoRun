@@ -29,7 +29,7 @@ public class UpgradesUIManager : MonoBehaviour
     private PopUpBase storePurchaseSuccessPopUp = null;
 
     [SerializeField]
-    private PopUpBase storePurchaseFailPopUp = null;
+    private StorePurchaseFailedPopUp storePurchaseFailPopUp = null;
 
     [SerializeField]
     private Button removeAdsButton = null;
@@ -212,9 +212,10 @@ public class UpgradesUIManager : MonoBehaviour
         storePurchaseSuccessPopUp.ExitPopUp();
     }
 
-    public void ShowStorePurchaseFailed()
+    public void ShowStorePurchaseFailed(string _reason)
     {
         screenBlocker.OpenPopUp();
+        storePurchaseFailPopUp.SetFailureReason(_reason);
         storePurchaseFailPopUp.OpenPopUp();
     }
 

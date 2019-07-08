@@ -9,7 +9,7 @@ public class IapManager : MonoBehaviour
 {
 
     public Action OnPurchaseCompleted;
-    public Action OnPurchasedFailed;
+    public Action<PurchaseFailureReason> OnPurchasedFailed;
 
     public void OnPurchaseComplete(Product _product)
     {
@@ -43,9 +43,8 @@ public class IapManager : MonoBehaviour
     {
         if (OnPurchasedFailed != null)
         {
-            OnPurchasedFailed();
+            OnPurchasedFailed(_reason);
         }
-        Debug.Log("Purchase failed");
     }
 
 }
